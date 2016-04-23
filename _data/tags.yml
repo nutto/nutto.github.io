@@ -1,0 +1,50 @@
+- slug: django
+  name: Django
+
+- slug: django-template-tags
+  name: Django Template Tags
+
+- slug: font-awesome
+  name: Font Awesome
+
+- slug: icons
+  name: Icons
+
+- slug: image-processing
+  name: Image Processing
+
+- slug: python
+  name: Python
+
+- slug: github
+  name: GitHub
+
+- slug: github-pages
+  name: GitHub Pages
+
+- slug: jekyll
+  name: Jekyll
+
+- slug: open-source
+  name: Open Source
+
+- slug: php
+  name: php
+
+- slug: laravel
+  name: laravel
+
+- slug: javascript
+  name: javascript
+
+- slug: mysql
+  name: Mysql
+
+- slug: bash
+  name: Bash
+
+- slug: git
+  name: Git
+
+- slug: design
+  name: Design

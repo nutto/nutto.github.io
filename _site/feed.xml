@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Nutto的穿梭机</title>
+    <atom:link href="http://blog.nuttopan.cn/feed.xml" rel="self" type="application/rss+xml"/>
+    <link>http://blog.nuttopan.cn/</link>
+    <description>nutto的博客</description>
+    <pubDate>Sat, 23 Apr 2016 15:50:13 +0800</pubDate>
+    
+      <item>
+        <title>Say Hello</title>
+        <link>http://blog.nuttopan.cn/blog/say-hello/</link>
+        <guid isPermaLink="true">http://blog.nuttopan.cn/blog/say-hello/</guid>
+        <description>&lt;p&gt;Hello i am Nutto.&lt;/p&gt;
+</description>
+        <pubDate>Sat, 23 Apr 2016 00:00:00 +0800</pubDate>
+      </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,10 @@
+- slug: tech
+  name: Technology
+#  color: '#3498db'
+  
+- slug: daily
+  name: Daily
+#  color: '#1abc9c'
+
+- slug: other
+  name: Other
