@@ -5,13 +5,15 @@
     <atom:link href="http://blog.nuttopan.cn/feed.xml" rel="self" type="application/rss+xml"/>
     <link>http://blog.nuttopan.cn/</link>
     <description>nutto的博客</description>
-    <pubDate>Sun, 24 Apr 2016 17:15:03 +0800</pubDate>
+    <pubDate>Sun, 24 Apr 2016 17:55:03 +0800</pubDate>
     
       <item>
         <title>使用GitHub Page搭建博客手记</title>
         <link>http://blog.nuttopan.cn/blog/create-my-own-github-page/</link>
         <guid isPermaLink="true">http://blog.nuttopan.cn/blog/create-my-own-github-page/</guid>
-        <description>&lt;h2&gt;搭建静态的GitHub Page&lt;/h2&gt;
+        <description>&lt;p&gt;经过一些摸索,利用GitHub Page搭建了这个博客,期间记录了一些笔记,现在整理一下希望以后有个借鉴.&lt;/p&gt;
+
+&lt;h2&gt;搭建静态的GitHub Page&lt;/h2&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;参考: &lt;a href=&quot;https://pages.github.com/&quot;&gt;https://pages.github.com/&lt;/a&gt;&lt;/p&gt;
@@ -26,17 +28,20 @@
 &lt;p&gt;比如我的用户名是&lt;em&gt;nutto&lt;/em&gt;,存放我个人Page的仓库就叫&lt;em&gt;nutto.github.io&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;2, &lt;strong&gt;使用clone命令将新建的仓库clone到本地&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;git clone https://github.com/username/username.github.io
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;clone&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;https&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;//&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;github&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;github&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;io&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
 &lt;p&gt;3, &lt;strong&gt;在项目内创建index.html文件&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;cd username.github.io
-echo &amp;quot;Hello World&amp;quot; &amp;gt; index.html
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;cd&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;github&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;io&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Hello World&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;html&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
 &lt;p&gt;4, &lt;strong&gt;将项目内的修改推到GitHub中&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;git add --all
-git commit -m &amp;quot;Initial commit&amp;quot;
-git push -u origin master
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;--&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;all&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;commit&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Initial commit&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;push&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;u&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;origin&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;master&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
 &lt;p&gt;5, &lt;strong&gt;然后我们就可以通过访问&lt;em&gt;http://username.github.io&lt;/em&gt;来访问我们刚新建的index页面了&lt;/strong&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
@@ -47,7 +52,7 @@ git push -u origin master
 
 &lt;p&gt;GitHub中的Page只允许静态的页面展示,如果每次写博客都要写HTML,更糟糕的还有可能要写CSS样式.这样肯定要疯掉的.作为blogger我当然希望只关心内容的撰写,最好可以使用Markdown,代码和排版不要太难看其实都已经心满意足了.&lt;/p&gt;
 
-&lt;p&gt;辛好我们可以使用静态页面生成工具&lt;a href=&quot;https://jekyllrb.com/docs/quickstart/&quot;&gt;Jekyll&lt;/a&gt;.开始时我们可以使用它设置好页面模版,从此以后专心撰写博客就可以了,更加好的是他能支持Markdown渲染和代码高亮等的功能,有很多地方做的比我想的更加好,简直就是天赐福音.&lt;/p&gt;
+&lt;p&gt;幸好我们可以使用静态页面生成工具&lt;a href=&quot;https://jekyllrb.com/docs/quickstart/&quot;&gt;Jekyll&lt;/a&gt;.开始时我们可以使用它设置好页面模版,从此以后专心撰写博客就可以了,更加好的是他能支持Markdown渲染和代码高亮等的功能,有很多地方做的比我想的更加好,简直就是天赐福音.&lt;/p&gt;
 
 &lt;h3&gt;安装Jekyll&lt;/h3&gt;
 
@@ -68,18 +73,21 @@ git push -u origin master
 &lt;p&gt;2,&lt;strong&gt;到http://rubyinstaller.org/downloads/中下载适合的RubyDevKit压缩包&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;这个RubyDevKit为Win下的Ruby提供了额外的一些工具,我们下载压缩包后将它解压,然后进入到目录下面运行&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;ruby dk.rb init
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;ruby&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dk&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rb&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;init&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
 &lt;p&gt;然后安装&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;ruby dk.rb install
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;ruby&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dk&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rb&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;install&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
 &lt;p&gt;就完成了&lt;/p&gt;
 
 &lt;h4&gt;安装Jekyll&lt;/h4&gt;
 
 &lt;p&gt;话说环境安装好之后安装Jekyll是很简单的事情,运行&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;gem install jekyll
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;jekyll&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
 &lt;p&gt;理论上就能顺利安装了&lt;/p&gt;
 
 &lt;p&gt;但是由于国家的特殊国情我们总是会读取不到rubygems.org的资源文件,这样的话我们有几个选择&lt;/p&gt;
@@ -101,10 +109,11 @@ git push -u origin master
 &lt;p&gt;对于应付特殊国情我觉得这个方法是比较优雅的了, 因为控制的粒度可以达到每个访问&lt;/p&gt;
 
 &lt;p&gt;回到正题,开启SSH后我们可以使用命令&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;set http_proxy=http://user:password@proxy_ip:port
 
-gem install jekyll
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;http_proxy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;http&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;//use&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;password&lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@proxy_ip&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:port&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;jekyll&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
 &lt;p&gt;来安装Jekyll&lt;/p&gt;
 
 &lt;blockquote&gt;
@@ -114,13 +123,15 @@ gem install jekyll
 &lt;h4&gt;快速使用Jekyll&lt;/h4&gt;
 
 &lt;p&gt;新建一个Jekyll项目&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;jekyll new myblog
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;进入项目目录并启动渲染&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;cd myblog
 
-jekyll serve
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;jekyll&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;myblog&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+&lt;p&gt;进入项目目录并启动渲染&lt;/p&gt;
+
+&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;cd&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;myblog&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;jekyll&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;serve&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
 &lt;p&gt;&lt;code&gt;jekyll serve&lt;/code&gt;会对项目进行监听和渲染,如果我们想单纯地渲染项目可以使用&lt;code&gt;jekyll build&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;Jekyll使用的是&lt;a href=&quot;https://github.com/Shopify/liquid/wiki&quot;&gt;Liquid&lt;/a&gt;模版引擎,灵活使用可以做出很多好看的博客模版
@@ -152,8 +163,9 @@ Jekyll的具体用法和配置还有很多不是三言两语就可以说得完�
 
 &lt;p&gt;对于网站的监控,我还是比较喜欢使用Google的工具,文档齐全还可以有课程和资料参考,我通常使用&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://www.google.com/webmasters/&quot;&gt;Google Search Console&lt;/a&gt;
-&lt;a href=&quot;analytics.google.com&quot;&gt;Google Analytics&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.google.com/webmasters/&quot;&gt;Google Search Console&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;analytics.google.com&quot;&gt;Google Analytics&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;都是可以按照网站步骤注册使用,然后在网页提示中不断学习.&lt;/p&gt;
 

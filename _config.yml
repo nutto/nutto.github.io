@@ -12,7 +12,7 @@ theme:
   yoursitetitle: Nutto的穿梭机
   gravatar: # Email MD5 hash
   description: "nutto的博客" # used by search engines
-  visiblewords: 300
+  visiblewords: 75
   # Header and footer text
   header_text: >
      老牛亦解韶光贵,不待扬鞭自奋蹄.
