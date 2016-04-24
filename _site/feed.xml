@@ -5,7 +5,7 @@
     <atom:link href="http://blog.nuttopan.cn/feed.xml" rel="self" type="application/rss+xml"/>
     <link>http://blog.nuttopan.cn/</link>
     <description>nutto的博客</description>
-    <pubDate>Sun, 24 Apr 2016 18:00:55 +0800</pubDate>
+    <pubDate>Sun, 24 Apr 2016 21:09:34 +0800</pubDate>
     
       <item>
         <title>使用GitHub Page搭建博客手记</title>
@@ -13,10 +13,10 @@
         <guid isPermaLink="true">http://blog.nuttopan.cn/blog/create-my-own-github-page/</guid>
         <description>&lt;p&gt;经过一些摸索,利用GitHub Page搭建了这个博客,期间记录了一些笔记,现在整理一下希望以后有个借鉴.&lt;/p&gt;
 
-&lt;h2&gt;搭建静态的GitHub Page&lt;/h2&gt;
+&lt;h2 id=&quot;github-page&quot;&gt;搭建静态的GitHub Page&lt;/h2&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;参考: &lt;a href=&quot;https://pages.github.com/&quot;&gt;https://pages.github.com/&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;参考: &lt;a href=&quot;https://pages.github.com/&quot;&gt;https://pages.github.com/&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;GitHub为了能让他人快速了解你个人,组织或项目,允许你对他们建立对应的Page.我们可以利用这个Page,建立自己的博客.&lt;/p&gt;
@@ -45,30 +45,30 @@
 &lt;p&gt;5, &lt;strong&gt;然后我们就可以通过访问&lt;em&gt;http://username.github.io&lt;/em&gt;来访问我们刚新建的index页面了&lt;/strong&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;我的主页是: http://nutto.github.io&lt;/p&gt;
+  &lt;p&gt;我的主页是: http://nutto.github.io&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h2&gt;使用Jekyll搭建更加灵活的博客&lt;/h2&gt;
+&lt;h2 id=&quot;jekyll&quot;&gt;使用Jekyll搭建更加灵活的博客&lt;/h2&gt;
 
 &lt;p&gt;GitHub中的Page只允许静态的页面展示,如果每次写博客都要写HTML,更糟糕的还有可能要写CSS样式.这样肯定要疯掉的.作为blogger我当然希望只关心内容的撰写,最好可以使用Markdown,代码和排版不要太难看其实都已经心满意足了.&lt;/p&gt;
 
 &lt;p&gt;幸好我们可以使用静态页面生成工具&lt;a href=&quot;https://jekyllrb.com/docs/quickstart/&quot;&gt;Jekyll&lt;/a&gt;.开始时我们可以使用它设置好页面模版,从此以后专心撰写博客就可以了,更加好的是他能支持Markdown渲染和代码高亮等的功能,有很多地方做的比我想的更加好,简直就是天赐福音.&lt;/p&gt;
 
-&lt;h3&gt;安装Jekyll&lt;/h3&gt;
+&lt;h3 id=&quot;jekyll-1&quot;&gt;安装Jekyll&lt;/h3&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;来源: &lt;a href=&quot;http://jekyll-windows.juthilo.com/&quot;&gt;http://jekyll-windows.juthilo.com/&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;来源: &lt;a href=&quot;http://jekyll-windows.juthilo.com/&quot;&gt;http://jekyll-windows.juthilo.com/&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;Jekyll是使用Ruby写的,这就是说我们要使用它就要先安装Ruby和它配套的工具.而且可惜的是Jekyll并不官方支持Win(在开源的世界Linux总是会比Win方便得多),但是也是有工具能让Jekyll在Win中运行的.Linux的安装方法在&lt;a href=&quot;https://jekyllrb.com/docs/installation/&quot;&gt;Jekyll主页&lt;/a&gt;中都有详细的描述,而且本人的机子用Win,所以还是说说Win下的安装流程吧.&lt;/p&gt;
 
-&lt;h4&gt;安装运行Jekyll的环境&lt;/h4&gt;
+&lt;h4 id=&quot;jekyll-2&quot;&gt;安装运行Jekyll的环境&lt;/h4&gt;
 
 &lt;p&gt;1, &lt;strong&gt;到http://rubyinstaller.org/downloads/中寻找适合的安装包安装Ruby&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;注意安装的时候要勾选&lt;em&gt;Add Ruby executables to your PATH&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://7xtbqv.com2.z0.glb.clouddn.com/ruby-path.png&quot; alt=&quot;Add Ruby executables to your PATH&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xtbqv.com2.z0.glb.clouddn.com/ruby-path.png&quot; alt=&quot;Add Ruby executables to your PATH&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;2,&lt;strong&gt;到http://rubyinstaller.org/downloads/中下载适合的RubyDevKit压缩包&lt;/strong&gt;&lt;/p&gt;
 
@@ -82,7 +82,7 @@
 
 &lt;p&gt;就完成了&lt;/p&gt;
 
-&lt;h4&gt;安装Jekyll&lt;/h4&gt;
+&lt;h4 id=&quot;jekyll-3&quot;&gt;安装Jekyll&lt;/h4&gt;
 
 &lt;p&gt;话说环境安装好之后安装Jekyll是很简单的事情,运行&lt;/p&gt;
 
@@ -96,7 +96,7 @@
 
 &lt;p&gt;国内的比较有名的镜像&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://ruby.taobao.org/&quot;&gt;https://ruby.taobao.org/&lt;/a&gt;   ---貌似已经停止维护了&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://ruby.taobao.org/&quot;&gt;https://ruby.taobao.org/&lt;/a&gt;   —貌似已经停止维护了&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;http://gems.ruby-china.org/&quot;&gt;http://gems.ruby-china.org/&lt;/a&gt;&lt;/p&gt;
 
@@ -117,10 +117,10 @@
 &lt;p&gt;来安装Jekyll&lt;/p&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;参考: &lt;a href=&quot;https://github.com/rubygems/rubygems/issues/1068#issuecomment-63629560&quot;&gt;https://github.com/rubygems/rubygems/issues/1068#issuecomment-63629560&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;参考: &lt;a href=&quot;https://github.com/rubygems/rubygems/issues/1068#issuecomment-63629560&quot;&gt;https://github.com/rubygems/rubygems/issues/1068#issuecomment-63629560&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h4&gt;快速使用Jekyll&lt;/h4&gt;
+&lt;h4 id=&quot;jekyll-4&quot;&gt;快速使用Jekyll&lt;/h4&gt;
 
 &lt;p&gt;新建一个Jekyll项目&lt;/p&gt;
 
@@ -137,12 +137,12 @@
 &lt;p&gt;Jekyll使用的是&lt;a href=&quot;https://github.com/Shopify/liquid/wiki&quot;&gt;Liquid&lt;/a&gt;模版引擎,灵活使用可以做出很多好看的博客模版
 Jekyll的具体用法和配置还有很多不是三言两语就可以说得完的,具体可以参照&lt;a href=&quot;https://jekyllrb.com/docs/home/&quot;&gt;https://jekyllrb.com/docs/home/&lt;/a&gt;进行实践&lt;/p&gt;
 
-&lt;h2&gt;博客的进阶&lt;/h2&gt;
+&lt;h2 id=&quot;section&quot;&gt;博客的进阶&lt;/h2&gt;
 
-&lt;h3&gt;自定义博客的URL&lt;/h3&gt;
+&lt;h3 id=&quot;url&quot;&gt;自定义博客的URL&lt;/h3&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;参考: https://help.github.com/articles/quick-start-setting-up-a-custom-domain/&lt;/p&gt;
+  &lt;p&gt;参考: https://help.github.com/articles/quick-start-setting-up-a-custom-domain/&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;按照上述流程搭建起GitHub Page博客的URL都是固定的:&lt;strong&gt;username.github.io&lt;/strong&gt;,这样对于希望个性化的人来说这样肯定不太好,所以GitHub也允许其他域名的别名指向,我们在自己的域名管理商中做一个别名指向到GitHub Page博客中,然后在GitHub Page的项目根目录中添加一个&lt;code&gt;CNAME&lt;/code&gt;文件,内容为自定义的博客域名.&lt;/p&gt;
@@ -155,11 +155,11 @@ Jekyll的具体用法和配置还有很多不是三言两语就可以说得完�
 
 &lt;p&gt;&lt;strong&gt;注意: CNAME文件中如果填写多个域名,GitHub只会解释到第一个域名&lt;/strong&gt;&lt;/p&gt;
 
-&lt;h3&gt;使用更加漂亮的Jekyll模版&lt;/h3&gt;
+&lt;h3 id=&quot;jekyll-5&quot;&gt;使用更加漂亮的Jekyll模版&lt;/h3&gt;
 
 &lt;p&gt;如果有时间打造自己的Jekyll模版那当然是一件好事,但是绝大多数的人都没有时间去自己打造自己的Jekyll模版(特别是要做得漂亮),那么我们可以善用别人的轮子,在&lt;a href=&quot;http://jekyllthemes.org/&quot;&gt;http://jekyllthemes.org/&lt;/a&gt;中有很多漂亮的Jekyll模版,我们可以直接使用,最好还是要注明一下模版的作者,支持一下模版作者的开源工作.&lt;/p&gt;
 
-&lt;h3&gt;使用Google的工具对博客进行监控&lt;/h3&gt;
+&lt;h3 id=&quot;google&quot;&gt;使用Google的工具对博客进行监控&lt;/h3&gt;
 
 &lt;p&gt;对于网站的监控,我还是比较喜欢使用Google的工具,文档齐全还可以有课程和资料参考,我通常使用&lt;/p&gt;
 
@@ -169,11 +169,12 @@ Jekyll的具体用法和配置还有很多不是三言两语就可以说得完�
 
 &lt;p&gt;都是可以按照网站步骤注册使用,然后在网页提示中不断学习.&lt;/p&gt;
 
-&lt;h3&gt;为博客加入评论功能&lt;/h3&gt;
+&lt;h3 id=&quot;section-1&quot;&gt;为博客加入评论功能&lt;/h3&gt;
 
 &lt;p&gt;GitHub Page的评论解决方案有很多,我的网站使用的是&lt;a href=&quot;https://disqus.com/&quot;&gt;disqus&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;基本的操作都是注册使用,然后贴控件代码就可以了.&lt;/p&gt;
+
 </description>
         <pubDate>Sun, 24 Apr 2016 00:00:00 +0800</pubDate>
       </item>

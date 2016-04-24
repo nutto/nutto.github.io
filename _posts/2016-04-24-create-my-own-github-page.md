@@ -83,7 +83,7 @@ ruby dk.rb install
 就完成了
 
 
-####安装Jekyll
+#### 安装Jekyll
 
 话说环境安装好之后安装Jekyll是很简单的事情,运行
 
