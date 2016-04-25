@@ -298,10 +298,10 @@ ga('send', 'pageview');
   <section class="post-content">
   <p>经过一些摸索,利用GitHub Page搭建了这个博客,期间记录了一些笔记,现在整理一下希望以后有个借鉴.</p>
 
-<h2 id="github-page">搭建静态的GitHub Page</h2>
+<h2>搭建静态的GitHub Page</h2>
 
 <blockquote>
-  <p>参考: <a href="https://pages.github.com/">https://pages.github.com/</a></p>
+<p>参考: <a href="https://pages.github.com/">https://pages.github.com/</a></p>
 </blockquote>
 
 <p>GitHub为了能让他人快速了解你个人,组织或项目,允许你对他们建立对应的Page.我们可以利用这个Page,建立自己的博客.</p>
@@ -313,66 +313,60 @@ ga('send', 'pageview');
 <p>比如我的用户名是<em>nutto</em>,存放我个人Page的仓库就叫<em>nutto.github.io</em></p>
 
 <p>2, <strong>使用clone命令将新建的仓库clone到本地</strong></p>
-
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">git</span> <span class="nb">clone</span> <span class="ss">https</span><span class="p">:</span><span class="sr">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">username</span><span class="o">/</span><span class="n">username</span><span class="o">.</span><span class="n">github</span><span class="o">.</span><span class="n">io</span></code></pre></figure>
-
+<div class="highlight"><pre><code class="language-text" data-lang="text">git clone https://github.com/username/username.github.io
+</code></pre></div>
 <p>3, <strong>在项目内创建index.html文件</strong></p>
-
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">cd</span> <span class="n">username</span><span class="o">.</span><span class="n">github</span><span class="o">.</span><span class="n">io</span>
-<span class="n">echo</span> <span class="s2">&quot;Hello World&quot;</span> <span class="o">&gt;</span> <span class="n">index</span><span class="o">.</span><span class="n">html</span></code></pre></figure>
-
+<div class="highlight"><pre><code class="language-text" data-lang="text">cd username.github.io
+echo &quot;Hello World&quot; &gt; index.html
+</code></pre></div>
 <p>4, <strong>将项目内的修改推到GitHub中</strong></p>
-
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">git</span> <span class="n">add</span> <span class="o">--</span><span class="n">all</span>
-<span class="n">git</span> <span class="n">commit</span> <span class="o">-</span><span class="n">m</span> <span class="s2">&quot;Initial commit&quot;</span>
-<span class="n">git</span> <span class="n">push</span> <span class="o">-</span><span class="n">u</span> <span class="n">origin</span> <span class="n">master</span></code></pre></figure>
-
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="x">git add --all</span>
+<span class="x">git commit -m &quot;Initial commit&quot;</span>
+<span class="x">git push -u origin master</span>
+</code></pre></div>
 <p>5, <strong>然后我们就可以通过访问<em>http://username.github.io</em>来访问我们刚新建的index页面了</strong></p>
 
 <blockquote>
-  <p>我的主页是: http://nutto.github.io</p>
+<p>我的主页是: <a href="http://nutto.github.io">http://nutto.github.io</a></p>
 </blockquote>
 
-<h2 id="jekyll">使用Jekyll搭建更加灵活的博客</h2>
+<h2>使用Jekyll搭建更加灵活的博客</h2>
 
 <p>GitHub中的Page只允许静态的页面展示,如果每次写博客都要写HTML,更糟糕的还有可能要写CSS样式.这样肯定要疯掉的.作为blogger我当然希望只关心内容的撰写,最好可以使用Markdown,代码和排版不要太难看其实都已经心满意足了.</p>
 
 <p>幸好我们可以使用静态页面生成工具<a href="https://jekyllrb.com/docs/quickstart/">Jekyll</a>.开始时我们可以使用它设置好页面模版,从此以后专心撰写博客就可以了,更加好的是他能支持Markdown渲染和代码高亮等的功能,有很多地方做的比我想的更加好,简直就是天赐福音.</p>
 
-<h3 id="jekyll-1">安装Jekyll</h3>
+<h3>安装Jekyll</h3>
 
 <blockquote>
-  <p>来源: <a href="http://jekyll-windows.juthilo.com/">http://jekyll-windows.juthilo.com/</a></p>
+<p>来源: <a href="http://jekyll-windows.juthilo.com/">http://jekyll-windows.juthilo.com/</a></p>
 </blockquote>
 
 <p>Jekyll是使用Ruby写的,这就是说我们要使用它就要先安装Ruby和它配套的工具.而且可惜的是Jekyll并不官方支持Win(在开源的世界Linux总是会比Win方便得多),但是也是有工具能让Jekyll在Win中运行的.Linux的安装方法在<a href="https://jekyllrb.com/docs/installation/">Jekyll主页</a>中都有详细的描述,而且本人的机子用Win,所以还是说说Win下的安装流程吧.</p>
 
-<h4 id="jekyll-2">安装运行Jekyll的环境</h4>
+<h4>安装运行Jekyll的环境</h4>
 
 <p>1, <strong>到http://rubyinstaller.org/downloads/中寻找适合的安装包安装Ruby</strong></p>
 
 <p>注意安装的时候要勾选<em>Add Ruby executables to your PATH</em></p>
 
-<p><img src="http://7xtbqv.com2.z0.glb.clouddn.com/ruby-path.png" alt="Add Ruby executables to your PATH" /></p>
+<p><img src="http://7xtbqv.com2.z0.glb.clouddn.com/ruby-path.png" alt="Add Ruby executables to your PATH"></p>
 
 <p>2,<strong>到http://rubyinstaller.org/downloads/中下载适合的RubyDevKit压缩包</strong></p>
 
 <p>这个RubyDevKit为Win下的Ruby提供了额外的一些工具,我们下载压缩包后将它解压,然后进入到目录下面运行</p>
-
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">ruby</span> <span class="n">dk</span><span class="o">.</span><span class="n">rb</span> <span class="n">init</span></code></pre></figure>
-
+<div class="highlight"><pre><code class="language-text" data-lang="text">ruby dk.rb init
+</code></pre></div>
 <p>然后安装</p>
-
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">ruby</span> <span class="n">dk</span><span class="o">.</span><span class="n">rb</span> <span class="n">install</span></code></pre></figure>
-
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">ruby</span> <span class="n">dk</span><span class="o">.</span><span class="n">rb</span> <span class="n">install</span>
+</code></pre></div>
 <p>就完成了</p>
 
-<h4 id="jekyll-3">安装Jekyll</h4>
+<h4>安装Jekyll</h4>
 
 <p>话说环境安装好之后安装Jekyll是很简单的事情,运行</p>
-
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">gem</span> <span class="n">install</span> <span class="n">jekyll</span></code></pre></figure>
-
+<div class="highlight"><pre><code class="language-text" data-lang="text">gem install jekyll
+</code></pre></div>
 <p>理论上就能顺利安装了</p>
 
 <p>但是由于国家的特殊国情我们总是会读取不到rubygems.org的资源文件,这样的话我们有几个选择</p>
@@ -381,7 +375,7 @@ ga('send', 'pageview');
 
 <p>国内的比较有名的镜像</p>
 
-<p><a href="https://ruby.taobao.org/">https://ruby.taobao.org/</a>   —貌似已经停止维护了</p>
+<p><a href="https://ruby.taobao.org/">https://ruby.taobao.org/</a>   ---貌似已经停止维护了</p>
 
 <p><a href="http://gems.ruby-china.org/">http://gems.ruby-china.org/</a></p>
 
@@ -394,40 +388,37 @@ ga('send', 'pageview');
 <p>对于应付特殊国情我觉得这个方法是比较优雅的了, 因为控制的粒度可以达到每个访问</p>
 
 <p>回到正题,开启SSH后我们可以使用命令</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">set http_proxy=http://user:password@proxy_ip:port
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">set</span> <span class="n">http_proxy</span><span class="o">=</span><span class="ss">http</span><span class="p">:</span><span class="sr">//use</span><span class="ss">r</span><span class="p">:</span><span class="n">password</span><span class="vi">@proxy_ip</span><span class="ss">:port</span>
-
-<span class="n">gem</span> <span class="n">install</span> <span class="n">jekyll</span></code></pre></figure>
-
+gem install jekyll
+</code></pre></div>
 <p>来安装Jekyll</p>
 
 <blockquote>
-  <p>参考: <a href="https://github.com/rubygems/rubygems/issues/1068#issuecomment-63629560">https://github.com/rubygems/rubygems/issues/1068#issuecomment-63629560</a></p>
+<p>参考: <a href="https://github.com/rubygems/rubygems/issues/1068#issuecomment-63629560">https://github.com/rubygems/rubygems/issues/1068#issuecomment-63629560</a></p>
 </blockquote>
 
-<h4 id="jekyll-4">快速使用Jekyll</h4>
+<h4>快速使用Jekyll</h4>
 
 <p>新建一个Jekyll项目</p>
-
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">jekyll</span> <span class="kp">new</span> <span class="n">myblog</span></code></pre></figure>
-
+<div class="highlight"><pre><code class="language-text" data-lang="text">jekyll new myblog
+</code></pre></div>
 <p>进入项目目录并启动渲染</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">cd myblog
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">cd</span> <span class="n">myblog</span>
-
-<span class="n">jekyll</span> <span class="n">serve</span></code></pre></figure>
-
+jekyll serve
+</code></pre></div>
 <p><code>jekyll serve</code>会对项目进行监听和渲染,如果我们想单纯地渲染项目可以使用<code>jekyll build</code></p>
 
 <p>Jekyll使用的是<a href="https://github.com/Shopify/liquid/wiki">Liquid</a>模版引擎,灵活使用可以做出很多好看的博客模版
 Jekyll的具体用法和配置还有很多不是三言两语就可以说得完的,具体可以参照<a href="https://jekyllrb.com/docs/home/">https://jekyllrb.com/docs/home/</a>进行实践</p>
 
-<h2 id="section">博客的进阶</h2>
+<h2>博客的进阶</h2>
 
-<h3 id="url">自定义博客的URL</h3>
+<h3>自定义博客的URL</h3>
 
 <blockquote>
-  <p>参考: https://help.github.com/articles/quick-start-setting-up-a-custom-domain/</p>
+<p>参考: <a href="https://help.github.com/articles/quick-start-setting-up-a-custom-domain/">https://help.github.com/articles/quick-start-setting-up-a-custom-domain/</a></p>
 </blockquote>
 
 <p>按照上述流程搭建起GitHub Page博客的URL都是固定的:<strong>username.github.io</strong>,这样对于希望个性化的人来说这样肯定不太好,所以GitHub也允许其他域名的别名指向,我们在自己的域名管理商中做一个别名指向到GitHub Page博客中,然后在GitHub Page的项目根目录中添加一个<code>CNAME</code>文件,内容为自定义的博客域名.</p>
@@ -440,11 +431,11 @@ Jekyll的具体用法和配置还有很多不是三言两语就可以说得完�
 
 <p><strong>注意: CNAME文件中如果填写多个域名,GitHub只会解释到第一个域名</strong></p>
 
-<h3 id="jekyll-5">使用更加漂亮的Jekyll模版</h3>
+<h3>使用更加漂亮的Jekyll模版</h3>
 
 <p>如果有时间打造自己的Jekyll模版那当然是一件好事,但是绝大多数的人都没有时间去自己打造自己的Jekyll模版(特别是要做得漂亮),那么我们可以善用别人的轮子,在<a href="http://jekyllthemes.org/">http://jekyllthemes.org/</a>中有很多漂亮的Jekyll模版,我们可以直接使用,最好还是要注明一下模版的作者,支持一下模版作者的开源工作.</p>
 
-<h3 id="google">使用Google的工具对博客进行监控</h3>
+<h3>使用Google的工具对博客进行监控</h3>
 
 <p>对于网站的监控,我还是比较喜欢使用Google的工具,文档齐全还可以有课程和资料参考,我通常使用</p>
 
@@ -454,12 +445,11 @@ Jekyll的具体用法和配置还有很多不是三言两语就可以说得完�
 
 <p>都是可以按照网站步骤注册使用,然后在网页提示中不断学习.</p>
 
-<h3 id="section-1">为博客加入评论功能</h3>
+<h3>为博客加入评论功能</h3>
 
 <p>GitHub Page的评论解决方案有很多,我的网站使用的是<a href="https://disqus.com/">disqus</a></p>
 
 <p>基本的操作都是注册使用,然后贴控件代码就可以了.</p>
-
 
   </section>
   

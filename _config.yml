@@ -77,10 +77,8 @@ sechby:
   tag:   #with
 
 # BUILD SETTINGS
-markdown: kramdown
+markdown: redcarpet
 highlighter: pygments
-kramdown:
-  input: GFM
 sass:
   sass_dir: _sass
   style: :compressed

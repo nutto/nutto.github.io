@@ -20,28 +20,28 @@ GitHub为了能让他人快速了解你个人,组织或项目,允许你对他们
 
 2, **使用clone命令将新建的仓库clone到本地**
 
-{% highlight ruby %}
+```
 git clone https://github.com/username/username.github.io
-{% endhighlight %}
+```
 
 3, **在项目内创建index.html文件**
 
-{% highlight ruby %}
+```
 cd username.github.io
 echo "Hello World" > index.html
-{% endhighlight %}
+```
 
 4, **将项目内的修改推到GitHub中**
 
-{% highlight ruby %}
+```php
 git add --all
 git commit -m "Initial commit"
 git push -u origin master
-{% endhighlight %}
+```
 
 5, **然后我们就可以通过访问*http://username.github.io*来访问我们刚新建的index页面了**
 
-> 我的主页是: http://nutto.github.io
+> 我的主页是: [http://nutto.github.io](http://nutto.github.io)
 
 
 ## 使用Jekyll搭建更加灵活的博客
@@ -70,15 +70,15 @@ Jekyll是使用Ruby写的,这就是说我们要使用它就要先安装Ruby和�
 
 这个RubyDevKit为Win下的Ruby提供了额外的一些工具,我们下载压缩包后将它解压,然后进入到目录下面运行
 
-{% highlight ruby %}
+```
 ruby dk.rb init
-{% endhighlight %}
+```
 
 然后安装
 
-{% highlight ruby %}
+```ruby
 ruby dk.rb install
-{% endhighlight %}
+```
 
 就完成了
 
@@ -87,9 +87,9 @@ ruby dk.rb install
 
 话说环境安装好之后安装Jekyll是很简单的事情,运行
 
-{% highlight ruby %}
+```
 gem install jekyll
-{% endhighlight %}
+```
 
 理论上就能顺利安装了
 
@@ -113,11 +113,11 @@ gem install jekyll
 
 回到正题,开启SSH后我们可以使用命令
 
-{% highlight ruby %}
+```
 set http_proxy=http://user:password@proxy_ip:port
 
 gem install jekyll
-{% endhighlight %}
+```
 
 来安装Jekyll
 
@@ -128,17 +128,17 @@ gem install jekyll
 
 新建一个Jekyll项目
 
-{% highlight ruby %}
+```
 jekyll new myblog
-{% endhighlight %}
+```
 
 进入项目目录并启动渲染
 
-{% highlight ruby %}
+```
 cd myblog
 
 jekyll serve
-{% endhighlight %}
+```
 
 ```jekyll serve```会对项目进行监听和渲染,如果我们想单纯地渲染项目可以使用```jekyll build```
 
@@ -151,7 +151,7 @@ Jekyll的具体用法和配置还有很多不是三言两语就可以说得完�
 
 ### 自定义博客的URL
 
-> 参考: https://help.github.com/articles/quick-start-setting-up-a-custom-domain/
+> 参考: [https://help.github.com/articles/quick-start-setting-up-a-custom-domain/](https://help.github.com/articles/quick-start-setting-up-a-custom-domain/)
 
 按照上述流程搭建起GitHub Page博客的URL都是固定的:**username.github.io**,这样对于希望个性化的人来说这样肯定不太好,所以GitHub也允许其他域名的别名指向,我们在自己的域名管理商中做一个别名指向到GitHub Page博客中,然后在GitHub Page的项目根目录中添加一个```CNAME```文件,内容为自定义的博客域名.
 
