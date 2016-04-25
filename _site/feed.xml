@@ -5,7 +5,53 @@
     <atom:link href="http://blog.nuttopan.cn/feed.xml" rel="self" type="application/rss+xml"/>
     <link>http://blog.nuttopan.cn/</link>
     <description>nutto的博客</description>
-    <pubDate>Mon, 25 Apr 2016 11:31:31 +0800</pubDate>
+    <pubDate>Mon, 25 Apr 2016 22:20:34 +0800</pubDate>
+    
+      <item>
+        <title>关于字符编码的笔记</title>
+        <link>http://blog.nuttopan.cn/blog/note-about-character-set/</link>
+        <guid isPermaLink="true">http://blog.nuttopan.cn/blog/note-about-character-set/</guid>
+        <description>&lt;p&gt;一直都有接触到关于字符编码的种种讨论,很多时候都是龙头蛇尾地看了一截就没有继续了解,所以头脑总是有一些模糊和不了解的地方,最近有空搜刮了一些介绍,最后读到&lt;a href=&quot;http://www.joelonsoftware.com/articles/Unicode.html&quot;&gt;Joel Spolsky关于字符集&lt;/a&gt;的介绍终于豁然开朗,后面我根据文章内容归纳一些重点.&lt;/p&gt;
+
+&lt;h2&gt;当然从历史讲起&lt;/h2&gt;
+
+&lt;p&gt;很多现在看起来复杂的东西最初都是开始于一个简单事物或者构想,字符编码也是这样,最初的字符编码就是字符到字符编码的映射,随着历史的发展,由于一些历史的原因和使用的需要,字符的编码的方式和形式都出现了不同的变化,但是终究逃脱不了映射的目的,只是中间的过程变得更加的复杂.&lt;/p&gt;
+
+&lt;h3&gt;ASCII年代&lt;/h3&gt;
+
+&lt;p&gt;ASCII(American Standard Code for Information Interchange)在电脑使用者还是以英语作为母语的使用者为主体的时候,作为编码是没有痛感,它规定了前0~127个字符和编码的对应关系,而对后面128个字符的对应关系没有做说明.前128个字符已经很好地包含了英语使用者的大部分需求.&lt;/p&gt;
+
+&lt;h3&gt;OEM年代&lt;/h3&gt;
+
+&lt;p&gt;当电脑开始全球化,作为其他国家的使用工具的时候,无可避免的都会面临一个编码的问题,毕竟ASCII只能覆盖大部分英语的使用者需求,一些欧洲的字符,更有甚者像中国的文字有上万的字符等等都没有容身之所,于是有人就打起了ASCII的后128位字符映射的编码,将他进行进一步的扩展以适应当地的字符使用习惯,这样看起来好像也是无可厚非.但是问题就在于不同的国家不同的人都共同使用这后128位的编码,就会造成编码的冲突,比如对于130这个编码的字符映射不同的国家不同的人会有不同的解析,这样会导致一个地方的文档传到另外一个地方有可能就变得完全不可读.使用ASCII后128位进行扩展的比较出名的字符集就是IBM发布的OEM字符集.&lt;/p&gt;
+
+&lt;h3&gt;ANSI年代&lt;/h3&gt;
+
+&lt;p&gt;如果还是如此各执己见的话,势必会导致字符集间很多的不兼容,对于消息和信息的传播极为不利,这样就有点通天塔的讽刺意味了.这时候ANSI(American National Standards Institute)出面制止了纷争,统一了大家对ASCII后128为的解析.ANSI规定了ASCII后128位做各自字符映射,可以单个字节映射一个字符,也可以多个字节映射一个字符,对于这样的一个映射集合就叫一个代码页.这样不同的国家和地区维持好自己的代码页就可以解决各自的字符处理需求,比如中国的GB2312标准就就是一个双字节表示一个字符的解析标准,汉字 &amp;#39;中&amp;#39; 在中文操作系统,使用0xD6,0xD0这两个字节存储.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;但是,这样就导致了一个致命的问题,通常不同代码页的字符不能在同一个文档出现,否则就会出现解析错误&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h3&gt;Unicode年代&lt;/h3&gt;
+
+&lt;p&gt;ANSI的弊病大家都意识到了,所以根本的原因就是我们必须要对我们的所有字符有统一的编号,说的是编号是因为Unicode的编号和编码是分离的(而以上的方法编码和编号都是一样的),字符都有统一的Unicode编号,但是最后的编码结果是和我们的编码方式相关的,比如比较出名的编码方式有UTF-8和UTF-16.Unicode统一了所有字符的编码之后,我们只需要通过一定的编码方式编码,使用的时候再用对应的解码方式解码,就能够获取到世界上所有的语言的字符,真正实现字符的大一统.&lt;/p&gt;
+
+&lt;h2&gt;一些值得关注的要点&lt;/h2&gt;
+
+&lt;h3&gt;BOM&lt;/h3&gt;
+
+&lt;p&gt;BOM是Byte Order Mark,他的存在是因为一个计算机由来已久的存储问题,多字节存储的时候我们应该是大端放前(high-endian)还是小端放前(low-endian)的问题.它通过在文本的头加上FF FE或FE FF来指明文本的内容是大端还是小端的.但是要注意的是一些编辑器和编译器是不会做大小端的监测的,比如PHP,如果在文本放上BOM编译器会认为他是一个文本.&lt;/p&gt;
+
+&lt;h3&gt;编码与解码&lt;/h3&gt;
+
+&lt;p&gt;对于解码,有一个重要的原则:&lt;strong&gt;解码前我们必须知道这个文本是用什么方式编码的.&lt;/strong&gt;这个很重要否则我们很难找到合适的方式去解码.&lt;/p&gt;
+
+&lt;h2&gt;参考&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.joelonsoftware.com/articles/Unicode.html&quot;&gt;http://www.joelonsoftware.com/articles/Unicode.html&lt;/a&gt;
+&lt;a href=&quot;http://www.imkevinyang.com/2010/06/%E5%85%B3%E4%BA%8E%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%EF%BC%8C%E4%BD%A0%E6%89%80%E9%9C%80%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84.html&quot;&gt;http://www.imkevinyang.com/2010/06/%E5%85%B3%E4%BA%8E%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%EF%BC%8C%E4%BD%A0%E6%89%80%E9%9C%80%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84.html&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Mon, 25 Apr 2016 00:00:00 +0800</pubDate>
+      </item>
     
       <item>
         <title>使用GitHub Page搭建博客手记</title>
@@ -28,16 +74,16 @@
 &lt;p&gt;比如我的用户名是&lt;em&gt;nutto&lt;/em&gt;,存放我个人Page的仓库就叫&lt;em&gt;nutto.github.io&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;2, &lt;strong&gt;使用clone命令将新建的仓库clone到本地&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;git clone https://github.com/username/username.github.io
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;git clone https://github.com/username/username.github.io
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;3, &lt;strong&gt;在项目内创建index.html文件&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;cd username.github.io
-echo &amp;quot;Hello World&amp;quot; &amp;gt; index.html
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;username.github.io
+&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Hello World&amp;quot;&lt;/span&gt; &amp;gt; index.html
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;4, &lt;strong&gt;将项目内的修改推到GitHub中&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;x&quot;&gt;git add --all&lt;/span&gt;
-&lt;span class=&quot;x&quot;&gt;git commit -m &amp;quot;Initial commit&amp;quot;&lt;/span&gt;
-&lt;span class=&quot;x&quot;&gt;git push -u origin master&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;git add --all
+git commit -m &lt;span class=&quot;s2&quot;&gt;&amp;quot;Initial commit&amp;quot;&lt;/span&gt;
+git push -u origin master
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;5, &lt;strong&gt;然后我们就可以通过访问&lt;em&gt;http://username.github.io&lt;/em&gt;来访问我们刚新建的index页面了&lt;/strong&gt;&lt;/p&gt;
 
@@ -70,17 +116,17 @@ echo &amp;quot;Hello World&amp;quot; &amp;gt; index.html
 &lt;p&gt;2,&lt;strong&gt;到http://rubyinstaller.org/downloads/中下载适合的RubyDevKit压缩包&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;这个RubyDevKit为Win下的Ruby提供了额外的一些工具,我们下载压缩包后将它解压,然后进入到目录下面运行&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;ruby dk.rb init
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;ruby dk.rb init
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;然后安装&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;ruby&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dk&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rb&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;install&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;ruby dk.rb install
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;就完成了&lt;/p&gt;
 
 &lt;h4&gt;安装Jekyll&lt;/h4&gt;
 
 &lt;p&gt;话说环境安装好之后安装Jekyll是很简单的事情,运行&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;gem install jekyll
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;gem install jekyll
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;理论上就能顺利安装了&lt;/p&gt;
 
@@ -103,7 +149,7 @@ echo &amp;quot;Hello World&amp;quot; &amp;gt; index.html
 &lt;p&gt;对于应付特殊国情我觉得这个方法是比较优雅的了, 因为控制的粒度可以达到每个访问&lt;/p&gt;
 
 &lt;p&gt;回到正题,开启SSH后我们可以使用命令&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;set http_proxy=http://user:password@proxy_ip:port
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nb&quot;&gt;set &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;http_proxy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;http://user:password@proxy_ip:port
 
 gem install jekyll
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -116,10 +162,10 @@ gem install jekyll
 &lt;h4&gt;快速使用Jekyll&lt;/h4&gt;
 
 &lt;p&gt;新建一个Jekyll项目&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;jekyll new myblog
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;jekyll new myblog
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;进入项目目录并启动渲染&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;cd myblog
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;myblog
 
 jekyll serve
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;

@@ -20,20 +20,20 @@ GitHub为了能让他人快速了解你个人,组织或项目,允许你对他们
 
 2, **使用clone命令将新建的仓库clone到本地**
 
-```
+```bash
 git clone https://github.com/username/username.github.io
 ```
 
 3, **在项目内创建index.html文件**
 
-```
+```bash
 cd username.github.io
 echo "Hello World" > index.html
 ```
 
 4, **将项目内的修改推到GitHub中**
 
-```php
+```bash
 git add --all
 git commit -m "Initial commit"
 git push -u origin master
@@ -70,13 +70,13 @@ Jekyll是使用Ruby写的,这就是说我们要使用它就要先安装Ruby和�
 
 这个RubyDevKit为Win下的Ruby提供了额外的一些工具,我们下载压缩包后将它解压,然后进入到目录下面运行
 
-```
+```bash
 ruby dk.rb init
 ```
 
 然后安装
 
-```ruby
+```bash
 ruby dk.rb install
 ```
 
@@ -87,7 +87,7 @@ ruby dk.rb install
 
 话说环境安装好之后安装Jekyll是很简单的事情,运行
 
-```
+```bash
 gem install jekyll
 ```
 
@@ -113,7 +113,7 @@ gem install jekyll
 
 回到正题,开启SSH后我们可以使用命令
 
-```
+```bash
 set http_proxy=http://user:password@proxy_ip:port
 
 gem install jekyll
@@ -128,13 +128,13 @@ gem install jekyll
 
 新建一个Jekyll项目
 
-```
+```bash
 jekyll new myblog
 ```
 
 进入项目目录并启动渲染
 
-```
+```bash
 cd myblog
 
 jekyll serve
