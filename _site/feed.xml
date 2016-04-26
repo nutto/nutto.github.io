@@ -5,7 +5,88 @@
     <atom:link href="http://blog.nuttopan.cn/feed.xml" rel="self" type="application/rss+xml"/>
     <link>http://blog.nuttopan.cn/</link>
     <description>nutto的博客</description>
-    <pubDate>Mon, 25 Apr 2016 22:20:34 +0800</pubDate>
+    <pubDate>Tue, 26 Apr 2016 22:54:10 +0800</pubDate>
+    
+      <item>
+        <title>【PHP-FIG】系列-PSR4自动加载</title>
+        <link>http://blog.nuttopan.cn/blog/psr-4/</link>
+        <guid isPermaLink="true">http://blog.nuttopan.cn/blog/psr-4/</guid>
+        <description>&lt;p&gt;以前写PHP的类的时候我们要一个类封装成一个文件,然后使用的时候要写一大串的include语句,PHP5以后允许我们通过命名空间和类名对类和文件的自动加载,实在大大简化了我们编程.但是我们要遵循一些命名空间和类名的规范,才能更加优雅和通俗地使用这个自动加载的特性.&lt;/p&gt;
+
+&lt;h2&gt;概述&lt;/h2&gt;
+
+&lt;p&gt;PSR-4规范了如何通过命名空间和类名自动加载文件系统中某个路径的PHP类文件对于自动加载这个话题PSR有另外一个版本:&lt;a href=&quot;https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md&quot;&gt;PSR-0&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2&gt;具体说明&lt;/h2&gt;
+
+&lt;p&gt;1, 类(class)是类(classes),接口(interfaces),特性(traits)和其他同一结构的统称.&lt;/p&gt;
+
+&lt;p&gt;2, 规范的完整类名应该是以下的形式:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-php&quot; data-lang=&quot;php&quot;&gt;&lt;span class=&quot;x&quot;&gt;\&amp;lt;NamespaceName&amp;gt;(\&amp;lt;SubNamespaceNames&amp;gt;)*\&amp;lt;ClassName&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;必须要有顶级(top-level)命名空间名,亦称为发布者命名空间&lt;/li&gt;
+&lt;li&gt;应该包含一个或多个的子命名空间名&lt;/li&gt;
+&lt;li&gt;必须要以类名作为整个完整类名的结束&lt;/li&gt;
+&lt;li&gt;下横线在完整类名的任何部分都不存在特殊的意义&lt;/li&gt;
+&lt;li&gt;完整类名可以是各种字符数字的大小写组合&lt;/li&gt;
+&lt;li&gt;类名必须是大小写敏感的&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;3, 当通过规范的完整类名加载文件的时候应该遵从的规范&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;完整类名中不包括顶级命名空间的分隔符的顶级和子命名空间(被视作命名空间前缀)对应至少一个根目录&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;比如&lt;code&gt;\Acme\Log\Writer\File_Writer&lt;/code&gt;的命名空间前缀为&lt;code&gt;Acme\Log\Writer&lt;/code&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;命名空间前缀对应的就是该根目录下的子目录,命名空间的分隔符就是目录的分隔符,注意:命名空间名和子目录名一定要大小写完全匹配.&lt;/li&gt;
+&lt;li&gt;最后的类名对应的就是目录下与类名大小写完全一致的&lt;code&gt;.php&lt;/code&gt;文件了&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;4, 实现自动加载的自动加载器绝对不能抛出异常和引发任何等级的错误,也不应该返回任何值&lt;/p&gt;
+
+&lt;h2&gt;例子&lt;/h2&gt;
+
+&lt;p&gt;例子可以参考:&lt;a href=&quot;http://www.php-fig.org/psr/psr-4/#3-examples&quot;&gt;PSR4-examples&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;参考&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.php-fig.org/psr/psr-4/&quot;&gt;PSR-4&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Tue, 26 Apr 2016 00:00:00 +0800</pubDate>
+      </item>
+    
+      <item>
+        <title>【PHP-FIG】系列-PSR1基础编码规范</title>
+        <link>http://blog.nuttopan.cn/blog/psr-1/</link>
+        <guid isPermaLink="true">http://blog.nuttopan.cn/blog/psr-1/</guid>
+        <description>&lt;p&gt;&lt;a href=&quot;http://www.php-fig.org/&quot;&gt;PSR(PHP Standards Recommendations)&lt;/a&gt;对PHP的语言书写提出了很多很好的建议规范,遵从这些规范,对代码的美观和传播交流都有积极的作用.我在学习的同时都将概述和总结翻译出来,可以作为日后的参考.&lt;/p&gt;
+
+&lt;h2&gt;概述&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;只使用&lt;code&gt;&amp;lt;?php&lt;/code&gt;和&lt;code&gt;&amp;lt;?=&lt;/code&gt;作为开始标签.不要使用&lt;code&gt;&amp;lt;?&lt;/code&gt;标签,因为这个标签要&lt;a href=&quot;http://php.net/manual/en/language.basic-syntax.phptags.php&quot;&gt;PHP配置中开启对应的支持&lt;/a&gt;才会生效.&lt;/li&gt;
+&lt;li&gt;PHP的源文件都必须使用不带BOM的UTF-8字符编码.&lt;/li&gt;
+&lt;li&gt;同一个PHP的文件要不就只负责进行定义(类, 函数, 静态变量等),要不就只负责产生结果(比如产生输出, 改变&lt;code&gt;.ini&lt;/code&gt;文件等),不应该两个事情一起做.&lt;/li&gt;
+&lt;li&gt;命名空间(Namespaces)和类名(classes)的定义必须遵循PSR的自动加载规范[&lt;a href=&quot;https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md&quot;&gt;PSR-0&lt;/a&gt;, &lt;a href=&quot;https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md&quot;&gt;PSR-4&lt;/a&gt;]&lt;/li&gt;
+&lt;li&gt;类名必须使用大驼峰写法(StudlyCaps)&lt;/li&gt;
+&lt;li&gt;类中的静态变量必须用全大写(UPPER_CASE)单词以下横线分开&lt;/li&gt;
+&lt;li&gt;方法名必须使用小驼峰写法(camelCase)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;规范的详细说明&lt;/h2&gt;
+
+&lt;p&gt;详细说明可以参照&lt;a href=&quot;http://www.php-fig.org/psr/psr-1/&quot;&gt;PSR-1&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;参考&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.php-fig.org/psr/psr-1/&quot;&gt;PSR-1&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Tue, 26 Apr 2016 00:00:00 +0800</pubDate>
+      </item>
     
       <item>
         <title>关于字符编码的笔记</title>
