@@ -4,7 +4,7 @@ This is [Nutto](http://blog.nuttopan.cn) blog.
 
 ## Contact
 
-[nutto.pan@gmail.com](nutto.pan@gmail.com)
+<nutto.pan@gmail.com>
 
 
 ## License
