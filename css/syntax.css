@@ -64,7 +64,7 @@
 .lineno::-moz-selection {background-color: transparent;} /* Mozilla specific */
 .lineno::selection {background-color: transparent;} /* Other major browsers */
 
-:not(pre)>code { background: #eee; padding: 0 0.3em; margin: 0 0.3em; border-radius: 0.3em; font-size: 0.9rem; }
+:not(pre)>code { background: #eee; padding: 0 0.3em; margin: 0 0.3em; border-radius: 0.3em; font-size: 0.9em; }
 pre { margin: 0; }
 
 blockquote { font-size: 0.9em; }
