@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<!--[if IE 6]>
+<html id="ie6" lang="zh-CN">
+<![endif]-->
+<!--[if IE 7]>
+<html id="ie7" lang="zh-CN">
+<![endif]-->
+<!--[if IE 8]>
+<html id="ie8" lang="zh-CN">
+<![endif]-->
+<!--[if !(IE 6) | !(IE 7) | !(IE 8)  ]><!-->
+<html lang="zh-CN" class="js">
+<!--<![endif]-->
+  
+
+	
+
+	
+<head>
+	<meta charset="utf-8">
+	<title>【PHP拾遗】系列-类(class)-基础 | Nutto的穿梭机</title>
+	<meta name="description" content=", php, 在OOP中类成为了编程中的支柱角色,以前使用PHP的时候都使用了很多,但是一直都没有很好地归纳总结一下,现在有机会重温一下要点,发现有很多很好的特性都没有使用到,甚至有一些概念被一直误解了,所以学习的时候也做一下笔记,方便日后翻阅.">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-Frame-Options" content="sameorigin">
+	<!-- CSS -->
+	<link rel="stylesheet" href="/css/main.css">
+	<link rel='stylesheet' id='divi-style-css'  href="/css/style.css" type='text/css' media='all' />
+	<link rel="stylesheet" href="/css/post.style.css">
+
+	<script type='text/javascript' src="/js/jquery.js"></script>
+	<script type='text/javascript' src="/js/soundmanager2-nodebug-jsmin.js"></script>
+
+	<!--Favicon-->
+	<link rel="icon" href="favicon.ico" type="image/x-icon"/>
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+	
+	<link href="/favicon.ico" mce_href="favicon.ico" rel="bookmark" type="image/x-icon" /> 
+	<link href="/favicon.ico" mce_href="favicon.ico" rel="icon" type="image/x-icon" /> 
+	<link href="/favicon.ico" mce_href="favicon.ico" rel="shortcut icon" type="image/x-icon" /> 
+	<!-- Canonical -->
+	<link rel="canonical" href="http://blog.nuttopan.cn/blog/php-class-basic/">
+
+	<!-- RSS -->
+	<link rel="alternate" type="application/atom+xml" title="Nutto的穿梭机" href="http://blog.nuttopan.cn/feed.xml" />
+
+	<!-- Font Awesome -->
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<!-- Inprove hightlight -->
+	<link href="/css/syntax.css" rel="stylesheet">
+
+	<!-- Google Fonts -->
+	
+	<link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,400italic" rel="stylesheet" type="text/css">
+	
+
+	<!-- KaTeX -->
+	
+
+	<!-- Google Analytics -->
+	
+	<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-76816542-1', 'auto');
+	ga('send', 'pageview');
+	</script>
+	
+
+	<script type="text/javascript">
+    var host = "";
+    if ((host == window.location.host) && (window.location.protocol != "https:"))
+        window.location.protocol = "https";
+    </script>
+     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+<script>
+   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-76816542-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+ 
+</head>
+
+	<body class="home blog et_pb_button_helper_class home-posts et_fixed_nav et_show_nav et_cover_background et_pb_gutter windows et_pb_gutters3 et_primary_nav_dropdown_animation_fade et_secondary_nav_dropdown_animation_fade et_pb_footer_columns4 et_header_style_left et_right_sidebar chrome">
+		<div id="page-container">
+    		<header id="main-header" data-height-onload="66">
+	<div class="container clearfix et_menu_container">
+		<div class="logo_container">
+			<span class="logo_helper"></span>
+			<a href="/">
+				<!--img src="http://blog.ibireme.com/wp-content/uploads/2015/05/logo1.png" alt="Garan no dou" id="logo" data-height-percentage="54" /-->
+				Nutto的穿梭机
+			</a>
+		</div>
+		<div id="et-top-navigation" data-height="66" data-fixed-height="40">
+			<nav id="top-menu-nav">
+				<ul id="top-menu" class="nav">
+					<li>
+						<a class="page-link" href="/">
+							Home
+						</a>
+					</li>
+					
+					
+					
+					
+					<li>
+						<a class="page-link" href="/About/">
+							About
+						</a>
+					</li>
+					
+					
+					
+					<li>
+						<a class="page-link" href="/Archives/">
+							Archive
+						</a>
+					</li>
+					
+					
+					
+					
+					
+					<li>
+						<a class="page-link" href="/Daily/">
+							日常
+						</a>
+					</li>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					<li>
+						<a class="page-link" href="/Other/">
+							其他
+						</a>
+					</li>
+					
+					
+					
+					
+					
+					<li>
+						<a class="page-link" href="/Technology/">
+							技术
+						</a>
+					</li>
+					
+					
+					
+					
+					<!-- Social icons from Font Awesome, if enabled -->
+					<li>
+						<a class="page-link" href="">Find Me</a>
+						<ul class="children">
+<li>
+	<a href="http://blog.nuttopan.cn/feed.xml" title="Follow RSS feed">
+		<i class="fa fa-fw fa-rss"></i>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li>
+	<a href="https://github.com/nutto" title="Follow on GitHub">
+		<i class="fa fa-fw fa-github"></i>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li>
+	<a href="http://stackoverflow.com/users/4744833/nutto" title="Follow on Stack Exchange">
+		<i class="fa fa-fw fa-stack-exchange"></i>
+	</a>
+</li>
+
+
+
+
+
+
+
+<li>
+	<a href="https://twitter.com/nutto.pan" title="Follow on Twitter">
+		<i class="fa fa-fw fa-twitter"></i>
+	</a>
+</li>
+
+
+
+
+
+
+
+<li>
+	<a href="mailto:nutto.pan@gmail.com" title="Email">
+		<i class="fa fa-fw fa-envelope"></i>
+	</a>
+</li>
+</ul>
+					</li>
+					
+				</ul>
+			</nav>
+
+			<div id="et_mobile_nav_menu">
+				<div class="mobile_nav closed">
+					<span class="select_page"></span>
+					<span class="mobile_menu_bar"></span>
+				</div>
+			</div>				
+		</div> <!-- #et-top-navigation -->
+	</div> <!-- .container -->
+	<div class="et_search_outer">
+		<div class="container et_search_form_container">
+			<form role="search" method="get" class="et-search-form" action="http://blog.nuttopan.cn">
+			<input type="search" class="et-search-field" placeholder="搜索 &hellip;" value="" name="s" title="搜索：" /></form>
+			<span class="et_close_search_field"></span>
+		</div>
+	</div>
+</header> <!-- #main-header -->
+
+    		<div id="et-main-area">
+      			
+
+	
+
+	
+
+<article >
+  <header style="background-image: url('/')">
+
+<!--article  >
+  <div style="background-image: url('/')"/>
+  <header style="background-image: url('https://source.unsplash.com/category/nature/2600x500/daily')"-->
+    <h1 class="title">【PHP拾遗】系列-类(class)-基础</h1>
+    <p id="subtitletrans" class="subtitlecontainer">
+    <a class="subtitle">2016年05月4日</a>
+     | <a class="subtitle" href="/About/">Nutto</a>
+	 | <a class="subtitle"></a> <a class="subtitle">  <i class="fa fa-tag"></i>: <a href="/tags/php/">php</a></a>
+    </p>
+  </header>
+  <section class="post-content">
+  <p>在OOP中类成为了编程中的支柱角色,以前使用PHP的时候都使用了很多,但是一直都没有很好地归纳总结一下,现在有机会重温一下要点,发现有很多很好的特性都没有使用到,甚至有一些概念被一直误解了,所以学习的时候也做一下笔记,方便日后翻阅.</p>
+
+<h2>定义类</h2>
+
+<p>以下的类定义会包含本文后面会叙述的一些要点和关键词</p>
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">SimpleClass</span>
+<span class="p">{</span>
+    <span class="c1">// 定义类常量</span>
+    <span class="k">const</span> <span class="no">CONSTANT</span> <span class="o">=</span> <span class="s1">&#39;CONSTANT&#39;</span><span class="p">;</span>
+
+    <span class="c1">// 定义一个有默认值的属性</span>
+    <span class="k">public</span> <span class="nv">$default</span> <span class="o">=</span> <span class="s1">&#39;have a default value&#39;</span><span class="p">;</span>
+
+    <span class="c1">// 定义不同可见性的属性</span>
+    <span class="k">public</span> <span class="nv">$public</span> <span class="o">=</span> <span class="s1">&#39;public&#39;</span><span class="p">;</span>
+    <span class="k">protected</span> <span class="nv">$protected</span> <span class="o">=</span> <span class="s1">&#39;protected&#39;</span><span class="p">;</span>
+    <span class="k">private</span> <span class="nv">$private</span> <span class="o">=</span> <span class="s1">&#39;private&#39;</span><span class="p">;</span>
+
+    <span class="c1">// 定义无默认值的属性</span>
+    <span class="k">public</span> <span class="nv">$var</span><span class="p">;</span>
+
+    <span class="c1">// 定义静态属性</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="nv">$static</span> <span class="o">=</span> <span class="s1">&#39;static&#39;</span><span class="p">;</span>
+
+    <span class="c1">// 定义类方法</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">showPrivate</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="c1">// 通过伪变量$this代指主叫对象</span>
+        <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">private</span><span class="p">;</span>
+    <span class="p">}</span> 
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">multiShow</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="c1">// 几种不同的访问属性方式</span>
+        <span class="k">echo</span> <span class="s1">&#39;this &#39;</span><span class="o">.</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">public</span><span class="o">.</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+        <span class="k">echo</span> <span class="s1">&#39;self &#39;</span><span class="o">.</span><span class="nx">self</span><span class="o">::</span><span class="na">CONSTANT</span><span class="o">.</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+        <span class="k">echo</span> <span class="s1">&#39;static &#39;</span><span class="o">.</span><span class="k">static</span><span class="o">::</span><span class="nv">$static</span><span class="o">.</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 构造函数</span>
+    <span class="k">function</span> <span class="nf">__construct</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">echo</span> <span class="nx">__CLASS__</span><span class="o">.</span><span class="s2">&quot; __construct init</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">var</span> <span class="o">=</span> <span class="s1">&#39;var&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 析构函数</span>
+    <span class="k">function</span> <span class="nf">__destruct</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">echo</span> <span class="s2">&quot;__destruct clean up</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2>创建对象</h2>
+
+<p>我们有三种方法来创建新的对象</p>
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">SimpleClass</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">getNew</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="k">static</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// 通过类名创建新对象</span>
+<span class="nv">$a</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SimpleClass</span><span class="p">();</span>
+
+<span class="c1">// 通过已存在的对象创建新的对象</span>
+<span class="nv">$b</span> <span class="o">=</span> <span class="k">new</span> <span class="nv">$a</span><span class="p">;</span>
+
+<span class="c1">// 通过static后期绑定得到的类名创建新的对象,关于后期绑定后面的章节会详细叙述</span>
+<span class="nv">$c</span> <span class="o">=</span> <span class="nv">$b</span><span class="o">-&gt;</span><span class="na">getNew</span><span class="p">();</span>
+</code></pre></div>
+<h2>静态与非静态</h2>
+
+<h3>静态</h3>
+
+<p>在类中通过关键词 <code>static</code> 修饰后的属性或方法就是静态的,静态的属性或方法有几个关键的要点:</p>
+
+<ul>
+<li>可以不实例化类就直接访问</li>
+<li>静态的属性不能通过已经实例化的对象来访问</li>
+<li>静态的方法可以通过已经实例化的对象来访问,也可以通过类名直接访问</li>
+<li>静态的方法中代指主叫对象的伪变量 <code>$this</code> 不可用</li>
+</ul>
+
+<p>比如:</p>
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">SimpleClass</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="nv">$non_static</span> <span class="o">=</span> <span class="s1">&#39;non_static&#39;</span><span class="p">;</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="nv">$static</span> <span class="o">=</span> <span class="s1">&#39;static&#39;</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">displayStatic</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">echo</span> <span class="nx">self</span><span class="o">::</span><span class="nv">$static</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nv">$a</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SimpleClass</span><span class="p">();</span>
+
+<span class="c1">// 通过实例化的对象访问静态方法</span>
+<span class="nv">$a</span><span class="o">-&gt;</span><span class="na">displayStatic</span><span class="p">();</span>  <span class="c1">// output: static</span>
+
+<span class="c1">// 直接通过类名访问静态方法</span>
+<span class="nx">SimpleClass</span><span class="o">::</span><span class="na">displayStatic</span><span class="p">();</span>  <span class="c1">// output: static</span>
+
+<span class="c1">// 访问非静态属性</span>
+<span class="k">echo</span> <span class="nv">$a</span><span class="o">-&gt;</span><span class="na">non_static</span><span class="p">;</span>  <span class="c1">// output: static</span>
+
+<span class="c1">// 通过实例化的对象访问静态属性</span>
+<span class="k">echo</span> <span class="nv">$a</span><span class="o">-&gt;</span><span class="na">static</span><span class="p">;</span>  <span class="c1">// output: Notice: Accessing static property SimpleClass::$static as non static</span>
+</code></pre></div>
+<h3>非静态</h3>
+
+<p>非静态的属性或方法,就是指不经过 <code>static</code> 修饰的属性或方法,这些属性或方法:</p>
+
+<ul>
+<li>可以经过对象来访问</li>
+<li>方法中可以使用 <code>$this</code> 来代指主叫对象</li>
+</ul>
+
+<h2>范围解析操作符(::),self,parent和后期静态绑定</h2>
+
+<p>为什么把这些放在一起呢,因为我觉得这几个概念的关系比较大</p>
+
+<h3>范围解析操作符(::)</h3>
+
+<p>这一对双冒号可以用来访问类中的静态成员,类常量和被覆盖的属性和方法</p>
+
+<p>比如:</p>
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">A</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="nv">$static</span> <span class="o">=</span> <span class="s1">&#39;static&#39;</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">getIntro</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">echo</span> <span class="s1">&#39;i am A&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">B</span> <span class="k">extends</span> <span class="nx">A</span>
+<span class="p">{</span>
+    <span class="k">const</span> <span class="no">CONSTANT</span> <span class="o">=</span> <span class="s1">&#39;CONSTANT&#39;</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">getIntro</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="c1">// 访问被覆盖的方法</span>
+        <span class="k">parent</span><span class="o">::</span><span class="na">getIntro</span><span class="p">();</span>
+        <span class="k">echo</span> <span class="s1">&#39;,but i am B now.&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+
+<span class="c1">// 访问静态方法</span>
+<span class="nx">A</span><span class="o">::</span><span class="na">getIntro</span><span class="p">();</span>  <span class="c1">// i am A</span>
+<span class="c1">// 访问静态属性</span>
+<span class="k">echo</span> <span class="nx">A</span><span class="o">::</span><span class="nv">$static</span><span class="p">;</span>  <span class="c1">// output: static</span>
+
+<span class="nx">B</span><span class="o">::</span><span class="na">getIntro</span><span class="p">();</span>  <span class="c1">// output: i am A,but i am B now.</span>
+<span class="c1">// 访问类常量</span>
+<span class="k">echo</span> <span class="nx">B</span><span class="o">::</span><span class="na">CONSTANT</span><span class="p">;</span>  <span class="c1">// CONSTANT</span>
+</code></pre></div>
+<h3>访问的定位</h3>
+
+<p>在上述例子中我们可以清楚看到范围解析操作符(::)的作用,但是依然有一个问题,我们怎么表述自己和父类这个关系?</p>
+
+<p>这个时候我们就可以在类的内部使用关键词 <code>self</code> 和 <code>parent</code> 来区分自己和父类.</p>
+
+<p>这个访问方式让我联想到C++中对类的定义的过程,C++中在类的定义的时候会对静态成员和函数预先开辟一个空间来存放,而一些非静态的成员在调用的时候才会动态分配空间,这样静态成员对于同一个类或函数都是同一个内存空间,而PHP也类似这样,所以如果静态成员被子类覆盖的时候,就要通过一些途径来区分好父类子类的关系,让程序员有路线可以寻回变量, <code>self</code> 和 <code>parent</code> 就是有这样的用途.</p>
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">A</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="nv">$static</span> <span class="o">=</span> <span class="s1">&#39;A static&#39;</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">showIntro</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">echo</span> <span class="s1">&#39;i am A&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">B</span> <span class="k">extends</span> <span class="nx">A</span>
+<span class="p">{</span>
+    <span class="c1">// 覆盖父类的静态变量</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="nv">$static</span> <span class="o">=</span> <span class="s1">&#39;B static&#39;</span><span class="p">;</span>
+
+    <span class="c1">// 覆盖父类方法</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">showIntro</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">echo</span> <span class="s1">&#39;i am B&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">showStatic</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="c1">// 找到父类的静态变量</span>
+        <span class="k">echo</span> <span class="k">parent</span><span class="o">::</span><span class="nv">$static</span><span class="p">;</span>
+        <span class="k">echo</span> <span class="s1">&#39;,&#39;</span><span class="p">;</span>
+        <span class="c1">// 自己的静态变量</span>
+        <span class="k">echo</span> <span class="nx">self</span><span class="o">::</span><span class="nv">$static</span><span class="p">;</span>
+
+
+        <span class="k">echo</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+
+        <span class="c1">// 找到父类的方法</span>
+        <span class="k">echo</span> <span class="k">parent</span><span class="o">::</span><span class="na">showIntro</span><span class="p">();</span>
+        <span class="k">echo</span> <span class="s1">&#39;,&#39;</span><span class="p">;</span>
+        <span class="c1">// 找到自己的方法</span>
+        <span class="k">echo</span> <span class="nx">self</span><span class="o">::</span><span class="na">showIntro</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nv">$tmp</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">B</span><span class="p">();</span>
+
+<span class="nv">$tmp</span><span class="o">-&gt;</span><span class="na">showStatic</span><span class="p">();</span>  <span class="c1">// output: A static,B static  i am A,i am B</span>
+</code></pre></div>
+<h3>后期静态绑定</h3>
+
+<p>这个概念的产生是由于<strong>self:: 的限制</strong>: 使用 <code>self::</code> 或者 <code>__CLASS__</code> 对当前类的静态引用，取决于定义当前方法所在的类
+比如:</p>
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">A</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">who</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">echo</span> <span class="nx">__CLASS__</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">test</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">self</span><span class="o">::</span><span class="na">who</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">B</span> <span class="k">extends</span> <span class="nx">A</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">who</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">echo</span> <span class="nx">__CLASS__</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// 由于test方法在A中定义,所以当使用self::的时候获取到的是A的作用域</span>
+
+<span class="nx">B</span><span class="o">::</span><span class="na">test</span><span class="p">();</span>  <span class="c1">// output: A</span>
+
+<span class="nv">$b</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">B</span><span class="p">();</span>
+<span class="nv">$b</span><span class="o">-&gt;</span><span class="na">test</span><span class="p">();</span>  <span class="c1">// output: A</span>
+</code></pre></div>
+<p>我们可以通过关键字 <code>static</code> (所以这个关键字有两个功能,静态成员的声明和后期静态绑定)来打破这个限制,</p>
+
+<p>后期绑定 <code>static::</code> 不再被解析为定义当前方法所在的类,而是代指实际运行时候的类.</p>
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">A</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">who</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">echo</span> <span class="nx">__CLASS__</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">test</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">static</span><span class="o">::</span><span class="na">who</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">B</span> <span class="k">extends</span> <span class="nx">A</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">who</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">echo</span> <span class="nx">__CLASS__</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// 使用static指代调用方法的类,这就叫转发调用 </span>
+
+<span class="nx">B</span><span class="o">::</span><span class="na">test</span><span class="p">();</span>  <span class="c1">// output: B</span>
+
+<span class="nv">$b</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">B</span><span class="p">();</span>
+<span class="nv">$b</span><span class="o">-&gt;</span><span class="na">test</span><span class="p">();</span>  <span class="c1">// output: B</span>
+</code></pre></div>
+<ul>
+<li><strong>非静态环境下使用后期静态绑定</strong></li>
+</ul>
+
+<p>在非静态环境下，所调用的类即为该对象实例所属的类。由于 $this-&gt; 会在同一作用范围内尝试调用私有方法，而 static:: 则可能给出不同结果。另一个区别是 static:: 只能用于静态属性。</p>
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">A</span> <span class="p">{</span>
+    <span class="k">private</span> <span class="k">function</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">echo</span> <span class="s2">&quot;success!</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">test</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">foo</span><span class="p">();</span>
+        <span class="k">static</span><span class="o">::</span><span class="na">foo</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">B</span> <span class="k">extends</span> <span class="nx">A</span> <span class="p">{</span>
+   <span class="c1">// foo()会复制到B,因此使用的依然是A的作用域,所以调用成功</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">C</span> <span class="k">extends</span> <span class="nx">A</span> <span class="p">{</span>
+    <span class="k">private</span> <span class="k">function</span> <span class="nf">foo</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// 原方法被覆盖,新的方法的作用域为C</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nv">$b</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">B</span><span class="p">();</span>
+<span class="nv">$b</span><span class="o">-&gt;</span><span class="na">test</span><span class="p">();</span>  <span class="c1">// output: success! success! success!</span>
+<span class="nv">$c</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">C</span><span class="p">();</span>
+<span class="nv">$c</span><span class="o">-&gt;</span><span class="na">test</span><span class="p">();</span>  <span class="c1">// output: Fatal error: Call to private method C::foo() from context &#39;A&#39;</span>
+</code></pre></div>
+<h2>类常量</h2>
+
+<p>类常量是类中一旦定义后就保持不变的常量,在定义和使用的时候不需要增加 <code>$</code> 符号
+比如:</p>
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">A</span> <span class="p">{</span>
+    <span class="k">const</span> <span class="no">CONSTANT</span> <span class="o">=</span> <span class="s1">&#39;CONSTANT&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 通过静态方法读取</span>
+<span class="k">echo</span> <span class="nx">A</span><span class="o">::</span><span class="na">CONSTANT</span><span class="p">;</span>  <span class="c1">// output: CONSTANT</span>
+
+<span class="c1">// 不能够改变</span>
+<span class="c1">// A::CONSTANT = &#39;NEW　CONSTANT&#39;;  // output: Parse error: syntax error, unexpected &#39;=&#39;</span>
+</code></pre></div>
+<h2>属性</h2>
+
+<p>关于类的属性有几个需要注意的要点:</p>
+
+<ul>
+<li>属性必须定义可见性</li>
+<li>方法的可见性默认为public</li>
+<li>同类的不同对象可以访问相互的protected和private成员</li>
+</ul>
+
+<h3>属性的可见性</h3>
+
+<p>|     /     | Parent | Self | Child | Foreigner |
+|-----------|--------|------|-------|-----------|
+|   public  |    O   |   O  |   O   |     O     |
+| protected |    O   |   O  |   O   |     X     |
+|  private  |    X   |   O  |   X   |     X     |</p>
+
+<h3>访问属性</h3>
+
+<p>在类的内部,不同的属性可以有不同的访问方式</p>
+
+<ul>
+<li><strong>非静态属性的访问</strong></li>
+</ul>
+
+<p>可以通过 <code>$this</code> 伪变量来指代主叫对象来访问属性</p>
+
+<p>什么是主叫对象呢?
+比如:</p>
+<div class="highlight"><pre><code class="language-php" data-lang="php"><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">A</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="nv">$intro</span> <span class="o">=</span> <span class="s1">&#39;i am A&#39;</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">showIntro</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="c1">// 通过$this来访问非静态变量</span>
+        <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">intro</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nv">$a</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">A</span><span class="p">();</span>
+
+<span class="c1">// 这个时候对于showIntro方法中的$this来说$a就是主叫对象</span>
+<span class="nv">$a</span><span class="o">-&gt;</span><span class="na">showIntro</span><span class="p">();</span>
+</code></pre></div>
+<ul>
+<li><strong>静态属性的访问</strong></li>
+</ul>
+
+<p>就像上文讲到的我们可以通过双冒号 <code>::</code> 加上 <code>self</code> 或 <code>parent</code> 来访问相应的静态属性</p>
+
+  </section>
+  
+</article>
+
+<!-- Post navigation -->
+
+<div id="post-nav">
+    
+    <a id="prev-post" href="/blog/psr-2/">
+      <span class="page-title">【PHP-FIG】系列-PSR2编码规范</span>
+      <span class="nav-label">
+        <i class="fa fa-chevron-left"></i> 
+      </span>
+    </a>
+    
+    
+</div>
+
+
+<!-- Disqus -->
+
+<div class="comments">
+  <div id="disqus_thread"></div>
+<script>
+/**
+* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//blognuttopancn.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>
+
+
+    		</div> <!-- #et-main-area -->
+		</div> <!-- #page-container -->
+		
+
+
+<footer id="page-footer-trans" class="page-footer">
+	<!--<p class="text"><a href="">Nutto的穿梭机</a> 
+</p>-->
+	Copyright &copy; 2016 <a href="">Nutto的穿梭机</a> 
+ All Rights Reserved. 
+	<p class="text">Powered by <a href="https://jekyllrb.com/">Jekyll</a>. Theme created by <a href="https://github.com/fengzhichu/fengzhichu-theme/tree/gh-pages">枫之楚</a>. Hosted in <a href="https://github.com">GitHub</a></p>
+</footer>
+
+
+    
+<!-- WP Audio player plugin v1.9.3 - https://www.tipsandtricks-hq.com/wordpress-audio-music-player-plugin-4556/ -->
+    <script type="text/javascript">
+        soundManager.useFlashBlock = true; // optional - if used, required flashblock.css
+        soundManager.url = '/plugins/soundmanager2.swf';
+        function play_mp3(flg, ids, mp3url, volume, loops)
+        {
+            //Check the file URL parameter value
+            var pieces = mp3url.split("|");
+            if (pieces.length > 1) {//We have got an .ogg file too
+                mp3file = pieces[0];
+                oggfile = pieces[1];
+                //set the file URL to be an array with the mp3 and ogg file
+                mp3url = new Array(mp3file, oggfile);
+            }
+
+            soundManager.createSound({
+                id: 'btnplay_' + ids,
+                volume: volume,
+                url: mp3url
+            });
+
+            if (flg == 'play') {
+                    soundManager.play('btnplay_' + ids, {
+                    onfinish: function() {
+                        if (loops == 'true') {
+                            loopSound('btnplay_' + ids);
+                        }
+                        else {
+                            document.getElementById('btnplay_' + ids).style.display = 'inline';
+                            document.getElementById('btnstop_' + ids).style.display = 'none';
+                        }
+                    }
+                });
+            }
+            else if (flg == 'stop') {
+    //soundManager.stop('btnplay_'+ids);
+                soundManager.pause('btnplay_' + ids);
+            }
+        }
+        function show_hide(flag, ids)
+        {
+            if (flag == 'play') {
+                document.getElementById('btnplay_' + ids).style.display = 'none';
+                document.getElementById('btnstop_' + ids).style.display = 'inline';
+            }
+            else if (flag == 'stop') {
+                document.getElementById('btnplay_' + ids).style.display = 'inline';
+                document.getElementById('btnstop_' + ids).style.display = 'none';
+            }
+        }
+        function loopSound(soundID)
+        {
+            window.setTimeout(function() {
+                soundManager.play(soundID, {onfinish: function() {
+                        loopSound(soundID);
+                    }});
+            }, 1);
+        }
+        function stop_all_tracks()
+        {
+            soundManager.stopAll();
+            var inputs = document.getElementsByTagName("input");
+            for (var i = 0; i < inputs.length; i++) {
+                if (inputs[i].id.indexOf("btnplay_") == 0) {
+                    inputs[i].style.display = 'inline';//Toggle the play button
+                }
+                if (inputs[i].id.indexOf("btnstop_") == 0) {
+                    inputs[i].style.display = 'none';//Hide the stop button
+                }
+            }
+        }
+    </script>
+    <script type='text/javascript' src="/js/frontend-builder-global-functions.js"></script>
+<script type='text/javascript' src="/js/custom.js"></script>
+<script type='text/javascript' src="/js/jquery.fitvids.js"></script>
+<script type='text/javascript' src="/js/waypoints.min.js"></script>
+<script type='text/javascript' src="/js/jquery.magnific-popup.js"></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var et_custom = {"ajaxurl":"http:\/\/blog.ibireme.com\/wp-admin\/admin-ajax.php","images_uri":"http:\/\/blog.ibireme.com\/wp-content\/themes\/Divi\/images","builder_images_uri":"http:\/\/blog.ibireme.com\/wp-content\/themes\/Divi\/includes\/builder\/images","et_load_nonce":"ae39988568","subscription_failed":"Please, check the fields below to make sure you entered the correct information.","fill":"Fill","field":"field","invalid":"Invalid email","captcha":"Captcha","prev":"Prev","previous":"\u4e0a\u4e00\u9875","next":"\u4e0b\u4e00\u9875","is_builder_plugin_used":""};
+/* ]]> */
+</script>
+<script type='text/javascript' src="/js/frontend-builder-scripts.js"></script>
+  </body>
+</html>
