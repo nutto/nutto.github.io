@@ -77,8 +77,11 @@ sechby:
   tag:   #with
 
 # BUILD SETTINGS
-markdown: redcarpet
-highlighter: pygments
+markdown: kramdown
+kramdown:
+     input: GFM
+     syntax_highlighter: rouge
+highlighter: rouge
 sass:
   sass_dir: _sass
   style: :compressed

@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<!--[if IE 6]>
+<html id="ie6" lang="zh-CN">
+<![endif]-->
+<!--[if IE 7]>
+<html id="ie7" lang="zh-CN">
+<![endif]-->
+<!--[if IE 8]>
+<html id="ie8" lang="zh-CN">
+<![endif]-->
+<!--[if !(IE 6) | !(IE 7) | !(IE 8)  ]><!-->
+<html lang="zh-CN" class="js">
+<!--<![endif]-->
+  
+
+	
+
+	
+<head>
+	<meta charset="utf-8">
+	<title>【PHP拾遗】系列-类(class)-进阶 | Nutto的穿梭机</title>
+	<meta name="description" content=", php, 在之前的【PHP拾遗】系列-类(class)-基础中介绍了PHP的类的基本概念, 但是PHP的类还有一些高级的特性,充分了解这些特性对于OOP会事半功倍.">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-Frame-Options" content="sameorigin">
+	<!-- CSS -->
+	<link rel="stylesheet" href="/css/main.css">
+	<link rel='stylesheet' id='divi-style-css'  href="/css/style.css" type='text/css' media='all' />
+	<link rel="stylesheet" href="/css/post.style.css">
+
+	<script type='text/javascript' src="/js/jquery.js"></script>
+	<script type='text/javascript' src="/js/soundmanager2-nodebug-jsmin.js"></script>
+
+	<!--Favicon-->
+	<link rel="icon" href="/favicon.ico" type="image/x-icon"/>
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+	
+	<link href="/favicon.ico" mce_href="favicon.ico" rel="bookmark" type="image/x-icon" /> 
+	<link href="/favicon.ico" mce_href="favicon.ico" rel="icon" type="image/x-icon" /> 
+	<link href="/favicon.ico" mce_href="favicon.ico" rel="shortcut icon" type="image/x-icon" /> 
+	<!-- Canonical -->
+	<link rel="canonical" href="http://blog.nuttopan.cn/blog/php-class-advance/">
+
+	<!-- RSS -->
+	<link rel="alternate" type="application/atom+xml" title="Nutto的穿梭机" href="http://blog.nuttopan.cn/feed.xml" />
+
+	<!-- Font Awesome -->
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<!-- Inprove hightlight -->
+	<link href="/css/syntax.css" rel="stylesheet">
+
+	<!-- Google Fonts -->
+	
+	<link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,400italic" rel="stylesheet" type="text/css">
+	
+
+	<!-- KaTeX -->
+	
+
+	<!-- Google Analytics -->
+	
+	<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-76816542-1', 'auto');
+	ga('send', 'pageview');
+	</script>
+	
+
+	<script type="text/javascript">
+    var host = "";
+    if ((host == window.location.host) && (window.location.protocol != "https:"))
+        window.location.protocol = "https";
+    </script>
+     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+<script>
+   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-76816542-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+ 
+</head>
+
+	<body class="home blog et_pb_button_helper_class home-posts et_fixed_nav et_show_nav et_cover_background et_pb_gutter windows et_pb_gutters3 et_primary_nav_dropdown_animation_fade et_secondary_nav_dropdown_animation_fade et_pb_footer_columns4 et_header_style_left et_right_sidebar chrome">
+		<div id="page-container">
+    		<header id="main-header" data-height-onload="66">
+	<div class="container clearfix et_menu_container">
+		<div class="logo_container">
+			<span class="logo_helper"></span>
+			<a href="/">
+				<!--img src="http://blog.ibireme.com/wp-content/uploads/2015/05/logo1.png" alt="Garan no dou" id="logo" data-height-percentage="54" /-->
+				Nutto的穿梭机
+			</a>
+		</div>
+		<div id="et-top-navigation" data-height="66" data-fixed-height="40">
+			<nav id="top-menu-nav">
+				<ul id="top-menu" class="nav">
+					<li>
+						<a class="page-link" href="/">
+							Home
+						</a>
+					</li>
+					
+					
+					
+					
+					<li>
+						<a class="page-link" href="/About/">
+							About
+						</a>
+					</li>
+					
+					
+					
+					<li>
+						<a class="page-link" href="/Archives/">
+							Archive
+						</a>
+					</li>
+					
+					
+					
+					
+					
+					<li>
+						<a class="page-link" href="/Daily/">
+							日常
+						</a>
+					</li>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					<li>
+						<a class="page-link" href="/Other/">
+							其他
+						</a>
+					</li>
+					
+					
+					
+					
+					
+					<li>
+						<a class="page-link" href="/Technology/">
+							技术
+						</a>
+					</li>
+					
+					
+					
+					
+					<!-- Social icons from Font Awesome, if enabled -->
+					<li>
+						<a class="page-link" href="">Find Me</a>
+						<ul class="children">
+<li>
+	<a href="http://blog.nuttopan.cn/feed.xml" title="Follow RSS feed">
+		<i class="fa fa-fw fa-rss"></i>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li>
+	<a href="https://github.com/nutto" title="Follow on GitHub">
+		<i class="fa fa-fw fa-github"></i>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li>
+	<a href="http://stackoverflow.com/users/4744833/nutto" title="Follow on Stack Exchange">
+		<i class="fa fa-fw fa-stack-exchange"></i>
+	</a>
+</li>
+
+
+
+
+
+
+
+<li>
+	<a href="https://twitter.com/nutto.pan" title="Follow on Twitter">
+		<i class="fa fa-fw fa-twitter"></i>
+	</a>
+</li>
+
+
+
+
+
+
+
+<li>
+	<a href="mailto:nutto.pan@gmail.com" title="Email">
+		<i class="fa fa-fw fa-envelope"></i>
+	</a>
+</li>
+</ul>
+					</li>
+					
+				</ul>
+			</nav>
+
+			<div id="et_mobile_nav_menu">
+				<div class="mobile_nav closed">
+					<span class="select_page"></span>
+					<span class="mobile_menu_bar"></span>
+				</div>
+			</div>				
+		</div> <!-- #et-top-navigation -->
+	</div> <!-- .container -->
+	<div class="et_search_outer">
+		<div class="container et_search_form_container">
+			<form role="search" method="get" class="et-search-form" action="http://blog.nuttopan.cn">
+			<input type="search" class="et-search-field" placeholder="搜索 &hellip;" value="" name="s" title="搜索：" /></form>
+			<span class="et_close_search_field"></span>
+		</div>
+	</div>
+</header> <!-- #main-header -->
+
+    		<div id="et-main-area">
+      			
+
+	
+
+	
+
+<article >
+  <header style="background-image: url('/')">
+
+<!--article  >
+  <div style="background-image: url('/')"/>
+  <header style="background-image: url('https://source.unsplash.com/category/nature/2600x500/daily')"-->
+    <h1 class="title">【PHP拾遗】系列-类(class)-进阶</h1>
+    <p id="subtitletrans" class="subtitlecontainer">
+    <a class="subtitle">2016年05月5日</a>
+     | <a class="subtitle" href="/About/">Nutto</a>
+	 | <a class="subtitle"></a> <a class="subtitle">  <i class="fa fa-tag"></i>: <a href="/tags/php/">php</a></a>
+    </p>
+  </header>
+  <section class="post-content">
+  <p>在之前的<a href="http://blog.nuttopan.cn/blog/php-class-basic/">【PHP拾遗】系列-类(class)-基础</a>中介绍了PHP的类的基本概念, 但是PHP的类还有一些高级的特性,充分了解这些特性对于OOP会事半功倍.</p>
+
+<h2 id="section">对象的继承</h2>
+
+<ul>
+  <li>子类会继承父类中公有的和受保护成员</li>
+  <li>子类可以覆盖父类继承下来的成员</li>
+  <li>父类必须在子类声明之前声明</li>
+</ul>
+
+<p>我们举个例子:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">Foo</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="nv">$a</span> <span class="o">=</span> <span class="s1">'Foo::a'</span><span class="p">;</span>
+ 
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">showName</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">echo</span> <span class="s2">"i am Nutto</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+    <span class="p">}</span>
+ 
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">showIntro</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">echo</span> <span class="s2">"i am Foo</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+ 
+<span class="k">class</span> <span class="nc">Child</span> <span class="k">extends</span> <span class="nx">Foo</span>
+<span class="p">{</span>
+    <span class="c1">// 覆盖父类成员
+</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">showIntro</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">echo</span> <span class="s2">"i am Child</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+ 
+<span class="nv">$child</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Child</span><span class="p">();</span>
+ 
+<span class="c1">// 继承了父类的属性
+</span><span class="k">echo</span> <span class="nv">$child</span><span class="o">-&gt;</span><span class="na">a</span><span class="o">.</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>  <span class="c1">// output: Foo::a
+// 继承了父类的方法
+</span><span class="nv">$child</span><span class="o">-&gt;</span><span class="na">showName</span><span class="p">();</span>  <span class="c1">// output: i am Nutto
+// 覆盖了父类的方法
+</span><span class="nv">$child</span><span class="o">-&gt;</span><span class="na">showIntro</span><span class="p">();</span>  <span class="c1">// output: i am Child
+</span></code></pre>
+</div>
+
+<h2 id="section-1">抽象类</h2>
+
+<ul>
+  <li>抽象类不能被实例化</li>
+  <li>抽象类中至少有一个抽象方法</li>
+  <li>子类必须实现抽象类中的所有方法</li>
+  <li>子类实现父类的抽象方法的时候必须遵循
+    <ol>
+      <li>可见性必须跟父类一样或更宽松(宽松程度: public &gt; protected &gt; private)</li>
+      <li>调用方式必须与父类匹配,即类型和所需的参数数量必须一致(子类必须要兼容父类的所有参数,但也可以扩展带默认值的参数)</li>
+    </ol>
+  </li>
+</ul>
+
+<p>举个例子:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="k">abstract</span> <span class="k">class</span> <span class="nc">AbstractClass</span>
+<span class="p">{</span>
+    <span class="c1">// 必须至少有一个抽象方法
+</span>    <span class="k">abstract</span> <span class="k">protected</span> <span class="k">function</span> <span class="nf">showName</span><span class="p">();</span>
+    <span class="k">abstract</span> <span class="k">protected</span> <span class="k">function</span> <span class="nf">showNumber</span><span class="p">();</span>
+    <span class="k">abstract</span> <span class="k">public</span> <span class="k">function</span> <span class="nf">showAddress</span><span class="p">(</span><span class="nv">$country</span><span class="p">,</span> <span class="nv">$city</span><span class="p">);</span>
+ 
+ 
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">showWeather</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">echo</span> <span class="s2">"The weather is sunny</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+ 
+<span class="k">class</span> <span class="nc">Foo</span> <span class="k">extends</span> <span class="nx">AbstractClass</span>
+<span class="p">{</span>
+    <span class="c1">// 要实现所有的抽象方法
+</span>    <span class="c1">// 可以使用更宽松的可见性
+</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">showName</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">echo</span> <span class="s2">"my name is Nutto</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">// 可见性至少和父类一样
+</span>    <span class="k">protected</span> <span class="k">function</span> <span class="nf">showNumber</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">echo</span> <span class="s2">"my number is 123456</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+    <span class="p">}</span>
+ 
+    <span class="c1">// 满足父类的参数的同时,可以扩展带默认值的参数
+</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">showAddress</span><span class="p">(</span><span class="nv">$country</span><span class="p">,</span> <span class="nv">$city</span><span class="p">,</span> <span class="nv">$dist</span><span class="o">=</span><span class="s1">''</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">echo</span> <span class="s2">"i am in </span><span class="si">{</span><span class="nv">$country</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="nv">$city</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="nv">$dist</span><span class="si">}</span><span class="s2">"</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+ 
+ 
+<span class="nv">$a</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Foo</span><span class="p">();</span>
+ 
+<span class="nv">$a</span><span class="o">-&gt;</span><span class="na">showWeather</span><span class="p">();</span>  <span class="c1">// output: The weather is sunny
+</span><span class="nv">$a</span><span class="o">-&gt;</span><span class="na">showName</span><span class="p">();</span>  <span class="c1">// output: my name is Nutto
+</span><span class="nv">$a</span><span class="o">-&gt;</span><span class="na">showAddress</span><span class="p">(</span><span class="s1">'a'</span><span class="p">,</span> <span class="s1">'b'</span><span class="p">,</span> <span class="s1">'c'</span><span class="p">);</span>  <span class="c1">// output: i am in a-b-c
+</span></code></pre>
+</div>
+
+<h2 id="section-2">接口</h2>
+
+<ul>
+  <li>接口用于定义需要实现的会向外暴露的方法,但不需要定义这些方法的具体内容</li>
+  <li>接口中的方法都是公有的</li>
+  <li>一个类可以实现多个接口,每一个接口的实现都必须实现该接口的所有方法</li>
+  <li>接口也可以继承</li>
+  <li>接口可以定义常量,但接口的常量不能被覆盖</li>
+</ul>
+
+<p>举个例子:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="k">interface</span> <span class="nx">bodyTagInterface</span>
+<span class="p">{</span>
+    <span class="c1">// 定义接口常量
+</span>    <span class="k">const</span> <span class="no">SELF_NAME</span> <span class="o">=</span> <span class="s1">'body'</span><span class="p">;</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">showTag</span><span class="p">();</span>
+<span class="p">}</span>
+ 
+<span class="k">interface</span> <span class="nx">renderInterface</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">showRender</span><span class="p">();</span>
+<span class="p">}</span>
+ 
+<span class="c1">// 接口间可以继承
+</span><span class="k">interface</span> <span class="nx">templateInterface</span> <span class="k">extends</span> <span class="nx">bodyTagInterface</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">showHtml</span><span class="p">();</span>
+<span class="p">}</span>
+ 
+<span class="c1">// Template类实现templateInterface接口和renderInterface接口
+</span><span class="k">class</span> <span class="nc">Template</span> <span class="k">implements</span>
+    <span class="nx">templateInterface</span><span class="p">,</span>
+    <span class="nx">renderInterface</span>
+<span class="p">{</span>
+    <span class="c1">// 必须实现接口的所有方法
+</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">showTag</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">echo</span> <span class="nx">self</span><span class="o">::</span><span class="na">SELF_NAME</span><span class="o">.</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+    <span class="p">}</span>
+ 
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">showHtml</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">echo</span> <span class="s2">"html</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+    <span class="p">}</span>
+ 
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">showRender</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">echo</span> <span class="s2">"render</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+ 
+<span class="nv">$a</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Template</span><span class="p">();</span>
+ 
+<span class="nv">$a</span><span class="o">-&gt;</span><span class="na">showTag</span><span class="p">();</span>  <span class="c1">// output: body
+</span><span class="nv">$a</span><span class="o">-&gt;</span><span class="na">showHtml</span><span class="p">();</span>  <span class="c1">// output: html
+</span><span class="nv">$a</span><span class="o">-&gt;</span><span class="na">showRender</span><span class="p">();</span>  <span class="c1">// output: render
+</span></code></pre>
+</div>
+
+<h2 id="trait">Trait(特性)</h2>
+
+<p>Trait用于服用代码,类似于多继承但是关系更加水平化而不像继承这样的垂直父子关系.</p>
+
+<p>Trait抛除了接口不能写具体方法实现的限制,更像是对一个对象进行有目的的肢解</p>
+
+<ul>
+  <li>只能用于与class组合,不能用过自身实例化</li>
+  <li>成员的覆盖优先级为: 子类 &gt; Trait &gt; 父类</li>
+  <li>Trait可以使用不同的Trait来组合自身</li>
+  <li>与继承不同的是,如果Trait中有静态成员,组合到不同的类中的时候,这些静态成员在不同的类中有不同的空间.</li>
+</ul>
+
+<p>举个例子:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="nx">trait</span> <span class="nx">returnSelfProfile</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">showName</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">echo</span> <span class="s2">"my name is Nutto</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+ 
+<span class="nx">trait</span> <span class="nx">returnSelfBalance</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">showBalance</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">echo</span> <span class="s2">"i have 100rmb</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+ 
+<span class="nx">trait</span> <span class="nx">returnSelfInfo</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="nv">$name</span> <span class="o">=</span> <span class="s1">'Undefine'</span><span class="p">;</span>
+    <span class="c1">// 可以使用不同的Trait组合自身
+</span>    <span class="k">use</span> <span class="nx">returnSelfProfile</span><span class="p">,</span> <span class="nx">returnSelfBalance</span><span class="p">;</span>
+<span class="p">}</span>
+ 
+ 
+<span class="k">class</span> <span class="nc">Person</span>
+<span class="p">{</span>
+    <span class="c1">// 使用Trait组合对象
+</span>    <span class="k">use</span> <span class="nx">returnSelfInfo</span><span class="p">;</span>
+<span class="p">}</span>
+ 
+<span class="k">class</span> <span class="nc">Animal</span>
+<span class="p">{</span>
+    <span class="k">use</span> <span class="nx">returnSelfInfo</span><span class="p">;</span>
+<span class="p">}</span>
+ 
+<span class="nv">$me</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Person</span><span class="p">();</span>
+ 
+<span class="c1">// 不同类的同一个Trait的静态变量有不同的空间
+</span><span class="nx">Person</span><span class="o">::</span><span class="nv">$name</span> <span class="o">=</span> <span class="s1">'me'</span><span class="p">;</span>
+<span class="nx">Animal</span><span class="o">::</span><span class="nv">$name</span> <span class="o">=</span> <span class="s1">'dog'</span><span class="p">;</span>
+ 
+<span class="k">echo</span> <span class="nx">Person</span><span class="o">::</span><span class="nv">$name</span><span class="o">.</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>  <span class="c1">// output: me
+</span><span class="k">echo</span> <span class="nx">Animal</span><span class="o">::</span><span class="nv">$name</span><span class="o">.</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>  <span class="c1">// output: dog
+</span> 
+<span class="nv">$me</span><span class="o">-&gt;</span><span class="na">showName</span><span class="p">();</span>  <span class="c1">// output: my name is Nutto
+</span><span class="nv">$me</span><span class="o">-&gt;</span><span class="na">showBalance</span><span class="p">();</span>  <span class="c1">// output: i have 100rmb
+</span></code></pre>
+</div>
+
+<h2 id="section-3">匿名类</h2>
+
+<p>匿名类在PHP中是一个新的事物,到PHP7+才支持匿名类</p>
+
+<ul>
+  <li>使用匿名类的构造器(class)可以快速创建一个一次性的简单对象</li>
+  <li>类中的匿名类不能直接访问外部类的private和protected方法或属性,为了访问外部类(Outer class)protected 属性或方法,匿名类可以 extend(扩展)此外部类.为了使用外部类(Outer class)的 private 属性,必须通过构造器传进来.</li>
+</ul>
+
+<p>举个例子:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="k">interface</span> <span class="nx">simpleInterface</span> <span class="p">{};</span>
+<span class="nx">trait</span> <span class="nx">simpleTrait</span> <span class="p">{};</span>
+<span class="k">class</span> <span class="nc">ParentClass</span> <span class="p">{};</span>
+ 
+ 
+<span class="c1">// 用匿名类的构造器创建对象,可以像普通类一样继承,实现接口和使用特性组合
+</span><span class="nb">var_dump</span><span class="p">(</span><span class="k">new</span> <span class="k">class</span><span class="err">('</span><span class="nc">Nutto</span><span class="s1">') extends ParentClass implements simpleInterface {
+    use simpleTrait;
+    private $name;
+ 
+    public function __construct($name)
+    {
+        echo $name . "\n";  // output: Nutto
+        $this-&gt;name = $name;
+    }
+});
+ 
+class Outer
+{
+    private $private_outer = '</span><span class="nx">private_outer</span><span class="s1">';
+    protected $protected_outer = '</span><span class="nx">protected_outer</span><span class="s1">';
+ 
+    public function changeVar()
+    {
+        $this-&gt;private_outer = '</span><span class="nx">changed_private_outer</span><span class="s1">';
+        $this-&gt;protected_outer = '</span><span class="nx">changed_protected_outer</span><span class="s1">';
+    }
+ 
+    public function printer()
+    {
+        // 嵌套的匿名类要使用外层类的私有成员要通过构造器传值
+        return new class($this-&gt;private_outer) extends Outer {
+            private $anonymous = '</span><span class="nx">private_anonymous</span><span class="err">'</span><span class="p">;</span>
+            <span class="k">private</span> <span class="nv">$tmp</span><span class="p">;</span>
+ 
+            <span class="k">public</span> <span class="k">function</span> <span class="nf">showInfo</span><span class="p">()</span>
+            <span class="p">{</span>
+                <span class="c1">// 嵌套的匿名类通过extends外层类,就可以使用外层类
+</span>                <span class="c1">// 的protected成员,这个和继承是同一个概念
+</span>                <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">protected_outer</span> <span class="o">.</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span> <span class="o">.</span>
+                    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">tmp</span> <span class="o">.</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span> <span class="o">.</span>
+                    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">anonymous</span> <span class="o">.</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+            <span class="p">}</span>
+ 
+            <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span><span class="nv">$private</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">tmp</span> <span class="o">=</span> <span class="nv">$private</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">};</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+ 
+<span class="nv">$a</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Outer</span><span class="p">();</span>
+ 
+<span class="nv">$a</span><span class="o">-&gt;</span><span class="na">printer</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">showInfo</span><span class="p">();</span>  <span class="c1">// output: protected_outer private_outer private_anonymous
+</span> 
+<span class="c1">// 其实嵌套的匿名类使用外层类的成员,与继承和传值的概念是一样的,并没有什么魔术处理过程
+</span><span class="nv">$a</span><span class="o">-&gt;</span><span class="na">changeVar</span><span class="p">();</span>
+<span class="nv">$a</span><span class="o">-&gt;</span><span class="na">printer</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">showInfo</span><span class="p">();</span>  <span class="c1">// output: protected_outer changed_private_outer private_anonymous
+</span></code></pre>
+</div>
+
+<h2 id="final">final关键字</h2>
+
+<ul>
+  <li>父类的方法声明为final,则子类不能覆盖这个方法</li>
+  <li>如果一个类声明为final,则这个类不能被继承</li>
+</ul>
+
+<p>举例尝试覆盖final方法:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">A</span>
+<span class="p">{</span>
+    <span class="k">final</span> <span class="k">public</span> <span class="k">function</span> <span class="nf">showName</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">echo</span> <span class="s1">'A'</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+ 
+<span class="k">class</span> <span class="nc">B</span> <span class="k">extends</span> <span class="nx">A</span>
+<span class="p">{</span>
+    <span class="c1">// 会引发错误: Fatal error:  Cannot override final method A::showName()
+</span>    <span class="k">public</span> <span class="k">function</span> <span class="nf">showName</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">echo</span> <span class="s1">'B'</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+ 
+<span class="nv">$b</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">B</span><span class="p">();</span>
+<span class="nv">$b</span><span class="o">-&gt;</span><span class="na">showName</span><span class="p">();</span>
+</code></pre>
+</div>
+
+<p>举例尝试继承final类</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="k">final</span> <span class="k">class</span> <span class="nc">A</span> <span class="p">{};</span>
+ 
+<span class="c1">// 会引发错误: Fatal error:  Class B may not inherit from final class (A)
+</span><span class="k">class</span> <span class="nc">B</span> <span class="k">extends</span> <span class="nx">A</span> <span class="p">{};</span>
+</code></pre>
+</div>
+
+<h2 id="section-4">重载</h2>
+
+<p>PHP的重载概念与大多数语言的重载概念不一样,通常的重载概念指的是:同名类的方法因为参数的不一样可以有不同的实现.</p>
+
+<p>PHP的重载指的是当调用<strong>当前环境下未定义或者不可见(下文统称为<em>不可访问</em>)</strong>的类属性或方法的时候,一些魔术方法会被调用.</p>
+
+<h3 id="section-5">属性重载</h3>
+
+<p>属性重载的魔术方法有:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>public void __set ( string $name , mixed $value )  // 给不可访问属性赋值时调用
+public mixed __get ( string $name )  // 读取不可访问属性的值时调用
+public bool __isset ( string $name )  // 当对不可访问属性调用 isset() 或 empty() 时调用
+public void __unset ( string $name )  // 当对不可访问属性调用 unset() 时调用
+</code></pre>
+</div>
+<p><strong>属性重载只能在对象中进行,所以静态属性没有重载的魔术方法</strong></p>
+
+<p>举个例子:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">A</span>
+<span class="p">{</span>
+    <span class="k">private</span> <span class="nv">$data</span> <span class="o">=</span> <span class="k">array</span><span class="p">();</span>
+    <span class="k">private</span> <span class="nv">$private</span><span class="p">;</span>
+ 
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">__set</span><span class="p">(</span><span class="nv">$name</span> <span class="p">,</span> <span class="nv">$value</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">echo</span> <span class="s2">"set </span><span class="si">{</span><span class="nv">$name</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="nv">$value</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+        <span class="c1">// 存下设置的键值
+</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">data</span><span class="p">[</span><span class="nv">$name</span><span class="p">]</span> <span class="o">=</span> <span class="nv">$value</span><span class="p">;</span>
+    <span class="p">}</span>
+ 
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">__get</span><span class="p">(</span><span class="nv">$name</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">echo</span> <span class="s2">"get </span><span class="si">{</span><span class="nv">$name</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nb">array_key_exists</span><span class="p">(</span><span class="nv">$name</span><span class="p">,</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">data</span><span class="p">))</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">data</span><span class="p">[</span><span class="nv">$name</span><span class="p">];</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="p">}</span>
+ 
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">__isset</span><span class="p">(</span><span class="nv">$name</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">echo</span> <span class="s2">"isset </span><span class="si">{</span><span class="nv">$name</span><span class="si">}</span><span class="s2">?</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+        <span class="k">return</span> <span class="nb">isset</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">data</span><span class="p">[</span><span class="nv">$name</span><span class="p">]);</span>
+    <span class="p">}</span>
+ 
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">__unset</span><span class="p">(</span><span class="nv">$name</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">echo</span> <span class="s2">"unset </span><span class="si">{</span><span class="nv">$name</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+        <span class="nb">unset</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">data</span><span class="p">[</span><span class="nv">$name</span><span class="p">]);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+ 
+<span class="nv">$a</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">A</span><span class="p">();</span>
+ 
+<span class="c1">// 访问无定义的属性会触发魔术方法
+</span><span class="nv">$a</span><span class="o">-&gt;</span><span class="na">a</span> <span class="o">=</span> <span class="s1">'a'</span><span class="p">;</span>  <span class="c1">// output: set a to a
+</span><span class="nv">$a</span><span class="o">-&gt;</span><span class="na">a</span><span class="p">;</span>  <span class="c1">// output: get a
+</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$a</span><span class="o">-&gt;</span><span class="na">a</span><span class="p">);</span>  <span class="c1">// output: isset a?
+</span><span class="nb">unset</span><span class="p">(</span><span class="nv">$a</span><span class="o">-&gt;</span><span class="na">a</span><span class="p">);</span>  <span class="c1">// output: unset a
+</span> 
+<span class="c1">// 访问private也会触发魔术方法
+</span><span class="nv">$a</span><span class="o">-&gt;</span><span class="na">private</span> <span class="o">=</span> <span class="s1">'private'</span><span class="p">;</span>  <span class="c1">// output: set private to private
+</span><span class="nv">$a</span><span class="o">-&gt;</span><span class="na">private</span><span class="p">;</span>  <span class="c1">// output: get private
+</span><span class="nb">isset</span><span class="p">(</span><span class="nv">$a</span><span class="o">-&gt;</span><span class="na">private</span><span class="p">);</span>  <span class="c1">// output: isset private?
+</span><span class="nb">unset</span><span class="p">(</span><span class="nv">$a</span><span class="o">-&gt;</span><span class="na">private</span><span class="p">);</span>  <span class="c1">// output: unset private
+</span></code></pre>
+</div>
+
+<h3 id="section-6">方法重载</h3>
+
+<p>方法重载的魔术方法有:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>public mixed __call ( string $name , array $arguments )  // 在对象中调用一个不可访问方法时调用
+public static mixed __callStatic ( string $name , array $arguments )  // 用静态方式中调用一个不可访问方法时调用
+</code></pre>
+</div>
+
+<p>举个例子:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code> <span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">A</span>
+<span class="p">{</span>
+    <span class="k">private</span> <span class="k">function</span> <span class="nf">getSecret</span><span class="p">()</span> <span class="p">{}</span>
+    <span class="k">private</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">getStaticSecret</span><span class="p">()</span> <span class="p">{}</span>
+ 
+ 
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">__call</span><span class="p">(</span><span class="nv">$name</span><span class="p">,</span> <span class="nv">$args</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">echo</span> <span class="s2">"call </span><span class="si">{</span><span class="nv">$name</span><span class="si">}</span><span class="s2"> function with arguments("</span> <span class="o">.</span> <span class="nb">implode</span><span class="p">(</span><span class="s1">','</span><span class="p">,</span> <span class="nv">$args</span><span class="p">)</span> <span class="o">.</span> <span class="s2">")</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+    <span class="p">}</span>
+ 
+    <span class="k">public</span> <span class="k">static</span> <span class="k">function</span> <span class="nf">__callStatic</span><span class="p">(</span><span class="nv">$name</span><span class="p">,</span> <span class="nv">$args</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">echo</span> <span class="s2">"call static </span><span class="si">{</span><span class="nv">$name</span><span class="si">}</span><span class="s2"> function with arguments("</span> <span class="o">.</span> <span class="nb">implode</span><span class="p">(</span><span class="s1">','</span><span class="p">,</span> <span class="nv">$args</span><span class="p">)</span> <span class="o">.</span> <span class="s2">")</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+ 
+<span class="nv">$a</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">A</span><span class="p">();</span>
+ 
+<span class="c1">// 用静态方法访问private方法
+</span><span class="nx">A</span><span class="o">::</span><span class="na">getSecret</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>  <span class="c1">// output: call static getSecret function with arguments(1,2,3)
+</span> 
+<span class="c1">// 用非静态方法访问private方法
+</span><span class="nv">$a</span><span class="o">-&gt;</span><span class="na">getSecret</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>  <span class="c1">// output: call getSecret function with arguments(1,2,3)
+</span> 
+<span class="c1">// 用静态方法访问不存在的方法
+</span><span class="nx">A</span><span class="o">::</span><span class="na">getNone</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span>  <span class="c1">// output: call static getNone function with arguments(4,5,6)
+</span> 
+<span class="c1">// 用非静态方法访问不存在的方法
+</span><span class="nv">$a</span><span class="o">-&gt;</span><span class="na">getNone</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">);</span> <span class="c1">// output: call getNone function with arguments(4,5,6)
+</span></code></pre>
+</div>
+
+  </section>
+  
+</article>
+
+<!-- Post navigation -->
+
+<div id="post-nav">
+    
+    <a id="prev-post" href="/blog/php-class-basic/">
+      <span class="page-title">【PHP拾遗】系列-类(class)-基础</span>
+      <span class="nav-label">
+        <i class="fa fa-chevron-left"></i> 
+      </span>
+    </a>
+    
+    
+</div>
+
+
+<!-- Disqus -->
+
+<div class="comments">
+  <div id="disqus_thread"></div>
+<script>
+/**
+* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//blognuttopancn.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>
+
+
+    		</div> <!-- #et-main-area -->
+		</div> <!-- #page-container -->
+		
+
+
+<footer id="page-footer-trans" class="page-footer">
+	<!--<p class="text"><a href="">Nutto的穿梭机</a> 
+</p>-->
+	Copyright &copy; 2016 <a href="">Nutto的穿梭机</a> 
+ All Rights Reserved. 
+	<p class="text">Powered by <a href="https://jekyllrb.com/">Jekyll</a>. Theme created by <a href="https://github.com/fengzhichu/fengzhichu-theme/tree/gh-pages">枫之楚</a>. Hosted in <a href="https://github.com">GitHub</a></p>
+</footer>
+
+
+    
+<!-- WP Audio player plugin v1.9.3 - https://www.tipsandtricks-hq.com/wordpress-audio-music-player-plugin-4556/ -->
+    <script type="text/javascript">
+        soundManager.useFlashBlock = true; // optional - if used, required flashblock.css
+        soundManager.url = '/plugins/soundmanager2.swf';
+        function play_mp3(flg, ids, mp3url, volume, loops)
+        {
+            //Check the file URL parameter value
+            var pieces = mp3url.split("|");
+            if (pieces.length > 1) {//We have got an .ogg file too
+                mp3file = pieces[0];
+                oggfile = pieces[1];
+                //set the file URL to be an array with the mp3 and ogg file
+                mp3url = new Array(mp3file, oggfile);
+            }
+
+            soundManager.createSound({
+                id: 'btnplay_' + ids,
+                volume: volume,
+                url: mp3url
+            });
+
+            if (flg == 'play') {
+                    soundManager.play('btnplay_' + ids, {
+                    onfinish: function() {
+                        if (loops == 'true') {
+                            loopSound('btnplay_' + ids);
+                        }
+                        else {
+                            document.getElementById('btnplay_' + ids).style.display = 'inline';
+                            document.getElementById('btnstop_' + ids).style.display = 'none';
+                        }
+                    }
+                });
+            }
+            else if (flg == 'stop') {
+    //soundManager.stop('btnplay_'+ids);
+                soundManager.pause('btnplay_' + ids);
+            }
+        }
+        function show_hide(flag, ids)
+        {
+            if (flag == 'play') {
+                document.getElementById('btnplay_' + ids).style.display = 'none';
+                document.getElementById('btnstop_' + ids).style.display = 'inline';
+            }
+            else if (flag == 'stop') {
+                document.getElementById('btnplay_' + ids).style.display = 'inline';
+                document.getElementById('btnstop_' + ids).style.display = 'none';
+            }
+        }
+        function loopSound(soundID)
+        {
+            window.setTimeout(function() {
+                soundManager.play(soundID, {onfinish: function() {
+                        loopSound(soundID);
+                    }});
+            }, 1);
+        }
+        function stop_all_tracks()
+        {
+            soundManager.stopAll();
+            var inputs = document.getElementsByTagName("input");
+            for (var i = 0; i < inputs.length; i++) {
+                if (inputs[i].id.indexOf("btnplay_") == 0) {
+                    inputs[i].style.display = 'inline';//Toggle the play button
+                }
+                if (inputs[i].id.indexOf("btnstop_") == 0) {
+                    inputs[i].style.display = 'none';//Hide the stop button
+                }
+            }
+        }
+    </script>
+    <script type='text/javascript' src="/js/frontend-builder-global-functions.js"></script>
+<script type='text/javascript' src="/js/custom.js"></script>
+<script type='text/javascript' src="/js/jquery.fitvids.js"></script>
+<script type='text/javascript' src="/js/waypoints.min.js"></script>
+<script type='text/javascript' src="/js/jquery.magnific-popup.js"></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var et_custom = {"ajaxurl":"http:\/\/blog.ibireme.com\/wp-admin\/admin-ajax.php","images_uri":"http:\/\/blog.ibireme.com\/wp-content\/themes\/Divi\/images","builder_images_uri":"http:\/\/blog.ibireme.com\/wp-content\/themes\/Divi\/includes\/builder\/images","et_load_nonce":"ae39988568","subscription_failed":"Please, check the fields below to make sure you entered the correct information.","fill":"Fill","field":"field","invalid":"Invalid email","captcha":"Captcha","prev":"Prev","previous":"\u4e0a\u4e00\u9875","next":"\u4e0b\u4e00\u9875","is_builder_plugin_used":""};
+/* ]]> */
+</script>
+<script type='text/javascript' src="/js/frontend-builder-scripts.js"></script>
+  </body>
+</html>

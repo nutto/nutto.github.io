@@ -31,7 +31,7 @@
 	<script type='text/javascript' src="/js/soundmanager2-nodebug-jsmin.js"></script>
 
 	<!--Favicon-->
-	<link rel="icon" href="favicon.ico" type="image/x-icon"/>
+	<link rel="icon" href="/favicon.ico" type="image/x-icon"/>
 	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 	
 	<link href="/favicon.ico" mce_href="favicon.ico" rel="bookmark" type="image/x-icon" /> 
@@ -300,23 +300,23 @@ ga('send', 'pageview');
   <section class="post-content">
   <p><a href="http://www.php-fig.org/">PSR(PHP Standards Recommendations)</a>对PHP的语言书写提出了很多很好的建议规范,遵从这些规范,对代码的美观和传播交流都有积极的作用.我在学习的同时都将概述和总结翻译出来,可以作为日后的参考.</p>
 
-<h2>概述</h2>
+<h2 id="section">概述</h2>
 
 <ul>
-<li>只使用<code>&lt;?php</code>和<code>&lt;?=</code>作为开始标签.不要使用<code>&lt;?</code>标签,因为这个标签要<a href="http://php.net/manual/en/language.basic-syntax.phptags.php">PHP配置中开启对应的支持</a>才会生效.</li>
-<li>PHP的源文件都必须使用不带BOM的UTF-8字符编码.</li>
-<li>同一个PHP的文件要不就只负责进行定义(类, 函数, 静态变量等),要不就只负责产生结果(比如产生输出, 改变<code>.ini</code>文件等),不应该两个事情一起做.</li>
-<li>命名空间(Namespaces)和类名(classes)的定义必须遵循PSR的自动加载规范[<a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md">PSR-0</a>, <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md">PSR-4</a>]</li>
-<li>类名必须使用大驼峰写法(StudlyCaps)</li>
-<li>类中的常量(constants)必须用全大写(UPPER_CASE)单词以下横线分开</li>
-<li>方法名必须使用小驼峰写法(camelCase)</li>
+  <li>只使用<code class="highlighter-rouge">&lt;?php</code>和<code class="highlighter-rouge">&lt;?=</code>作为开始标签.不要使用<code class="highlighter-rouge">&lt;?</code>标签,因为这个标签要<a href="http://php.net/manual/en/language.basic-syntax.phptags.php">PHP配置中开启对应的支持</a>才会生效.</li>
+  <li>PHP的源文件都必须使用不带BOM的UTF-8字符编码.</li>
+  <li>同一个PHP的文件要不就只负责进行定义(类, 函数, 静态变量等),要不就只负责产生结果(比如产生输出, 改变<code class="highlighter-rouge">.ini</code>文件等),不应该两个事情一起做.</li>
+  <li>命名空间(Namespaces)和类名(classes)的定义必须遵循PSR的自动加载规范[<a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md">PSR-0</a>, <a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md">PSR-4</a>]</li>
+  <li>类名必须使用大驼峰写法(StudlyCaps)</li>
+  <li>类中的常量(constants)必须用全大写(UPPER_CASE)单词以下横线分开</li>
+  <li>方法名必须使用小驼峰写法(camelCase)</li>
 </ul>
 
-<h2>规范的详细说明</h2>
+<h2 id="section-1">规范的详细说明</h2>
 
 <p>详细说明可以参照<a href="http://www.php-fig.org/psr/psr-1/">PSR-1</a></p>
 
-<h2>参考</h2>
+<h2 id="section-2">参考</h2>
 
 <p><a href="http://www.php-fig.org/psr/psr-1/">PSR-1</a></p>
 

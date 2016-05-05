@@ -31,7 +31,7 @@
 	<script type='text/javascript' src="/js/soundmanager2-nodebug-jsmin.js"></script>
 
 	<!--Favicon-->
-	<link rel="icon" href="favicon.ico" type="image/x-icon"/>
+	<link rel="icon" href="/favicon.ico" type="image/x-icon"/>
 	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 	
 	<link href="/favicon.ico" mce_href="favicon.ico" rel="bookmark" type="image/x-icon" /> 
@@ -311,39 +311,39 @@ ga('send', 'pageview');
 		  
 		    <p>一直都有接触到关于字符编码的种种讨论,很多时候都是龙头蛇尾地看了一截就没有继续了解,所以头脑总是有一些模糊和不了解的地方,最近有空搜刮了一些介绍,最后读到<a href="http://www.joelonsoftware.com/articles/Unicode.html">Joel Spolsky关于字符集</a>的介绍终于豁然开朗,后面我根据文章内容归纳一些重点.</p>
 
-<h2>当然从历史讲起</h2>
+<h2 id="section">当然从历史讲起</h2>
 
 <p>很多现在看起来复杂的东西最初都是开始于一个简单事物或者构想,字符编码也是这样,最初的字符编码就是字符到字符编码的映射,随着历史的发展,由于一些历史的原因和使用的需要,字符的编码的方式和形式都出现了不同的变化,但是终究逃脱不了映射的目的,只是中间的过程变得更加的复杂.</p>
 
-<h3>ASCII年代</h3>
+<h3 id="ascii">ASCII年代</h3>
 
 <p>ASCII(American Standard Code for Information Interchange)在电脑使用者还是以英语作为母语的使用者为主体的时候,作为编码是没有痛感,它规定了前0~127个字符和编码的对应关系,而对后面128个字符的对应关系没有做说明.前128个字符已经很好地包含了英语使用者的大部分需求.</p>
 
-<h3>OEM年代</h3>
+<h3 id="oem">OEM年代</h3>
 
 <p>当电脑开始全球化,作为其他国家的使用工具的时候,无可避免的都会面临一个编码的问题,毕竟ASCII只能覆盖大部分英语的使用者需求,一些欧洲的字符,更有甚者像中国的文字有上万的字符等等都没有容身之所,于是有人就打起了ASCII的后128位字符映射的编码,将他进行进一步的扩展以适应当地的字符使用习惯,这样看起来好像也是无可厚非.但是问题就在于不同的国家不同的人都共同使用这后128位的编码,就会造成编码的冲突,比如对于130这个编码的字符映射不同的国家不同的人会有不同的解析,这样会导致一个地方的文档传到另外一个地方有可能就变得完全不可读.使用ASCII后128位进行扩展的比较出名的字符集就是IBM发布的OEM字符集.</p>
 
-<h3>ANSI年代</h3>
+<h3 id="ansi">ANSI年代</h3>
 
-<p>如果还是如此各执己见的话,势必会导致字符集间很多的不兼容,对于消息和信息的传播极为不利,这样就有点通天塔的讽刺意味了.这时候ANSI(American National Standards Institute)出面制止了纷争,统一了大家对ASCII后128为的解析.ANSI规定了ASCII后128位做各自字符映射,可以单个字节映射一个字符,也可以多个字节映射一个字符,对于这样的一个映射集合就叫一个代码页.这样不同的国家和地区维持好自己的代码页就可以解决各自的字符处理需求,比如中国的GB2312标准就就是一个双字节表示一个字符的解析标准,汉字 &#39;中&#39; 在中文操作系统,使用0xD6,0xD0这两个字节存储.</p>
+<p>如果还是如此各执己见的话,势必会导致字符集间很多的不兼容,对于消息和信息的传播极为不利,这样就有点通天塔的讽刺意味了.这时候ANSI(American National Standards Institute)出面制止了纷争,统一了大家对ASCII后128为的解析.ANSI规定了ASCII后128位做各自字符映射,可以单个字节映射一个字符,也可以多个字节映射一个字符,对于这样的一个映射集合就叫一个代码页.这样不同的国家和地区维持好自己的代码页就可以解决各自的字符处理需求,比如中国的GB2312标准就就是一个双字节表示一个字符的解析标准,汉字 ‘中’ 在中文操作系统,使用0xD6,0xD0这两个字节存储.</p>
 
 <p><strong>但是,这样就导致了一个致命的问题,通常不同代码页的字符不能在同一个文档出现,否则就会出现解析错误</strong></p>
 
-<h3>Unicode年代</h3>
+<h3 id="unicode">Unicode年代</h3>
 
 <p>ANSI的弊病大家都意识到了,所以根本的原因就是我们必须要对我们的所有字符有统一的编号,说的是编号是因为Unicode的编号和编码是分离的(而以上的方法编码和编号都是一样的),字符都有统一的Unicode编号,但是最后的编码结果是和我们的编码方式相关的,比如比较出名的编码方式有UTF-8和UTF-16.Unicode统一了所有字符的编码之后,我们只需要通过一定的编码方式编码,使用的时候再用对应的解码方式解码,就能够获取到世界上所有的语言的字符,真正实现字符的大一统.</p>
 
-<h2>一些值得关注的要点</h2>
+<h2 id="section-1">一些值得关注的要点</h2>
 
-<h3>BOM</h3>
+<h3 id="bom">BOM</h3>
 
 <p>BOM是Byte Order Mark,他的存在是因为一个计算机由来已久的存储问题,多字节存储的时候我们应该是大端放前(high-endian)还是小端放前(low-endian)的问题.它通过在文本的头加上FF FE或FE FF来指明文本的内容是大端还是小端的.但是要注意的是一些编辑器和编译器是不会做大小端的监测的,比如PHP,如果在文本放上BOM编译器会认为他是一个文本.</p>
 
-<h3>编码与解码</h3>
+<h3 id="section-2">编码与解码</h3>
 
 <p>对于解码,有一个重要的原则:<strong>解码前我们必须知道这个文本是用什么方式编码的.</strong>这个很重要否则我们很难找到合适的方式去解码.</p>
 
-<h2>参考</h2>
+<h2 id="section-3">参考</h2>
 
 <p><a href="http://www.joelonsoftware.com/articles/Unicode.html">http://www.joelonsoftware.com/articles/Unicode.html</a>
 <a href="http://www.imkevinyang.com/2010/06/%E5%85%B3%E4%BA%8E%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%EF%BC%8C%E4%BD%A0%E6%89%80%E9%9C%80%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84.html">http://www.imkevinyang.com/2010/06/%E5%85%B3%E4%BA%8E%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%EF%BC%8C%E4%BD%A0%E6%89%80%E9%9C%80%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84.html</a></p>
@@ -373,6 +373,7 @@ ga('send', 'pageview');
 		  
 		  
 		    <p>经过一些摸索,利用GitHub Page搭建了这个博客,期间记录了一些笔记,现在整理一下希望以后有个借鉴.</p>
+
 
 		    <p>
 		    <a class="text" href="/blog/create-my-own-github-page/">

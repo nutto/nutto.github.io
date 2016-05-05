@@ -354,7 +354,7 @@ echo A::CONSTANT;  // output: CONSTANT
 ### 属性的可见性
 
 |     /     | Parent | Self | Child | Foreigner |
-|-----------|--------|------|-------|-----------|
+|:---------:|:------:|:----:|:-----:|:---------:|
 |   public  |    O   |   O  |   O   |     O     |
 | protected |    O   |   O  |   O   |     X     |
 |  private  |    X   |   O  |   X   |     X     |
