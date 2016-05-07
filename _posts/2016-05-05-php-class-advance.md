@@ -458,3 +458,95 @@ A::getNone(4, 5, 6);  // output: call static getNone function with arguments(4,5
 // 用非静态方法访问不存在的方法
 $a->getNone(4, 5, 6); // output: call getNone function with arguments(4,5,6)
 ```
+
+## 对象与引用
+
+在PHP5+中,每个对象都有代表这个对象的标识符,而对象变量存储的是代表这个对象的标识符,在使用的时候我们会对这个标识符进行复制和引用,我们要好好对 **复制** 和 **引用** 进行区分.
+
+* 当对象作为参数传递,作为结果返回,和赋值给另一个变量的时候,标识符会进行复制.复制指的是有多一个有相同标识符值的变量.
+* 当先是使用 ```&``` 进行变量操作的时候,变量之间的关系是引用.引用就是一个别名,它们使用同一个标识符.
+
+举个例子:
+
+```php
+<?php
+class A {}
+ 
+$a = new A();  // ($a) -> 标识符1 -> 对象1
+ 
+// 复制标识符
+$b = $a;  // ($a), ($b) -> 标识符1 -> 对象1
+ 
+// 引用标识符
+$c = &$a;  // ($a, $c), ($b) -> 标识符1 -> 对象1
+ 
+unset($a);  // ($c), ($b) -> 标识符1 -> 对象1
+unset($c);  // (), ($b) -> 标识符1 -> 对象1
+// 此时没有任何变量引用对象1,对象1会被回收
+$b = null;  // () -> 标识符1 -> 对象1
+```
+
+再举个复杂点的例子:
+
+```php
+<?php
+class Foo {
+  public static $used = 0;
+  public $id;
+  public function __construct() {
+    $this->id = self::$used++;
+  }
+  public function __clone() {
+    $this->id = self::$used++;
+  }
+}
+ 
+$a = new Foo();
+// $b是$a指向的标识符的拷贝
+$b = $a;
+// $c是$a的一个别名
+$c = &$a;
+ 
+// 都是指向同一个对象
+var_dump($a->id);  // output: 0
+var_dump($b->id);  // output: 0
+var_dump($c->id);  // output: 0
+ 
+var_dump(Foo::$used);  // output: 1
+ 
+$a = new Foo();
+ 
+// 指向新的对象
+var_dump($a->id);  // output: 1
+// 使用的是旧的标识符所以指向旧的对象
+var_dump($b->id);  // output: 0
+// 作为别名和$a一样指向新的对象
+var_dump($c->id);  // output: 1
+ 
+var_dump(Foo::$used);  // output: 2
+ 
+unset($a);
+ 
+var_dump($b->id);  // output: 0
+// 作为别名的$a,所以$c直接使用新的标识符,指向新的对象
+var_dump($c->id);  // output: 1
+ 
+ 
+// $a作为$b的别名置null
+$a = &$b;
+$a = null;
+ 
+// 大家都为null
+var_dump($a);  // output: null
+var_dump($b);  // output: null
+ 
+// 又新建一个新的对象
+$a = clone $c;
+ 
+var_dump($a->id);  // output: 2
+ 
+var_dump(Foo::$used);  // output: 3
+ 
+// 这个时候id为1的对象已经没有变量引用它,这个对象会被垃圾回收器回收
+unset($c);
+```
