@@ -238,7 +238,7 @@ ga('send', 'pageview');
 
 
 <li>
-	<a href="https://twitter.com/nutto.pan" title="Follow on Twitter">
+	<a href="https://twitter.com/Nutto.pan" title="Follow on Twitter">
 		<i class="fa fa-fw fa-twitter"></i>
 	</a>
 </li>
@@ -765,6 +765,100 @@ public static mixed __callStatic ( string $name , array $arguments )  // 用静�
 </span></code></pre>
 </div>
 
+<h2 id="section-7">对象与引用</h2>
+
+<p>在PHP5+中,每个对象都有代表这个对象的标识符,而对象变量存储的是代表这个对象的标识符,在使用的时候我们会对这个标识符进行复制和引用,我们要好好对 <strong>复制</strong> 和 <strong>引用</strong> 进行区分.</p>
+
+<ul>
+  <li>当对象作为参数传递,作为结果返回,和赋值给另一个变量的时候,标识符会进行复制.复制指的是有多一个有相同标识符值的变量.</li>
+  <li>当先是使用 <code class="highlighter-rouge">&amp;</code> 进行变量操作的时候,变量之间的关系是引用.引用就是一个别名,它们使用同一个标识符.</li>
+</ul>
+
+<p>举个例子:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">A</span> <span class="p">{}</span>
+ 
+<span class="nv">$a</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">A</span><span class="p">();</span>  <span class="c1">// ($a) -&gt; 标识符1 -&gt; 对象1
+</span> 
+<span class="c1">// 复制标识符
+</span><span class="nv">$b</span> <span class="o">=</span> <span class="nv">$a</span><span class="p">;</span>  <span class="c1">// ($a), ($b) -&gt; 标识符1 -&gt; 对象1
+</span> 
+<span class="c1">// 引用标识符
+</span><span class="nv">$c</span> <span class="o">=</span> <span class="o">&amp;</span><span class="nv">$a</span><span class="p">;</span>  <span class="c1">// ($a, $c), ($b) -&gt; 标识符1 -&gt; 对象1
+</span> 
+<span class="nb">unset</span><span class="p">(</span><span class="nv">$a</span><span class="p">);</span>  <span class="c1">// ($c), ($b) -&gt; 标识符1 -&gt; 对象1
+</span><span class="nb">unset</span><span class="p">(</span><span class="nv">$c</span><span class="p">);</span>  <span class="c1">// (), ($b) -&gt; 标识符1 -&gt; 对象1
+// 此时没有任何变量引用对象1,对象1会被回收
+</span><span class="nv">$b</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>  <span class="c1">// () -&gt; 标识符1 -&gt; 对象1
+</span></code></pre>
+</div>
+
+<p>再举个复杂点的例子:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">Foo</span> <span class="p">{</span>
+  <span class="k">public</span> <span class="k">static</span> <span class="nv">$used</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">public</span> <span class="nv">$id</span><span class="p">;</span>
+  <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">id</span> <span class="o">=</span> <span class="nx">self</span><span class="o">::</span><span class="nv">$used</span><span class="o">++</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">public</span> <span class="k">function</span> <span class="nf">__clone</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">id</span> <span class="o">=</span> <span class="nx">self</span><span class="o">::</span><span class="nv">$used</span><span class="o">++</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+ 
+<span class="nv">$a</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Foo</span><span class="p">();</span>
+<span class="c1">// $b是$a指向的标识符的拷贝
+</span><span class="nv">$b</span> <span class="o">=</span> <span class="nv">$a</span><span class="p">;</span>
+<span class="c1">// $c是$a的一个别名
+</span><span class="nv">$c</span> <span class="o">=</span> <span class="o">&amp;</span><span class="nv">$a</span><span class="p">;</span>
+ 
+<span class="c1">// 都是指向同一个对象
+</span><span class="nb">var_dump</span><span class="p">(</span><span class="nv">$a</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">);</span>  <span class="c1">// output: 0
+</span><span class="nb">var_dump</span><span class="p">(</span><span class="nv">$b</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">);</span>  <span class="c1">// output: 0
+</span><span class="nb">var_dump</span><span class="p">(</span><span class="nv">$c</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">);</span>  <span class="c1">// output: 0
+</span> 
+<span class="nb">var_dump</span><span class="p">(</span><span class="nx">Foo</span><span class="o">::</span><span class="nv">$used</span><span class="p">);</span>  <span class="c1">// output: 1
+</span> 
+<span class="nv">$a</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Foo</span><span class="p">();</span>
+ 
+<span class="c1">// 指向新的对象
+</span><span class="nb">var_dump</span><span class="p">(</span><span class="nv">$a</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">);</span>  <span class="c1">// output: 1
+// 使用的是旧的标识符所以指向旧的对象
+</span><span class="nb">var_dump</span><span class="p">(</span><span class="nv">$b</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">);</span>  <span class="c1">// output: 0
+// 作为别名和$a一样指向新的对象
+</span><span class="nb">var_dump</span><span class="p">(</span><span class="nv">$c</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">);</span>  <span class="c1">// output: 1
+</span> 
+<span class="nb">var_dump</span><span class="p">(</span><span class="nx">Foo</span><span class="o">::</span><span class="nv">$used</span><span class="p">);</span>  <span class="c1">// output: 2
+</span> 
+<span class="nb">unset</span><span class="p">(</span><span class="nv">$a</span><span class="p">);</span>
+ 
+<span class="nb">var_dump</span><span class="p">(</span><span class="nv">$b</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">);</span>  <span class="c1">// output: 0
+// 作为别名的$a,所以$c直接使用新的标识符,指向新的对象
+</span><span class="nb">var_dump</span><span class="p">(</span><span class="nv">$c</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">);</span>  <span class="c1">// output: 1
+</span> 
+ 
+<span class="c1">// $a作为$b的别名置null
+</span><span class="nv">$a</span> <span class="o">=</span> <span class="o">&amp;</span><span class="nv">$b</span><span class="p">;</span>
+<span class="nv">$a</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+ 
+<span class="c1">// 大家都为null
+</span><span class="nb">var_dump</span><span class="p">(</span><span class="nv">$a</span><span class="p">);</span>  <span class="c1">// output: null
+</span><span class="nb">var_dump</span><span class="p">(</span><span class="nv">$b</span><span class="p">);</span>  <span class="c1">// output: null
+</span> 
+<span class="c1">// 又新建一个新的对象
+</span><span class="nv">$a</span> <span class="o">=</span> <span class="k">clone</span> <span class="nv">$c</span><span class="p">;</span>
+ 
+<span class="nb">var_dump</span><span class="p">(</span><span class="nv">$a</span><span class="o">-&gt;</span><span class="na">id</span><span class="p">);</span>  <span class="c1">// output: 2
+</span> 
+<span class="nb">var_dump</span><span class="p">(</span><span class="nx">Foo</span><span class="o">::</span><span class="nv">$used</span><span class="p">);</span>  <span class="c1">// output: 3
+</span> 
+<span class="c1">// 这个时候id为1的对象已经没有变量引用它,这个对象会被垃圾回收器回收
+</span><span class="nb">unset</span><span class="p">(</span><span class="nv">$c</span><span class="p">);</span>
+</code></pre>
+</div>
+
   </section>
   
 </article>
@@ -780,6 +874,13 @@ public static mixed __callStatic ( string $name , array $arguments )  // 用静�
       </span>
     </a>
     
+    
+    <a id="next-post" href="/blog/php-class-skill/">
+       <span class="page-title">【PHP拾遗】系列-类(class)-技巧</span>
+       <span class="nav-label">
+         <i class="fa fa-chevron-right"></i>
+       </span>
+     </a>
     
 </div>
 

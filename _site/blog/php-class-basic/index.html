@@ -238,7 +238,7 @@ ga('send', 'pageview');
 
 
 <li>
-	<a href="https://twitter.com/nutto.pan" title="Follow on Twitter">
+	<a href="https://twitter.com/Nutto.pan" title="Follow on Twitter">
 		<i class="fa fa-fw fa-twitter"></i>
 	</a>
 </li>
@@ -300,7 +300,7 @@ ga('send', 'pageview');
   <section class="post-content">
   <p>在OOP中类成为了编程中的支柱角色,以前使用PHP的时候都使用了很多,但是一直都没有很好地归纳总结一下,现在有机会重温一下要点,发现有很多很好的特性都没有使用到,甚至有一些概念被一直误解了,所以学习的时候也做一下笔记,方便日后翻阅.</p>
 
-<p>##定义类</p>
+<h2 id="section">定义类</h2>
 
 <p>以下的类定义会包含本文后面会叙述的一些要点和关键词</p>
 
@@ -355,7 +355,7 @@ ga('send', 'pageview');
 </code></pre>
 </div>
 
-<h2 id="section">创建对象</h2>
+<h2 id="section-1">创建对象</h2>
 
 <p>我们有三种方法来创建新的对象</p>
 
@@ -379,9 +379,9 @@ ga('send', 'pageview');
 </code></pre>
 </div>
 
-<p>##静态与非静态</p>
+<h2 id="section-2">静态与非静态</h2>
 
-<p>###静态</p>
+<h3 id="section-3">静态</h3>
 
 <p>在类中通过关键词 <code class="highlighter-rouge">static</code> 修饰后的属性或方法就是静态的,静态的属性或方法有几个关键的要点:</p>
 
@@ -422,7 +422,7 @@ ga('send', 'pageview');
 </span></code></pre>
 </div>
 
-<p>###非静态</p>
+<h3 id="section-4">非静态</h3>
 
 <p>非静态的属性或方法,就是指不经过 <code class="highlighter-rouge">static</code> 修饰的属性或方法,这些属性或方法:</p>
 
@@ -431,11 +431,11 @@ ga('send', 'pageview');
   <li>方法中可以使用 <code class="highlighter-rouge">$this</code> 来代指主叫对象</li>
 </ul>
 
-<p>##范围解析操作符(::),self,parent和后期静态绑定</p>
+<h2 id="selfparent">范围解析操作符(::),self,parent和后期静态绑定</h2>
 
 <p>为什么把这些放在一起呢,因为我觉得这几个概念的关系比较大</p>
 
-<p>###范围解析操作符(::)</p>
+<h3 id="section-5">范围解析操作符(::)</h3>
 
 <p>这一对双冒号可以用来访问类中的静态成员,类常量和被覆盖的属性和方法</p>
 
@@ -476,7 +476,7 @@ ga('send', 'pageview');
 </span></code></pre>
 </div>
 
-<p>###访问的定位</p>
+<h3 id="section-6">访问的定位</h3>
 
 <p>在上述例子中我们可以清楚看到范围解析操作符(::)的作用,但是依然有一个问题,我们怎么表述自己和父类这个关系?</p>
 
@@ -531,7 +531,7 @@ ga('send', 'pageview');
 </span></code></pre>
 </div>
 
-<p>###后期静态绑定</p>
+<h3 id="section-7">后期静态绑定</h3>
 
 <p>这个概念的产生是由于<strong>self:: 的限制</strong>: 使用 <code class="highlighter-rouge">self::</code> 或者 <code class="highlighter-rouge">__CLASS__</code> 对当前类的静态引用，取决于定义当前方法所在的类
 比如:</p>
@@ -624,7 +624,7 @@ ga('send', 'pageview');
 </span></code></pre>
 </div>
 
-<h2 id="section-1">类常量</h2>
+<h2 id="section-8">类常量</h2>
 
 <p>类常量是类中一旦定义后就保持不变的常量,在定义和使用的时候不需要增加 <code class="highlighter-rouge">$</code> 符号
 比如:</p>
@@ -642,7 +642,7 @@ ga('send', 'pageview');
 </span></code></pre>
 </div>
 
-<h2 id="section-2">属性</h2>
+<h2 id="section-9">属性</h2>
 
 <p>关于类的属性有几个需要注意的要点:</p>
 
@@ -652,7 +652,7 @@ ga('send', 'pageview');
   <li>同类的不同对象可以访问相互的protected和private成员</li>
 </ul>
 
-<h3 id="section-3">属性的可见性</h3>
+<h3 id="section-10">属性的可见性</h3>
 
 <table>
   <thead>
@@ -689,7 +689,7 @@ ga('send', 'pageview');
   </tbody>
 </table>
 
-<h3 id="section-4">访问属性</h3>
+<h3 id="section-11">访问属性</h3>
 
 <p>在类的内部,不同的属性可以有不同的访问方式</p>
 

@@ -1,6 +1,6 @@
 ## Introduction
 
-This is [Nutto](http://blog.nuttopan.cn) blog.
+This is [Nutto](http://blog.nuttopan.cn)'s blog.
 
 ## Contact
 
@@ -9,4 +9,4 @@ This is [Nutto](http://blog.nuttopan.cn) blog.
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://github.com/nutto/nutto.github.io/blob/master/LICENSE).
+Licensed under the [MIT license](https://github.com/nutto/nutto.github.io/blob/master/LICENSE).
