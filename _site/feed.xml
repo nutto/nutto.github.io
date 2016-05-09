@@ -5,7 +5,309 @@
     <atom:link href="http://blog.nuttopan.cn/feed.xml" rel="self" type="application/rss+xml"/>
     <link>http://blog.nuttopan.cn/</link>
     <description>nutto的博客</description>
-    <pubDate>Sun, 08 May 2016 00:05:35 +0800</pubDate>
+    <pubDate>Mon, 09 May 2016 14:57:50 +0800</pubDate>
+    
+      <item>
+        <title>【PHP拾遗】系列-函数</title>
+        <link>http://blog.nuttopan.cn/blog/php-function/</link>
+        <guid isPermaLink="true">http://blog.nuttopan.cn/blog/php-function/</guid>
+        <description>&lt;p&gt;函数作为一个语言基本的语法结构,,很有必要做一些了解&lt;/p&gt;
+
+&lt;p&gt;本文从四个方面讲述一下PHP的函数:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;定义&lt;/li&gt;
+  &lt;li&gt;使用和传参&lt;/li&gt;
+  &lt;li&gt;返回&lt;/li&gt;
+  &lt;li&gt;需要注意的方面&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;定义&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;除非定义是有条件的,否则函数无需在调用前定义&lt;/li&gt;
+  &lt;li&gt;定义过的函数和类都有全局的作用域,可以在任何地方调用&lt;/li&gt;
+  &lt;li&gt;函数或类中都可以定义函数&lt;/li&gt;
+  &lt;li&gt;函数不能重载,也不能取消或重定义&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;举个例子:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+ 
+&lt;span class=&quot;c1&quot;&gt;// 可以在定义前调用
+&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// output: i am test
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;i am test&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+ 
+ 
+&lt;span class=&quot;c1&quot;&gt;// 只要定义过的函数都可以使用
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;outer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 函数中可以定义函数
+&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;inner&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;i am inner&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;outer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// 定义一下inner
+&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;inner&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// output: i am inner 
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;使用和传参&lt;/h2&gt;
+
+&lt;p&gt;有两种传参的方式分别是&lt;strong&gt;值传参&lt;/strong&gt;和&lt;strong&gt;引用传参&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;值传参&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;函数默认的传参方式就是值传参&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+ 
+&lt;span class=&quot;nv&quot;&gt;$origin&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;origin&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+ 
+&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 改变传入的值
+&lt;/span&gt;    &lt;span class=&quot;nv&quot;&gt;$string&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;changed&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+ 
+&lt;span class=&quot;nx&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$origin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 原来的值没有改变
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$origin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// output: origin
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;引用传参&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+ 
+&lt;span class=&quot;nv&quot;&gt;$origin&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;origin&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+ 
+&lt;span class=&quot;c1&quot;&gt;// 改为引用传参
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 改变传入的值
+&lt;/span&gt;    &lt;span class=&quot;nv&quot;&gt;$string&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;changed&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+ 
+&lt;span class=&quot;nx&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$origin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+ 
+&lt;span class=&quot;c1&quot;&gt;// 原来的值发生改变
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$origin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// output: changed
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;默认值&lt;/h3&gt;
+
+&lt;p&gt;值参数可以使用默认值,引用参数在php5+也可以使用默认值&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$string&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;asdf&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$string2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;1234&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{};&lt;/span&gt;
+ 
+&lt;span class=&quot;nx&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;类型约束&lt;/h3&gt;
+
+&lt;p&gt;在php5+后参数也可以声明类型约束&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;float&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{};&lt;/span&gt;
+ 
+&lt;span class=&quot;nx&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+ 
+&lt;span class=&quot;c1&quot;&gt;// 会发生错误
+&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;asdf&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;可以使用的类型约束有&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;类型&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;描述&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;Class/Interface name&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;类或接口名&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;array&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;数组&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;callable&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;可调用的函数名&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;bool&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;布尔值&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;float&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;浮点数&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;int&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;整型&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;string&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;字符串&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;section-4&quot;&gt;返回&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;一次只可以返回一个值,但可以通过返回数组达到返回多个值的效果&lt;/li&gt;
+  &lt;li&gt;无定义的返回会返回 &lt;code class=&quot;highlighter-rouge&quot;&gt;null&lt;/code&gt;
+举个例子:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{};&lt;/span&gt;
+ 
+&lt;span class=&quot;nv&quot;&gt;$null&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+ 
+&lt;span class=&quot;c1&quot;&gt;// 无定义返回就返回null
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$null&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// output: true
+&lt;/span&gt; 
+ 
+&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;hasReturn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;a&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;b&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+ 
+&lt;span class=&quot;nb&quot;&gt;var_dump&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;hasReturn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt;/*output:
+array(2) {
+  [0]=&amp;gt;
+  string(1) &quot;a&quot;
+  [1]=&amp;gt;
+  string(1) &quot;b&quot;
+}
+*/&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;section-5&quot;&gt;要注意的要点&lt;/h2&gt;
+
+&lt;h3 id=&quot;section-6&quot;&gt;变量函数&lt;/h3&gt;
+
+&lt;p&gt;如果一个变量名后面紧跟一对圆括号 &lt;code class=&quot;highlighter-rouge&quot;&gt;()&lt;/code&gt; 那么PHP会尝试寻找与该变量的值相同的函数,并尝试执行它.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;i am test&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+ 
+&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;actFunc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 使用变量函数前可以先做一下可用性校验
+&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;function_exists&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;is_callable&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// 尝试执行与该变量值同名的函数
+&lt;/span&gt;        &lt;span class=&quot;nv&quot;&gt;$name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;actFunc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;test&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// output: i am test
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;section-7&quot;&gt;可变数量参数&lt;/h3&gt;
+
+&lt;p&gt;使用下面的函数,可以在函数里面实现可变长度的函数传值&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;函数名&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;描述&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;func_num_args&lt;/code&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;获取参数的数量&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;func_get_arg&lt;/code&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;获取指定的参数&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;func_get_args&lt;/code&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;获取参数列表的数组&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;举个例子:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 获取参数数量
+&lt;/span&gt;    &lt;span class=&quot;nv&quot;&gt;$args_num&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;func_num_args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 获取所有的参数
+&lt;/span&gt;    &lt;span class=&quot;nv&quot;&gt;$args&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;func_get_args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$args_num&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// 如果可以的话,获取第一个参数
+&lt;/span&gt;        &lt;span class=&quot;nv&quot;&gt;$arg0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;func_get_arg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;var_dump&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$arg0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;var_dump&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;var_dump&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$args_num&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+&lt;span class=&quot;nx&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;t&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;e&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;s&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;t&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;cm&quot;&gt;/*output:
+string(1) &quot;t&quot;
+array(4) {
+  [0]=&amp;gt;
+  string(1) &quot;t&quot;
+  [1]=&amp;gt;
+  string(1) &quot;e&quot;
+  [2]=&amp;gt;
+  string(1) &quot;s&quot;
+  [3]=&amp;gt;
+  string(1) &quot;t&quot;
+}
+int(4)
+*/&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;section-8&quot;&gt;闭包函数&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;闭包函数可以使用 &lt;code class=&quot;highlighter-rouge&quot;&gt;use&lt;/code&gt; 关键词从父作用域中继承变量&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+ 
+&lt;span class=&quot;nv&quot;&gt;$msg&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;hello&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+ 
+&lt;span class=&quot;nv&quot;&gt;$example&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;use&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$msg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;var_dump&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$msg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+ 
+&lt;span class=&quot;nv&quot;&gt;$example&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// output: hello
+&lt;/span&gt; 
+&lt;span class=&quot;c1&quot;&gt;// 上面的use结构定义的是值传参所以不会跟随父作用域的变量变化而变化
+&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$msg&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;world&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;$example&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// output: hello
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+</description>
+        <pubDate>Mon, 09 May 2016 00:00:00 +0800</pubDate>
+      </item>
     
       <item>
         <title>【PHP拾遗】系列-类(class)-技巧</title>

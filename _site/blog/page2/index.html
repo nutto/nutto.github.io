@@ -296,6 +296,78 @@ ga('send', 'pageview');
 		<div class="post-teaser">
 		  <header>
 		    <h1>
+		      <a id="post-link-trans" class="post-link" href="/blog/psr-4/">
+		        【PHP-FIG】系列-PSR4自动加载
+		      </a>
+		    </h1>
+		    <p id="subtitletrans" class="subtitlecontainer">
+		      <a class="subtitle">2016年04月26日</a>
+		       | <a class="subtitle" href="/about/">Nutto</a>
+		       | <a class="subtitle"></a> <a class="subtitle">  <i class="fa fa-tag"></i>: <a href="/tags/php/">php</a></a>
+		    </p>
+		  </header>
+		  <div class="excerpt">
+		  
+		  
+		    <p>以前写PHP的类的时候我们要一个类封装成一个文件,然后使用的时候要写一大串的include语句,PHP5以后允许我们通过命名空间和类名对类和文件的自动加载,实在大大简化了我们编程.但是我们要遵循一些命名空间和类名的规范,才能更加优雅和通俗地使用这个自动加载的特性.</p>
+
+<h2 id="section">概述</h2>
+
+<p>PSR-4规范了如何通过命名空间和类名自动加载文件系统中某个路径的PHP类文件对于自动加载这个话题PSR有另外一个版本:<a href="https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md">PSR-0</a>.</p>
+
+<h2 id="section-1">具体说明</h2>
+
+<p>1, 类(class)是类(classes),接口(interfaces),特性(traits)和其他同一结构的统称.</p>
+
+<p>2, 规范的完整类名应该是以下的形式:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>\<span class="nt">&lt;NamespaceName&gt;</span>(\<span class="nt">&lt;SubNamespaceNames&gt;</span>)*\<span class="nt">&lt;ClassName&gt;</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>必须要有顶级(top-level)命名空间名,亦称为发布者命名空间</li>
+  <li>应该包含一个或多个的子命名空间名</li>
+  <li>必须要以类名作为整个完整类名的结束</li>
+  <li>下横线在完整类名的任何部分都不存在特殊的意义</li>
+  <li>完整类名可以是各种字符数字的大小写组合</li>
+  <li>类名必须是大小写敏感的</li>
+</ul>
+
+<p>3, 当通过规范的完整类名加载文件的时候应该遵从的规范</p>
+
+<ul>
+  <li>完整类名中不包括顶级命名空间的分隔符的顶级和子命名空间(被视作命名空间前缀)对应至少一个根目录</li>
+</ul>
+
+<p>比如<code class="highlighter-rouge">\Acme\Log\Writer\File_Writer</code>的命名空间前缀为<code class="highlighter-rouge">Acme\Log\Writer</code></p>
+
+<ul>
+  <li>命名空间前缀对应的就是该根目录下的子目录,命名空间的分隔符就是目录的分隔符,注意:命名空间名和子目录名一定要大小写完全匹配.</li>
+  <li>最后的类名对应的就是目录下与类名大小写完全一致的<code class="highlighter-rouge">.php</code>文件了</li>
+</ul>
+
+<p>4, 实现自动加载的自动加载器绝对不能抛出异常和引发任何等级的错误,也不应该返回任何值</p>
+
+<h2 id="section-2">例子</h2>
+
+<p>例子可以参考:<a href="http://www.php-fig.org/psr/psr-4/#3-examples">PSR4-examples</a></p>
+
+<h2 id="section-3">参考</h2>
+
+<p><a href="http://www.php-fig.org/psr/psr-4/">PSR-4</a></p>
+
+		  
+		  </div>
+		</div>
+		
+		
+	
+
+	
+		<div class="post-teaser">
+		  <header>
+		    <h1>
 		      <a id="post-link-trans" class="post-link" href="/blog/psr-1/">
 		        【PHP-FIG】系列-PSR1基础编码规范
 		      </a>

@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<!--[if IE 6]>
+<html id="ie6" lang="zh-CN">
+<![endif]-->
+<!--[if IE 7]>
+<html id="ie7" lang="zh-CN">
+<![endif]-->
+<!--[if IE 8]>
+<html id="ie8" lang="zh-CN">
+<![endif]-->
+<!--[if !(IE 6) | !(IE 7) | !(IE 8)  ]><!-->
+<html lang="zh-CN" class="js">
+<!--<![endif]-->
+  
+
+	
+
+	
+<head>
+	<meta charset="utf-8">
+	<title>【PHP拾遗】系列-函数 | Nutto的穿梭机</title>
+	<meta name="description" content=", php, 函数作为一个语言基本的语法结构,,很有必要做一些了解">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-Frame-Options" content="sameorigin">
+	<!-- CSS -->
+	<link rel="stylesheet" href="/css/main.css">
+	<link rel='stylesheet' id='divi-style-css'  href="/css/style.css" type='text/css' media='all' />
+	<link rel="stylesheet" href="/css/post.style.css">
+
+	<script type='text/javascript' src="/js/jquery.js"></script>
+	<script type='text/javascript' src="/js/soundmanager2-nodebug-jsmin.js"></script>
+
+	<!--Favicon-->
+	<link rel="icon" href="/favicon.ico" type="image/x-icon"/>
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+	
+	<link href="/favicon.ico" mce_href="favicon.ico" rel="bookmark" type="image/x-icon" /> 
+	<link href="/favicon.ico" mce_href="favicon.ico" rel="icon" type="image/x-icon" /> 
+	<link href="/favicon.ico" mce_href="favicon.ico" rel="shortcut icon" type="image/x-icon" /> 
+	<!-- Canonical -->
+	<link rel="canonical" href="http://blog.nuttopan.cn/blog/php-function/">
+
+	<!-- RSS -->
+	<link rel="alternate" type="application/atom+xml" title="Nutto的穿梭机" href="http://blog.nuttopan.cn/feed.xml" />
+
+	<!-- Font Awesome -->
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<!-- Inprove hightlight -->
+	<link href="/css/syntax.css" rel="stylesheet">
+
+	<!-- Google Fonts -->
+	
+	<link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,400italic" rel="stylesheet" type="text/css">
+	
+
+	<!-- KaTeX -->
+	
+
+	<!-- Google Analytics -->
+	
+	<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-76816542-1', 'auto');
+	ga('send', 'pageview');
+	</script>
+	
+
+	<script type="text/javascript">
+    var host = "";
+    if ((host == window.location.host) && (window.location.protocol != "https:"))
+        window.location.protocol = "https";
+    </script>
+     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+<script>
+   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-76816542-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+ 
+</head>
+
+	<body class="home blog et_pb_button_helper_class home-posts et_fixed_nav et_show_nav et_cover_background et_pb_gutter windows et_pb_gutters3 et_primary_nav_dropdown_animation_fade et_secondary_nav_dropdown_animation_fade et_pb_footer_columns4 et_header_style_left et_right_sidebar chrome">
+		<div id="page-container">
+    		<header id="main-header" data-height-onload="66">
+	<div class="container clearfix et_menu_container">
+		<div class="logo_container">
+			<span class="logo_helper"></span>
+			<a href="/">
+				<!--img src="http://blog.ibireme.com/wp-content/uploads/2015/05/logo1.png" alt="Garan no dou" id="logo" data-height-percentage="54" /-->
+				Nutto的穿梭机
+			</a>
+		</div>
+		<div id="et-top-navigation" data-height="66" data-fixed-height="40">
+			<nav id="top-menu-nav">
+				<ul id="top-menu" class="nav">
+					<li>
+						<a class="page-link" href="/">
+							Home
+						</a>
+					</li>
+					
+					
+					
+					
+					<li>
+						<a class="page-link" href="/About/">
+							About
+						</a>
+					</li>
+					
+					
+					
+					<li>
+						<a class="page-link" href="/Archives/">
+							Archive
+						</a>
+					</li>
+					
+					
+					
+					
+					
+					<li>
+						<a class="page-link" href="/Daily/">
+							日常
+						</a>
+					</li>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					<li>
+						<a class="page-link" href="/Other/">
+							其他
+						</a>
+					</li>
+					
+					
+					
+					
+					
+					<li>
+						<a class="page-link" href="/Technology/">
+							技术
+						</a>
+					</li>
+					
+					
+					
+					
+					<!-- Social icons from Font Awesome, if enabled -->
+					<li>
+						<a class="page-link" href="">Find Me</a>
+						<ul class="children">
+<li>
+	<a href="http://blog.nuttopan.cn/feed.xml" title="Follow RSS feed">
+		<i class="fa fa-fw fa-rss"></i>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li>
+	<a href="https://github.com/nutto" title="Follow on GitHub">
+		<i class="fa fa-fw fa-github"></i>
+	</a>
+</li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li>
+	<a href="http://stackoverflow.com/users/4744833/nutto" title="Follow on Stack Exchange">
+		<i class="fa fa-fw fa-stack-exchange"></i>
+	</a>
+</li>
+
+
+
+
+
+
+
+<li>
+	<a href="https://twitter.com/Nutto.pan" title="Follow on Twitter">
+		<i class="fa fa-fw fa-twitter"></i>
+	</a>
+</li>
+
+
+
+
+
+
+
+<li>
+	<a href="mailto:nutto.pan@gmail.com" title="Email">
+		<i class="fa fa-fw fa-envelope"></i>
+	</a>
+</li>
+</ul>
+					</li>
+					
+				</ul>
+			</nav>
+
+			<div id="et_mobile_nav_menu">
+				<div class="mobile_nav closed">
+					<span class="select_page"></span>
+					<span class="mobile_menu_bar"></span>
+				</div>
+			</div>				
+		</div> <!-- #et-top-navigation -->
+	</div> <!-- .container -->
+	<div class="et_search_outer">
+		<div class="container et_search_form_container">
+			<form role="search" method="get" class="et-search-form" action="http://blog.nuttopan.cn">
+			<input type="search" class="et-search-field" placeholder="搜索 &hellip;" value="" name="s" title="搜索：" /></form>
+			<span class="et_close_search_field"></span>
+		</div>
+	</div>
+</header> <!-- #main-header -->
+
+    		<div id="et-main-area">
+      			
+
+	
+
+	
+
+<article >
+  <header style="background-image: url('/')">
+
+<!--article  >
+  <div style="background-image: url('/')"/>
+  <header style="background-image: url('https://source.unsplash.com/category/nature/2600x500/daily')"-->
+    <h1 class="title">【PHP拾遗】系列-函数</h1>
+    <p id="subtitletrans" class="subtitlecontainer">
+    <a class="subtitle">2016年05月9日</a>
+     | <a class="subtitle" href="/About/">Nutto</a>
+	 | <a class="subtitle"></a> <a class="subtitle">  <i class="fa fa-tag"></i>: <a href="/tags/php/">php</a></a>
+    </p>
+  </header>
+  <section class="post-content">
+  <p>函数作为一个语言基本的语法结构,,很有必要做一些了解</p>
+
+<p>本文从四个方面讲述一下PHP的函数:</p>
+
+<ul>
+  <li>定义</li>
+  <li>使用和传参</li>
+  <li>返回</li>
+  <li>需要注意的方面</li>
+</ul>
+
+<h2 id="section">定义</h2>
+
+<ul>
+  <li>除非定义是有条件的,否则函数无需在调用前定义</li>
+  <li>定义过的函数和类都有全局的作用域,可以在任何地方调用</li>
+  <li>函数或类中都可以定义函数</li>
+  <li>函数不能重载,也不能取消或重定义</li>
+</ul>
+
+<p>举个例子:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+ 
+<span class="c1">// 可以在定义前调用
+</span><span class="nx">test</span><span class="p">();</span>  <span class="c1">// output: i am test
+</span><span class="k">function</span> <span class="nf">test</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">"i am test</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+<span class="p">}</span>
+ 
+ 
+<span class="c1">// 只要定义过的函数都可以使用
+</span><span class="k">function</span> <span class="nf">outer</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// 函数中可以定义函数
+</span>    <span class="k">function</span> <span class="nf">inner</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">echo</span> <span class="s2">"i am inner</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="nx">outer</span><span class="p">();</span>  <span class="c1">// 定义一下inner
+</span><span class="nx">inner</span><span class="p">();</span>  <span class="c1">// output: i am inner 
+</span></code></pre>
+</div>
+
+<h2 id="section-1">使用和传参</h2>
+
+<p>有两种传参的方式分别是<strong>值传参</strong>和<strong>引用传参</strong></p>
+
+<ul>
+  <li><strong>值传参</strong></li>
+</ul>
+
+<p><strong><em>函数默认的传参方式就是值传参</em></strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+ 
+<span class="nv">$origin</span> <span class="o">=</span> <span class="s1">'origin'</span><span class="p">;</span>
+ 
+<span class="k">function</span> <span class="nf">test</span><span class="p">(</span><span class="nv">$string</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 改变传入的值
+</span>    <span class="nv">$string</span> <span class="o">=</span> <span class="s1">'changed'</span><span class="p">;</span>
+<span class="p">}</span>
+ 
+<span class="nx">test</span><span class="p">(</span><span class="nv">$origin</span><span class="p">);</span>
+
+<span class="c1">// 原来的值没有改变
+</span><span class="k">echo</span> <span class="nv">$origin</span><span class="p">;</span>  <span class="c1">// output: origin
+</span></code></pre>
+</div>
+
+<ul>
+  <li><strong>引用传参</strong></li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+ 
+<span class="nv">$origin</span> <span class="o">=</span> <span class="s1">'origin'</span><span class="p">;</span>
+ 
+<span class="c1">// 改为引用传参
+</span><span class="k">function</span> <span class="nf">test</span><span class="p">(</span><span class="o">&amp;</span><span class="nv">$string</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 改变传入的值
+</span>    <span class="nv">$string</span> <span class="o">=</span> <span class="s1">'changed'</span><span class="p">;</span>
+<span class="p">}</span>
+ 
+<span class="nx">test</span><span class="p">(</span><span class="nv">$origin</span><span class="p">);</span>
+ 
+<span class="c1">// 原来的值发生改变
+</span><span class="k">echo</span> <span class="nv">$origin</span><span class="p">;</span>  <span class="c1">// output: changed
+</span></code></pre>
+</div>
+
+<h3 id="section-2">默认值</h3>
+
+<p>值参数可以使用默认值,引用参数在php5+也可以使用默认值</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="k">function</span> <span class="nf">test</span><span class="p">(</span><span class="o">&amp;</span><span class="nv">$string</span><span class="o">=</span><span class="s1">'asdf'</span><span class="p">,</span> <span class="nv">$string2</span><span class="o">=</span><span class="s1">'1234'</span><span class="p">)</span> <span class="p">{};</span>
+ 
+<span class="nx">test</span><span class="p">();</span>
+</code></pre>
+</div>
+
+<h3 id="section-3">类型约束</h3>
+
+<p>在php5+后参数也可以声明类型约束</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="k">function</span> <span class="nf">test</span><span class="p">(</span><span class="nx">float</span> <span class="nv">$float</span><span class="p">)</span> <span class="p">{};</span>
+ 
+<span class="nx">test</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span>
+ 
+<span class="c1">// 会发生错误
+</span><span class="nx">test</span><span class="p">(</span><span class="s1">'asdf'</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>可以使用的类型约束有</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">类型</th>
+      <th style="text-align: center">描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Class/Interface name</td>
+      <td style="text-align: center">类或接口名</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">array</td>
+      <td style="text-align: center">数组</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">callable</td>
+      <td style="text-align: center">可调用的函数名</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">bool</td>
+      <td style="text-align: center">布尔值</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">float</td>
+      <td style="text-align: center">浮点数</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">int</td>
+      <td style="text-align: center">整型</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">string</td>
+      <td style="text-align: center">字符串</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="section-4">返回</h2>
+
+<ul>
+  <li>一次只可以返回一个值,但可以通过返回数组达到返回多个值的效果</li>
+  <li>无定义的返回会返回 <code class="highlighter-rouge">null</code>
+举个例子:</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="k">function</span> <span class="nf">test</span><span class="p">()</span> <span class="p">{};</span>
+ 
+<span class="nv">$null</span> <span class="o">=</span> <span class="nx">test</span><span class="p">();</span>
+ 
+<span class="c1">// 无定义返回就返回null
+</span><span class="k">echo</span> <span class="nv">$null</span> <span class="o">==</span> <span class="kc">null</span><span class="p">;</span>  <span class="c1">// output: true
+</span> 
+ 
+<span class="k">function</span> <span class="nf">hasReturn</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">array</span><span class="p">(</span><span class="s1">'a'</span><span class="p">,</span> <span class="s1">'b'</span><span class="p">);</span>
+<span class="p">}</span>
+ 
+<span class="nb">var_dump</span><span class="p">(</span><span class="nx">hasReturn</span><span class="p">());</span>
+<span class="cm">/*output:
+array(2) {
+  [0]=&gt;
+  string(1) "a"
+  [1]=&gt;
+  string(1) "b"
+}
+*/</span>
+</code></pre>
+</div>
+
+<h2 id="section-5">要注意的要点</h2>
+
+<h3 id="section-6">变量函数</h3>
+
+<p>如果一个变量名后面紧跟一对圆括号 <code class="highlighter-rouge">()</code> 那么PHP会尝试寻找与该变量的值相同的函数,并尝试执行它.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="k">function</span> <span class="nf">test</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">'i am test'</span><span class="p">;</span>
+<span class="p">};</span>
+ 
+<span class="k">function</span> <span class="nf">actFunc</span><span class="p">(</span><span class="nv">$name</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 使用变量函数前可以先做一下可用性校验
+</span>    <span class="k">if</span> <span class="p">(</span><span class="nb">function_exists</span><span class="p">(</span><span class="nv">$name</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nb">is_callable</span><span class="p">(</span><span class="nv">$name</span><span class="p">))</span> <span class="p">{</span>
+        <span class="c1">// 尝试执行与该变量值同名的函数
+</span>        <span class="nv">$name</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="nx">actFunc</span><span class="p">(</span><span class="s1">'test'</span><span class="p">);</span>  <span class="c1">// output: i am test
+</span></code></pre>
+</div>
+
+<h3 id="section-7">可变数量参数</h3>
+
+<p>使用下面的函数,可以在函数里面实现可变长度的函数传值</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">函数名</th>
+      <th style="text-align: center">描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center"><code class="highlighter-rouge">func_num_args</code></td>
+      <td style="text-align: center">获取参数的数量</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="highlighter-rouge">func_get_arg</code></td>
+      <td style="text-align: center">获取指定的参数</td>
+    </tr>
+    <tr>
+      <td style="text-align: center"><code class="highlighter-rouge">func_get_args</code></td>
+      <td style="text-align: center">获取参数列表的数组</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>举个例子:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="k">function</span> <span class="nf">test</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// 获取参数数量
+</span>    <span class="nv">$args_num</span> <span class="o">=</span> <span class="nb">func_num_args</span><span class="p">();</span>
+    <span class="c1">// 获取所有的参数
+</span>    <span class="nv">$args</span> <span class="o">=</span> <span class="nb">func_get_args</span><span class="p">();</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$args_num</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 如果可以的话,获取第一个参数
+</span>        <span class="nv">$arg0</span> <span class="o">=</span> <span class="nb">func_get_arg</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+        <span class="nb">var_dump</span><span class="p">(</span><span class="nv">$arg0</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="nb">var_dump</span><span class="p">(</span><span class="nv">$args</span><span class="p">);</span>
+    <span class="nb">var_dump</span><span class="p">(</span><span class="nv">$args_num</span><span class="p">);</span>
+<span class="p">};</span>
+<span class="nx">test</span><span class="p">(</span><span class="s1">'t'</span><span class="p">,</span> <span class="s1">'e'</span><span class="p">,</span> <span class="s1">'s'</span><span class="p">,</span> <span class="s1">'t'</span><span class="p">);</span>
+<span class="cm">/*output:
+string(1) "t"
+array(4) {
+  [0]=&gt;
+  string(1) "t"
+  [1]=&gt;
+  string(1) "e"
+  [2]=&gt;
+  string(1) "s"
+  [3]=&gt;
+  string(1) "t"
+}
+int(4)
+*/</span>
+</code></pre>
+</div>
+
+<h3 id="section-8">闭包函数</h3>
+
+<ul>
+  <li>闭包函数可以使用 <code class="highlighter-rouge">use</code> 关键词从父作用域中继承变量</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+ 
+<span class="nv">$msg</span> <span class="o">=</span> <span class="s1">'hello'</span><span class="p">;</span>
+ 
+<span class="nv">$example</span> <span class="o">=</span> <span class="k">function</span><span class="p">()</span> <span class="k">use</span><span class="p">(</span><span class="nv">$msg</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">var_dump</span><span class="p">(</span><span class="nv">$msg</span><span class="p">);</span>
+<span class="p">};</span>
+ 
+<span class="nv">$example</span><span class="p">();</span>  <span class="c1">// output: hello
+</span> 
+<span class="c1">// 上面的use结构定义的是值传参所以不会跟随父作用域的变量变化而变化
+</span><span class="nv">$msg</span> <span class="o">=</span> <span class="s1">'world'</span><span class="p">;</span>
+<span class="nv">$example</span><span class="p">();</span>  <span class="c1">// output: hello
+</span></code></pre>
+</div>
+
+
+  </section>
+  
+</article>
+
+<!-- Post navigation -->
+
+<div id="post-nav">
+    
+    <a id="prev-post" href="/blog/php-class-skill/">
+      <span class="page-title">【PHP拾遗】系列-类(class)-技巧</span>
+      <span class="nav-label">
+        <i class="fa fa-chevron-left"></i> 
+      </span>
+    </a>
+    
+    
+</div>
+
+
+<!-- Disqus -->
+
+<div class="comments">
+  <div id="disqus_thread"></div>
+<script>
+/**
+* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//blognuttopancn.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>
+
+
+    		</div> <!-- #et-main-area -->
+		</div> <!-- #page-container -->
+		
+
+
+<footer id="page-footer-trans" class="page-footer">
+	<!--<p class="text"><a href="">Nutto的穿梭机</a> 
+</p>-->
+	Copyright &copy; 2016 <a href="">Nutto的穿梭机</a> 
+ All Rights Reserved. 
+	<p class="text">Powered by <a href="https://jekyllrb.com/">Jekyll</a>. Theme created by <a href="https://github.com/fengzhichu/fengzhichu-theme/tree/gh-pages">枫之楚</a>. Hosted in <a href="https://github.com">GitHub</a></p>
+</footer>
+
+
+    
+<!-- WP Audio player plugin v1.9.3 - https://www.tipsandtricks-hq.com/wordpress-audio-music-player-plugin-4556/ -->
+    <script type="text/javascript">
+        soundManager.useFlashBlock = true; // optional - if used, required flashblock.css
+        soundManager.url = '/plugins/soundmanager2.swf';
+        function play_mp3(flg, ids, mp3url, volume, loops)
+        {
+            //Check the file URL parameter value
+            var pieces = mp3url.split("|");
+            if (pieces.length > 1) {//We have got an .ogg file too
+                mp3file = pieces[0];
+                oggfile = pieces[1];
+                //set the file URL to be an array with the mp3 and ogg file
+                mp3url = new Array(mp3file, oggfile);
+            }
+
+            soundManager.createSound({
+                id: 'btnplay_' + ids,
+                volume: volume,
+                url: mp3url
+            });
+
+            if (flg == 'play') {
+                    soundManager.play('btnplay_' + ids, {
+                    onfinish: function() {
+                        if (loops == 'true') {
+                            loopSound('btnplay_' + ids);
+                        }
+                        else {
+                            document.getElementById('btnplay_' + ids).style.display = 'inline';
+                            document.getElementById('btnstop_' + ids).style.display = 'none';
+                        }
+                    }
+                });
+            }
+            else if (flg == 'stop') {
+    //soundManager.stop('btnplay_'+ids);
+                soundManager.pause('btnplay_' + ids);
+            }
+        }
+        function show_hide(flag, ids)
+        {
+            if (flag == 'play') {
+                document.getElementById('btnplay_' + ids).style.display = 'none';
+                document.getElementById('btnstop_' + ids).style.display = 'inline';
+            }
+            else if (flag == 'stop') {
+                document.getElementById('btnplay_' + ids).style.display = 'inline';
+                document.getElementById('btnstop_' + ids).style.display = 'none';
+            }
+        }
+        function loopSound(soundID)
+        {
+            window.setTimeout(function() {
+                soundManager.play(soundID, {onfinish: function() {
+                        loopSound(soundID);
+                    }});
+            }, 1);
+        }
+        function stop_all_tracks()
+        {
+            soundManager.stopAll();
+            var inputs = document.getElementsByTagName("input");
+            for (var i = 0; i < inputs.length; i++) {
+                if (inputs[i].id.indexOf("btnplay_") == 0) {
+                    inputs[i].style.display = 'inline';//Toggle the play button
+                }
+                if (inputs[i].id.indexOf("btnstop_") == 0) {
+                    inputs[i].style.display = 'none';//Hide the stop button
+                }
+            }
+        }
+    </script>
+    <script type='text/javascript' src="/js/frontend-builder-global-functions.js"></script>
+<script type='text/javascript' src="/js/custom.js"></script>
+<script type='text/javascript' src="/js/jquery.fitvids.js"></script>
+<script type='text/javascript' src="/js/waypoints.min.js"></script>
+<script type='text/javascript' src="/js/jquery.magnific-popup.js"></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var et_custom = {"ajaxurl":"http:\/\/blog.ibireme.com\/wp-admin\/admin-ajax.php","images_uri":"http:\/\/blog.ibireme.com\/wp-content\/themes\/Divi\/images","builder_images_uri":"http:\/\/blog.ibireme.com\/wp-content\/themes\/Divi\/includes\/builder\/images","et_load_nonce":"ae39988568","subscription_failed":"Please, check the fields below to make sure you entered the correct information.","fill":"Fill","field":"field","invalid":"Invalid email","captcha":"Captcha","prev":"Prev","previous":"\u4e0a\u4e00\u9875","next":"\u4e0b\u4e00\u9875","is_builder_plugin_used":""};
+/* ]]> */
+</script>
+<script type='text/javascript' src="/js/frontend-builder-scripts.js"></script>
+  </body>
+</html>
