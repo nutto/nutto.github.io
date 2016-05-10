@@ -244,7 +244,3 @@ $example();  // output: hello
 $msg = 'world';
 $example();  // output: hello
 ```
-
-
-
-

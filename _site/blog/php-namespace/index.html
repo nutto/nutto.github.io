@@ -18,8 +18,8 @@
 	
 <head>
 	<meta charset="utf-8">
-	<title>【PHP拾遗】系列-函数 | Nutto的穿梭机</title>
-	<meta name="description" content=", php, 函数作为一个语言基本的语法结构,,很有必要做一些了解">
+	<title>【PHP拾遗】系列-命名空间 | Nutto的穿梭机</title>
+	<meta name="description" content=", php, 在编写大规模程序和涉及多个文件的程序的时候很容易遇到以下的两个问题:">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-Frame-Options" content="sameorigin">
 	<!-- CSS -->
@@ -38,7 +38,7 @@
 	<link href="/favicon.ico" mce_href="favicon.ico" rel="icon" type="image/x-icon" /> 
 	<link href="/favicon.ico" mce_href="favicon.ico" rel="shortcut icon" type="image/x-icon" /> 
 	<!-- Canonical -->
-	<link rel="canonical" href="http://blog.nuttopan.cn/blog/php-function/">
+	<link rel="canonical" href="http://blog.nuttopan.cn/blog/php-namespace/">
 
 	<!-- RSS -->
 	<link rel="alternate" type="application/atom+xml" title="Nutto的穿梭机" href="http://blog.nuttopan.cn/feed.xml" />
@@ -290,305 +290,208 @@ ga('send', 'pageview');
 <!--article  >
   <div style="background-image: url('/')"/>
   <header style="background-image: url('https://source.unsplash.com/category/nature/2600x500/daily')"-->
-    <h1 class="title">【PHP拾遗】系列-函数</h1>
+    <h1 class="title">【PHP拾遗】系列-命名空间</h1>
     <p id="subtitletrans" class="subtitlecontainer">
-    <a class="subtitle">2016年05月9日</a>
+    <a class="subtitle">2016年05月10日</a>
      | <a class="subtitle" href="/About/">Nutto</a>
 	 | <a class="subtitle"></a> <a class="subtitle">  <i class="fa fa-tag"></i>: <a href="/tags/php/">php</a></a>
     </p>
   </header>
   <section class="post-content">
-  <p>函数作为一个语言基本的语法结构,,很有必要做一些了解</p>
-
-<p>本文从四个方面讲述一下PHP的函数:</p>
+  <p>在编写大规模程序和涉及多个文件的程序的时候很容易遇到以下的两个问题:</p>
 
 <ul>
-  <li>定义</li>
-  <li>使用和传参</li>
-  <li>返回</li>
-  <li>需要注意的方面</li>
+  <li>用户编写的代码与PHP内部的类/函数/常量或第三方类/函数/常量之间的名字冲突。</li>
+  <li>为很长的标识符名称(通常是为了缓解第一类问题而定义的)创建一个别名（或简短）的名称，提高源代码的可读性。</li>
 </ul>
+
+<p>在PHP中我们可以使用命名空间来解决这些问题</p>
 
 <h2 id="section">定义</h2>
 
 <ul>
-  <li>除非定义是有条件的,否则函数无需在调用前定义</li>
-  <li>定义过的函数和类都有全局的作用域,可以在任何地方调用</li>
-  <li>函数或类中都可以定义函数</li>
-  <li>函数不能重载,也不能取消或重定义</li>
+  <li>只有以下类型受命名空间的影响
+    <ul>
+      <li>类(Classes或Traits)</li>
+      <li>接口(Interfaces)</li>
+      <li>函数(Functions)</li>
+      <li>常量(Constants)</li>
+    </ul>
+  </li>
+  <li>除 <code class="highlighter-rouge">declare</code> 关键词外,命名空间一定要在所有代码之前</li>
+  <li>同一个命名空间可以定义在多个文件中</li>
+  <li>可以定义子的命名空间</li>
+  <li>可以在同一个文件中定义多个命名空间</li>
 </ul>
 
 <p>举个例子:</p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
- 
-<span class="c1">// 可以在定义前调用
-</span><span class="nx">test</span><span class="p">();</span>  <span class="c1">// output: i am test
-</span><span class="k">function</span> <span class="nf">test</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">echo</span> <span class="s2">"i am test</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+<span class="k">namespace</span> <span class="nx">A</span> <span class="p">{</span>
+    <span class="nx">trait</span> <span class="nx">TraitTest</span> <span class="p">{</span> <span class="cm">/* ... */</span> <span class="p">}</span>
+    <span class="k">interface</span> <span class="nx">testInterface</span> <span class="p">{</span> <span class="cm">/* ... */</span> <span class="p">}</span>
+    <span class="k">const</span> <span class="no">CONNECT_OK</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">class</span> <span class="nc">Connection</span> <span class="p">{</span> <span class="cm">/* ... */</span> <span class="p">}</span>
+    <span class="k">function</span> <span class="nf">connect</span><span class="p">()</span> <span class="p">{</span> <span class="cm">/* ... */</span>  <span class="p">}</span>
 <span class="p">}</span>
  
- 
-<span class="c1">// 只要定义过的函数都可以使用
-</span><span class="k">function</span> <span class="nf">outer</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// 函数中可以定义函数
-</span>    <span class="k">function</span> <span class="nf">inner</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">echo</span> <span class="s2">"i am inner</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
-    <span class="p">}</span>
+<span class="c1">// 同一个文件可以有多个命名空间(不推荐)
+</span><span class="k">namespace</span> <span class="nx">A\subnamespace</span> <span class="p">{</span>  <span class="c1">// 带有子的命名空间
+</span>    <span class="cm">/* ... */</span>
 <span class="p">}</span>
-<span class="nx">outer</span><span class="p">();</span>  <span class="c1">// 定义一下inner
-</span><span class="nx">inner</span><span class="p">();</span>  <span class="c1">// output: i am inner 
-</span></code></pre>
-</div>
-
-<h2 id="section-1">使用和传参</h2>
-
-<p>有两种传参的方式分别是<strong>值传参</strong>和<strong>引用传参</strong></p>
-
-<ul>
-  <li><strong>值传参</strong></li>
-</ul>
-
-<p><strong><em>函数默认的传参方式就是值传参</em></strong></p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
- 
-<span class="nv">$origin</span> <span class="o">=</span> <span class="s1">'origin'</span><span class="p">;</span>
- 
-<span class="k">function</span> <span class="nf">test</span><span class="p">(</span><span class="nv">$string</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// 改变传入的值
-</span>    <span class="nv">$string</span> <span class="o">=</span> <span class="s1">'changed'</span><span class="p">;</span>
-<span class="p">}</span>
- 
-<span class="nx">test</span><span class="p">(</span><span class="nv">$origin</span><span class="p">);</span>
-
-<span class="c1">// 原来的值没有改变
-</span><span class="k">echo</span> <span class="nv">$origin</span><span class="p">;</span>  <span class="c1">// output: origin
-</span></code></pre>
-</div>
-
-<ul>
-  <li><strong>引用传参</strong></li>
-</ul>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
- 
-<span class="nv">$origin</span> <span class="o">=</span> <span class="s1">'origin'</span><span class="p">;</span>
- 
-<span class="c1">// 改为引用传参
-</span><span class="k">function</span> <span class="nf">test</span><span class="p">(</span><span class="o">&amp;</span><span class="nv">$string</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// 改变传入的值
-</span>    <span class="nv">$string</span> <span class="o">=</span> <span class="s1">'changed'</span><span class="p">;</span>
-<span class="p">}</span>
- 
-<span class="nx">test</span><span class="p">(</span><span class="nv">$origin</span><span class="p">);</span>
- 
-<span class="c1">// 原来的值发生改变
-</span><span class="k">echo</span> <span class="nv">$origin</span><span class="p">;</span>  <span class="c1">// output: changed
-</span></code></pre>
-</div>
-
-<h3 id="section-2">默认值</h3>
-
-<p>值参数可以使用默认值,引用参数在php5+也可以使用默认值</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
-<span class="k">function</span> <span class="nf">test</span><span class="p">(</span><span class="o">&amp;</span><span class="nv">$string</span><span class="o">=</span><span class="s1">'asdf'</span><span class="p">,</span> <span class="nv">$string2</span><span class="o">=</span><span class="s1">'1234'</span><span class="p">)</span> <span class="p">{};</span>
- 
-<span class="nx">test</span><span class="p">();</span>
 </code></pre>
 </div>
 
-<h3 id="section-3">类型约束</h3>
+<h2 id="section-1">使用</h2>
 
-<p>在php5+后参数也可以声明类型约束</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
-<span class="k">function</span> <span class="nf">test</span><span class="p">(</span><span class="nx">float</span> <span class="nv">$float</span><span class="p">)</span> <span class="p">{};</span>
- 
-<span class="nx">test</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span>
- 
-<span class="c1">// 会发生错误
-</span><span class="nx">test</span><span class="p">(</span><span class="s1">'asdf'</span><span class="p">);</span>
-</code></pre>
-</div>
-
-<p>可以使用的类型约束有</p>
+<h3 id="section-2">分类</h3>
 
 <table>
   <thead>
     <tr>
-      <th style="text-align: center">类型</th>
+      <th style="text-align: center">类别</th>
       <th style="text-align: center">描述</th>
+      <th style="text-align: center">调用例子</th>
+      <th style="text-align: center">实际调用</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: center">Class/Interface name</td>
-      <td style="text-align: center">类或接口名</td>
+      <td style="text-align: center">非限定名称</td>
+      <td style="text-align: center">无前缀</td>
+      <td style="text-align: center"><code class="highlighter-rouge">new foo()</code></td>
+      <td style="text-align: center"><code class="highlighter-rouge">new CURRENTNAMESPACE\foo()</code></td>
     </tr>
     <tr>
-      <td style="text-align: center">array</td>
-      <td style="text-align: center">数组</td>
+      <td style="text-align: center">限定名称</td>
+      <td style="text-align: center">有前缀,相对路径</td>
+      <td style="text-align: center"><code class="highlighter-rouge">new subnamespace\foo()</code></td>
+      <td style="text-align: center"><code class="highlighter-rouge">new CURRENTNAMESPACE\subnamespace\foo()</code></td>
     </tr>
     <tr>
-      <td style="text-align: center">callable</td>
-      <td style="text-align: center">可调用的函数名</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">bool</td>
-      <td style="text-align: center">布尔值</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">float</td>
-      <td style="text-align: center">浮点数</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">int</td>
-      <td style="text-align: center">整型</td>
-    </tr>
-    <tr>
-      <td style="text-align: center">string</td>
-      <td style="text-align: center">字符串</td>
+      <td style="text-align: center">完全限定名称</td>
+      <td style="text-align: center">全路径,绝对路劲</td>
+      <td style="text-align: center"><code class="highlighter-rouge">new \mainnamespace\subnamespace\foo()</code></td>
+      <td style="text-align: center"><code class="highlighter-rouge">new \mainnamespace\subnamespace\foo()</code></td>
     </tr>
   </tbody>
 </table>
 
-<h2 id="section-4">返回</h2>
+<h3 id="section-3">使用变量动态访问元素</h3>
 
-<ul>
-  <li>一次只可以返回一个值,但可以通过返回数组达到返回多个值的效果</li>
-  <li>无定义的返回会返回 <code class="highlighter-rouge">null</code>
-举个例子:</li>
-</ul>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
-<span class="k">function</span> <span class="nf">test</span><span class="p">()</span> <span class="p">{};</span>
- 
-<span class="nv">$null</span> <span class="o">=</span> <span class="nx">test</span><span class="p">();</span>
- 
-<span class="c1">// 无定义返回就返回null
-</span><span class="k">echo</span> <span class="nv">$null</span> <span class="o">==</span> <span class="kc">null</span><span class="p">;</span>  <span class="c1">// output: true
-</span> 
- 
-<span class="k">function</span> <span class="nf">hasReturn</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="k">array</span><span class="p">(</span><span class="s1">'a'</span><span class="p">,</span> <span class="s1">'b'</span><span class="p">);</span>
-<span class="p">}</span>
- 
-<span class="nb">var_dump</span><span class="p">(</span><span class="nx">hasReturn</span><span class="p">());</span>
-<span class="cm">/*output:
-array(2) {
-  [0]=&gt;
-  string(1) "a"
-  [1]=&gt;
-  string(1) "b"
-}
-*/</span>
-</code></pre>
-</div>
-
-<h2 id="section-5">要注意的要点</h2>
-
-<h3 id="section-6">变量函数</h3>
-
-<p>如果一个变量名后面紧跟一对圆括号 <code class="highlighter-rouge">()</code> 那么PHP会尝试寻找与该变量的值相同的函数,并尝试执行它.</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
-<span class="k">function</span> <span class="nf">test</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">echo</span> <span class="s1">'i am test'</span><span class="p">;</span>
-<span class="p">};</span>
- 
-<span class="k">function</span> <span class="nf">actFunc</span><span class="p">(</span><span class="nv">$name</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// 使用变量函数前可以先做一下可用性校验
-</span>    <span class="k">if</span> <span class="p">(</span><span class="nb">function_exists</span><span class="p">(</span><span class="nv">$name</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nb">is_callable</span><span class="p">(</span><span class="nv">$name</span><span class="p">))</span> <span class="p">{</span>
-        <span class="c1">// 尝试执行与该变量值同名的函数
-</span>        <span class="nv">$name</span><span class="p">();</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-<span class="nx">actFunc</span><span class="p">(</span><span class="s1">'test'</span><span class="p">);</span>  <span class="c1">// output: i am test
-</span></code></pre>
-</div>
-
-<h3 id="section-7">可变数量参数</h3>
-
-<p>使用下面的函数,可以在函数里面实现可变长度的函数传值</p>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: center">函数名</th>
-      <th style="text-align: center">描述</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: center"><code class="highlighter-rouge">func_num_args</code></td>
-      <td style="text-align: center">获取参数的数量</td>
-    </tr>
-    <tr>
-      <td style="text-align: center"><code class="highlighter-rouge">func_get_arg</code></td>
-      <td style="text-align: center">获取指定的参数</td>
-    </tr>
-    <tr>
-      <td style="text-align: center"><code class="highlighter-rouge">func_get_args</code></td>
-      <td style="text-align: center">获取参数列表的数组</td>
-    </tr>
-  </tbody>
-</table>
+<p>使用变量动态访问元素的时候<strong>必须使用完全限定</strong>,所以一定要加上访问成员的命名空间前缀,否则就只会访问到全局的命名空间成员.</p>
 
 <p>举个例子:</p>
 
+<p><strong>global.php</strong></p>
+
 <div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
-<span class="k">function</span> <span class="nf">test</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// 获取参数数量
-</span>    <span class="nv">$args_num</span> <span class="o">=</span> <span class="nb">func_num_args</span><span class="p">();</span>
-    <span class="c1">// 获取所有的参数
-</span>    <span class="nv">$args</span> <span class="o">=</span> <span class="nb">func_get_args</span><span class="p">();</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nv">$args_num</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// 如果可以的话,获取第一个参数
-</span>        <span class="nv">$arg0</span> <span class="o">=</span> <span class="nb">func_get_arg</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-        <span class="nb">var_dump</span><span class="p">(</span><span class="nv">$arg0</span><span class="p">);</span>
+<span class="k">class</span> <span class="nc">ClassName</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">echo</span> <span class="s1">'global-'</span><span class="p">,</span> <span class="nx">__METHOD__</span><span class="p">,</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
     <span class="p">}</span>
-    <span class="nb">var_dump</span><span class="p">(</span><span class="nv">$args</span><span class="p">);</span>
-    <span class="nb">var_dump</span><span class="p">(</span><span class="nv">$args_num</span><span class="p">);</span>
-<span class="p">};</span>
-<span class="nx">test</span><span class="p">(</span><span class="s1">'t'</span><span class="p">,</span> <span class="s1">'e'</span><span class="p">,</span> <span class="s1">'s'</span><span class="p">,</span> <span class="s1">'t'</span><span class="p">);</span>
-<span class="cm">/*output:
-string(1) "t"
-array(4) {
-  [0]=&gt;
-  string(1) "t"
-  [1]=&gt;
-  string(1) "e"
-  [2]=&gt;
-  string(1) "s"
-  [3]=&gt;
-  string(1) "t"
-}
-int(4)
-*/</span>
+<span class="p">}</span>
+ 
+<span class="k">function</span> <span class="nf">functionName</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">'global-'</span><span class="p">,</span> <span class="nx">__METHOD__</span><span class="p">,</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+<span class="p">}</span>
+ 
+<span class="k">const</span> <span class="no">CONSTANT</span> <span class="o">=</span> <span class="s1">'global'</span><span class="p">;</span>
 </code></pre>
 </div>
 
-<h3 id="section-8">闭包函数</h3>
-
-<ul>
-  <li>闭包函数可以使用 <code class="highlighter-rouge">use</code> 关键词从父作用域中继承变量</li>
-</ul>
+<p><strong>index.php</strong></p>
 
 <div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="k">namespace</span> <span class="nx">A</span><span class="p">;</span>
  
-<span class="nv">$msg</span> <span class="o">=</span> <span class="s1">'hello'</span><span class="p">;</span>
+<span class="k">include_once</span> <span class="s1">'global.php'</span><span class="p">;</span>
  
-<span class="nv">$example</span> <span class="o">=</span> <span class="k">function</span><span class="p">()</span> <span class="k">use</span><span class="p">(</span><span class="nv">$msg</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nb">var_dump</span><span class="p">(</span><span class="nv">$msg</span><span class="p">);</span>
-<span class="p">};</span>
+<span class="k">class</span> <span class="nc">ClassName</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">echo</span> <span class="s1">'A-'</span><span class="p">,</span> <span class="nx">__METHOD__</span><span class="p">,</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
  
-<span class="nv">$example</span><span class="p">();</span>  <span class="c1">// output: hello
+<span class="k">function</span> <span class="nf">functionName</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s1">'A-'</span><span class="p">,</span> <span class="nx">__METHOD__</span><span class="p">,</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+<span class="p">}</span>
+ 
+<span class="k">const</span> <span class="no">CONSTANT</span> <span class="o">=</span> <span class="s1">'index'</span><span class="p">;</span>
+ 
+<span class="c1">// 无限定
+</span><span class="nv">$unqualified_class</span> <span class="o">=</span> <span class="s1">'ClassName'</span><span class="p">;</span>
+<span class="nv">$unqualified_function</span> <span class="o">=</span> <span class="s1">'functionName'</span><span class="p">;</span>
+<span class="nv">$unqualified_const</span> <span class="o">=</span> <span class="s1">'CONSTANT'</span><span class="p">;</span>
+ 
+<span class="c1">// 由于没有限定,使用的都是全局命名空间下的成员
+</span><span class="k">new</span> <span class="nv">$unqualified_class</span><span class="p">();</span>  <span class="c1">// output: global-ClassName::__construct
+</span><span class="nv">$unqualified_function</span><span class="p">();</span>  <span class="c1">// output: global-functionName
+</span><span class="k">echo</span> <span class="nb">constant</span><span class="p">(</span><span class="nv">$unqualified_const</span><span class="p">);</span>  <span class="c1">// output: global
 </span> 
-<span class="c1">// 上面的use结构定义的是值传参所以不会跟随父作用域的变量变化而变化
-</span><span class="nv">$msg</span> <span class="o">=</span> <span class="s1">'world'</span><span class="p">;</span>
-<span class="nv">$example</span><span class="p">();</span>  <span class="c1">// output: hello
+ 
+<span class="c1">// 有限定
+</span><span class="nv">$qualified_class</span> <span class="o">=</span> <span class="s1">'A\ClassName'</span><span class="p">;</span>
+<span class="nv">$qualified_function</span> <span class="o">=</span> <span class="s1">'A\functionName'</span><span class="p">;</span>
+<span class="nv">$qualified_const</span> <span class="o">=</span> <span class="s1">'A\CONSTANT'</span><span class="p">;</span>
+ 
+<span class="c1">// 使用限定的话就会访问对应命名空间的成员(必须使用完全
+// 限定,所以无必要在命名空间的最前面增加\)
+</span><span class="k">new</span> <span class="nv">$qualified_class</span><span class="p">();</span>  <span class="c1">// output: A-A\ClassName::__construct
+</span><span class="nv">$qualified_function</span><span class="p">();</span>  <span class="c1">// output: A-A\functionName
+</span><span class="k">echo</span> <span class="nb">constant</span><span class="p">(</span><span class="nv">$qualified_const</span><span class="p">);</span>  <span class="c1">// output: index
+</span></code></pre>
+</div>
+
+<h3 id="section-4">获取当前命名空间</h3>
+
+<p>有两个方法可以获取当前的命名空间名称</p>
+
+<ul>
+  <li>魔术常量 <code class="highlighter-rouge">__NAMESPACE</code></li>
+  <li>关键字 <code class="highlighter-rouge">namespace</code></li>
+</ul>
+
+<p><strong><code class="highlighter-rouge">__NAMESPACE__</code> 可以作为字符输出</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="k">namespace</span> <span class="nx">A</span><span class="p">;</span>
+ 
+<span class="k">echo</span> <span class="nx">__NAMESPACE__</span><span class="p">;</span>  <span class="c1">// output: A
+</span></code></pre>
+</div>
+
+<p><strong><code class="highlighter-rouge">namespace</code>可以作为命名空间的构成部分,用来代指现在的命名空间</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="k">namespace</span> <span class="nx">A</span><span class="p">;</span>
+ 
+<span class="k">const</span> <span class="no">CONSTANT</span> <span class="o">=</span> <span class="s1">'A'</span><span class="p">;</span>
+ 
+<span class="c1">// 输出的成员是A\CONSTANT
+</span><span class="k">echo</span> <span class="nx">namespace\CONSTANT</span><span class="p">;</span>
+</code></pre>
+</div>
+
+<h3 id="use-">使用 <code class="highlighter-rouge">use</code> 来导入命名空间或设置别名</h3>
+
+<p>我们可以使用 <code class="highlighter-rouge">use</code> 来导入某个命名空间(<strong>注意:导入命名空间的意思是这个命名空间可以使用了,并没有导入对应的文件,要导入对应的文件还是要使用 <code class="highlighter-rouge">include</code> 等的方法, 或者直接使用自动加载的机制</strong>),或者为这个命名空间设置一个别名.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="k">namespace</span> <span class="nx">MainNameSpace\SubNameSpace\B</span><span class="p">;</span>
+ 
+<span class="k">const</span> <span class="no">CONSTANT</span> <span class="o">=</span> <span class="s1">'B'</span><span class="p">;</span>
+ 
+<span class="k">namespace</span> <span class="nx">A</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">MainNameSpace\SubNameSpace\B</span> <span class="k">as</span> <span class="nx">B</span><span class="p">;</span>  <span class="c1">// 导入命名空间并设置别名
+</span> 
+<span class="k">const</span> <span class="no">CONSTANT</span> <span class="o">=</span> <span class="s1">'A'</span><span class="p">;</span>
+ 
+<span class="k">echo</span> <span class="nx">CONSTANT</span><span class="p">;</span>  <span class="c1">// output: A
+// 只需要使用别名就可以访问对应的命名空间成员
+</span><span class="k">echo</span> <span class="nx">B\CONSTANT</span><span class="p">;</span>  <span class="c1">// output: B
 </span></code></pre>
 </div>
 
@@ -600,20 +503,13 @@ int(4)
 
 <div id="post-nav">
     
-    <a id="prev-post" href="/blog/php-class-skill/">
-      <span class="page-title">【PHP拾遗】系列-类(class)-技巧</span>
+    <a id="prev-post" href="/blog/php-function/">
+      <span class="page-title">【PHP拾遗】系列-函数</span>
       <span class="nav-label">
         <i class="fa fa-chevron-left"></i> 
       </span>
     </a>
     
-    
-    <a id="next-post" href="/blog/php-namespace/">
-       <span class="page-title">【PHP拾遗】系列-命名空间</span>
-       <span class="nav-label">
-         <i class="fa fa-chevron-right"></i>
-       </span>
-     </a>
     
 </div>
 
