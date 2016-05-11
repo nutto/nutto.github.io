@@ -18,8 +18,8 @@
 	
 <head>
 	<meta charset="utf-8">
-	<title>Github | Nutto的穿梭机</title>
-	<meta name="description" content="nutto的博客">
+	<title>【PHP拾遗】系列-生成器 | Nutto的穿梭机</title>
+	<meta name="description" content=", php, PHP的迭代器对于小型的迭代来说还是显得太过臃肿,辛好PHP的生成器提供了一种更容易的方法来产生可以迭代的对象.">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-Frame-Options" content="sameorigin">
 	<!-- CSS -->
@@ -38,7 +38,7 @@
 	<link href="/favicon.ico" mce_href="favicon.ico" rel="icon" type="image/x-icon" /> 
 	<link href="/favicon.ico" mce_href="favicon.ico" rel="shortcut icon" type="image/x-icon" /> 
 	<!-- Canonical -->
-	<link rel="canonical" href="http://blog.nuttopan.cn/tags/github/">
+	<link rel="canonical" href="http://blog.nuttopan.cn/blog/php-generator/">
 
 	<!-- RSS -->
 	<link rel="alternate" type="application/atom+xml" title="Nutto的穿梭机" href="http://blog.nuttopan.cn/feed.xml" />
@@ -280,54 +280,186 @@ ga('send', 'pageview');
 </header> <!-- #main-header -->
 
     		<div id="et-main-area">
-      			<div class="home">
-  <article class="feature-image" >
-  	<div style="background-image: url('/img/sample_feature_img.png')"/>
-  	<header style="background-image: url('https://source.unsplash.com/category/nature/2600x500/daily')">
-    <h1 class="call-out-title">Github</h1>
-    </header>
-  </article>
+      			
 
-<div class="posts">
-    
-        
-            
 	
 
-				
-			<div class="post-teaser">
-		  <header>
-		    <h1>
-            <a id="post-link-trans" class="post-link" href="/blog/create-my-own-github-page/">
-		        使用GitHub Page搭建博客手记
-		      </a>
-		    </h1>
-		    <p id="subtitletrans" class="subtitlecontainer">
-		      <a class="subtitle">2016年04月24日</a>
-		       | <a class="subtitle" href="/About/">Nutto</a>
-		       | <a class="subtitle">  <i class="fa fa-book"></i>: <a href="/Other/">Other</a></a> <a class="subtitle">  <i class="fa fa-tags"></i>: <a href="/tags/jekyll/">Jekyll</a>, <a href="/tags/github/">GitHub</a></a>
-		    </p>
-		  </header>
-		  <div class="excerpt">
-		  
-		  
-		    <p>经过一些摸索,利用GitHub Page搭建了这个博客,期间记录了一些笔记,现在整理一下希望以后有个借鉴.</p>
+	
 
+<article >
+  <header style="background-image: url('/')">
 
-		    <p>
-		    <a class="text" href="/blog/create-my-own-github-page/">
-		      Continue Reading...
-		    </a>
-		    </p>
-		  
-		  </div>
-		</div>
-        
+<!--article  >
+  <div style="background-image: url('/')"/>
+  <header style="background-image: url('https://source.unsplash.com/category/nature/2600x500/daily')"-->
+    <h1 class="title">【PHP拾遗】系列-生成器</h1>
+    <p id="subtitletrans" class="subtitlecontainer">
+    <a class="subtitle">2016年05月11日</a>
+     | <a class="subtitle" href="/About/">Nutto</a>
+	 | <a class="subtitle"></a> <a class="subtitle">  <i class="fa fa-tag"></i>: <a href="/tags/php/">php</a></a>
+    </p>
+  </header>
+  <section class="post-content">
+  <p>PHP的迭代器对于小型的迭代来说还是显得太过臃肿,辛好PHP的生成器提供了一种更容易的方法来产生可以迭代的对象.</p>
 
+<h2 id="yield-">使用 <code class="highlighter-rouge">yield</code> 来产生需要迭代的数据</h2>
+
+<p>PHP的通过将函数和 <code class="highlighter-rouge">yield</code> 关键字结合来建造一个生成器</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="k">function</span> <span class="nf">genOneToThree</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;=</span> <span class="mi">3</span><span class="p">;</span> <span class="nv">$i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">yield</span> <span class="nv">$i</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+ 
+<span class="k">foreach</span> <span class="p">(</span><span class="nx">genOneToThree</span><span class="p">()</span> <span class="k">as</span> <span class="nv">$value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">"</span><span class="nv">$value</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="cm">/* output:
+1
+2
+3
+*/</span>
+</code></pre>
+</div>
+
+<p>要注意的是,生成器内不能使用 <code class="highlighter-rouge">return</code> 返回数值,但是可以使用空的 <code class="highlighter-rouge">return</code> 来代表生成器的结束</p>
+
+<p><code class="highlighter-rouge">yield</code> 看起来很像 <code class="highlighter-rouge">return</code> 不过不同之处在于普通 <code class="highlighter-rouge">return</code> 会返回值并终止函数的执行, 而 <code class="highlighter-rouge">yield</code> 会返回一个值给循环调用此生成器的代码并且只是暂停执行生成器函数.</p>
+
+<h3 id="yield--1"><code class="highlighter-rouge">yield</code> 也可以返回一个键值对</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="nv">$input</span> <span class="o">=</span> <span class="sh">&lt;&lt;&lt;'EOF'
+1;PHP;Likes dollar signs
+2;Python;Likes whitespace
+3;Ruby;Likes blocks
+EOF;
+</span> 
+<span class="k">function</span> <span class="nf">input_parser</span><span class="p">(</span><span class="nv">$input</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">foreach</span> <span class="p">(</span><span class="nb">explode</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span> <span class="nv">$input</span><span class="p">)</span> <span class="k">as</span> <span class="nv">$line</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$fields</span> <span class="o">=</span> <span class="nb">explode</span><span class="p">(</span><span class="s1">';'</span><span class="p">,</span> <span class="nv">$line</span><span class="p">);</span>
+        <span class="nv">$id</span> <span class="o">=</span> <span class="nb">array_shift</span><span class="p">(</span><span class="nv">$fields</span><span class="p">);</span>
+ 
+        <span class="k">yield</span> <span class="nv">$id</span> <span class="o">=&gt;</span> <span class="nv">$fields</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+ 
+<span class="k">foreach</span> <span class="p">(</span><span class="nx">input_parser</span><span class="p">(</span><span class="nv">$input</span><span class="p">)</span> <span class="k">as</span> <span class="nv">$id</span> <span class="o">=&gt;</span> <span class="nv">$fields</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="s2">"</span><span class="nv">$id</span><span class="s2">:</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+    <span class="k">echo</span> <span class="s2">"    </span><span class="nv">$fields[0]</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+    <span class="k">echo</span> <span class="s2">"    </span><span class="nv">$fields[1]</span><span class="se">\n</span><span class="s2">"</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="cm">/*output:
+1:
+    PHP
+    Likes dollar signs
+2:
+    Python
+    Likes whitespace
+3:
+    Ruby
+    Likes blocks
+*/</span>
+</code></pre>
+</div>
+
+<h3 id="yield--2"><code class="highlighter-rouge">yield</code> 可以使用引用来生成值</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="k">function</span> <span class="o">&amp;</span><span class="nf">gen_reference</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nv">$value</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+ 
+    <span class="k">while</span> <span class="p">(</span><span class="nv">$value</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">yield</span> <span class="nv">$value</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+ 
+<span class="c1">// $number是$value的一个引用,所以$number的改变会影响到$value
+</span><span class="k">foreach</span> <span class="p">(</span><span class="nx">gen_reference</span><span class="p">()</span> <span class="k">as</span> <span class="o">&amp;</span><span class="nv">$number</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="p">(</span><span class="o">--</span><span class="nv">$number</span><span class="p">)</span><span class="o">.</span><span class="s1">'... '</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="cm">/*output:
+2... 1... 0...
+*/</span>
+</code></pre>
+</div>
+
+<h3 id="yield-from-">可以使用 <code class="highlighter-rouge">yield from</code> 来遍历数组,迭代器和调用函数</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="k">function</span> <span class="nf">countToTen</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">yield</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">yield</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="k">yield</span> <span class="nx">from</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">];</span>
+    <span class="k">yield</span> <span class="nx">from</span> <span class="nx">yieldFiveToSeven</span><span class="p">();</span>
+    <span class="k">yield</span> <span class="nx">from</span> <span class="k">new</span> <span class="nx">ArrayIterator</span><span class="p">([</span><span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]);</span>
+    <span class="k">yield</span> <span class="mi">10</span><span class="p">;</span>
+<span class="p">}</span>
+ 
+<span class="k">function</span> <span class="nf">yieldFiveToSeven</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">yield</span> <span class="mi">5</span><span class="p">;</span>
+    <span class="k">yield</span> <span class="nx">from</span> <span class="k">new</span> <span class="nx">ArrayIterator</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">]);</span>
+<span class="p">}</span>
+ 
+<span class="k">foreach</span> <span class="p">(</span><span class="nx">countToTen</span><span class="p">()</span> <span class="k">as</span> <span class="nv">$number</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">echo</span> <span class="nv">$number</span><span class="p">,</span> <span class="s1">' '</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="cm">/*output:
+1 2 3 4 5 6 7 8 9 10
+*/</span>
+</code></pre>
+</div>
+
+  </section>
+  
+</article>
+
+<!-- Post navigation -->
+
+<div id="post-nav">
+    
+    <a id="prev-post" href="/blog/php-namespace/">
+      <span class="page-title">【PHP拾遗】系列-命名空间</span>
+      <span class="nav-label">
+        <i class="fa fa-chevron-left"></i> 
+      </span>
+    </a>
+    
     
 </div>
 
+
+<!-- Disqus -->
+
+<div class="comments">
+  <div id="disqus_thread"></div>
+<script>
+/**
+* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//blognuttopancn.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
 </div>
+
 
     		</div> <!-- #et-main-area -->
 		</div> <!-- #page-container -->
