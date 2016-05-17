@@ -18,8 +18,8 @@
 	
 <head>
 	<meta charset="utf-8">
-	<title> Nutto的穿梭机</title>
-	<meta name="description" content="nutto的博客">
+	<title>【MySQL】拾遗系列-随手记 | Nutto的穿梭机</title>
+	<meta name="description" content=", Mysql, MySQL的时区">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="X-Frame-Options" content="sameorigin">
 	<!-- CSS -->
@@ -38,7 +38,7 @@
 	<link href="/favicon.ico" mce_href="favicon.ico" rel="icon" type="image/x-icon" /> 
 	<link href="/favicon.ico" mce_href="favicon.ico" rel="shortcut icon" type="image/x-icon" /> 
 	<!-- Canonical -->
-	<link rel="canonical" href="http://blog.nuttopan.cn/">
+	<link rel="canonical" href="http://blog.nuttopan.cn/blog/mysql-short-hand-note/">
 
 	<!-- RSS -->
 	<link rel="alternate" type="application/atom+xml" title="Nutto的穿梭机" href="http://blog.nuttopan.cn/feed.xml" />
@@ -280,204 +280,196 @@ ga('send', 'pageview');
 </header> <!-- #main-header -->
 
     		<div id="et-main-area">
-      			<div class="home">
-  <article class="home-feature-image" >
-  <div style="background-image: url('/img/sample_feature_img.png')"/>
-  <header style="background-image: url('https://source.unsplash.com/category/nature/2600x500/daily')">
-    <p class="call-out-content"> 老牛亦解韶光贵,不待扬鞭自奋蹄.
- </p>
+      			
+
+	
+
+	
+
+<article >
+  <header style="background-image: url('/')">
+
+<!--article  >
+  <div style="background-image: url('/')"/>
+  <header style="background-image: url('https://source.unsplash.com/category/nature/2600x500/daily')"-->
+    <h1 class="title">【MySQL】拾遗系列-随手记</h1>
+    <p id="subtitletrans" class="subtitlecontainer">
+    <a class="subtitle">2016年05月17日</a>
+     | <a class="subtitle" href="/About/">Nutto</a>
+	 | <a class="subtitle"></a> <a class="subtitle">  <i class="fa fa-tag"></i>: <a href="/tags/mysql/">Mysql</a></a>
+    </p>
   </header>
-  </article>
+  <section class="post-content">
+  <h2 id="mysql">MySQL的时区</h2>
 
-	<div class="posts">
-	
-		
-	
+<blockquote>
+  <p>http://dev.mysql.com/doc/refman/5.7/en/time-zone-support.html</p>
+</blockquote>
 
-	
-		<div class="post-teaser">
-		  <header>
-		    <h1>
-		      <a id="post-link-trans" class="post-link" href="/blog/mysql-short-hand-note/">
-		        【MySQL】拾遗系列-随手记
-		      </a>
-		    </h1>
-		    <p id="subtitletrans" class="subtitlecontainer">
-		      <a class="subtitle">2016年05月17日</a>
-		       | <a class="subtitle" href="/about/">Nutto</a>
-		       | <a class="subtitle"></a> <a class="subtitle">  <i class="fa fa-tag"></i>: <a href="/tags/mysql/">Mysql</a></a>
-		    </p>
-		  </header>
-		  <div class="excerpt">
-		  
-		  
-		    <h2 id="mysql">MySQL的时区</h2>
+<p>在MySQL启动的时候就会读取系统的时区参数作为自己的时区设置</p>
 
+<p>我们可以通过命令查看MySQL服务器的系统变量来获取当前设置的时区</p>
 
-		    <p>
-		    <a class="text" href="/blog/mysql-short-hand-note/">
-		      Continue Reading...
-		    </a>
-		    </p>
-		  
-		  </div>
-		</div>
-		
-		
-	
+<blockquote>
+  <p>http://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_system_time_zone</p>
+</blockquote>
 
-	
-		<div class="post-teaser">
-		  <header>
-		    <h1>
-		      <a id="post-link-trans" class="post-link" href="/blog/php-predefine-magic-constant/">
-		        【PHP拾遗】系列-8个有用的预定义魔术常量
-		      </a>
-		    </h1>
-		    <p id="subtitletrans" class="subtitlecontainer">
-		      <a class="subtitle">2016年05月16日</a>
-		       | <a class="subtitle" href="/about/">Nutto</a>
-		       | <a class="subtitle"></a> <a class="subtitle">  <i class="fa fa-tag"></i>: <a href="/tags/php/">php</a></a>
-		    </p>
-		  </header>
-		  <div class="excerpt">
-		  
-		  
-		    <p>在PHP中有很多预定以的常量,其中有8个魔术常量非常有用.他们基本上都是用于反馈自身位置的信息</p>
+<pre><code class="language-console">mysqld --verbose --help
+</code></pre>
 
+<p>或者</p>
 
-		    <p>
-		    <a class="text" href="/blog/php-predefine-magic-constant/">
-		      Continue Reading...
-		    </a>
-		    </p>
-		  
-		  </div>
-		</div>
-		
-		
-	
+<pre><code class="language-console">mysqladmin variables
+</code></pre>
 
-	
-		<div class="post-teaser">
-		  <header>
-		    <h1>
-		      <a id="post-link-trans" class="post-link" href="/blog/php-generator/">
-		        【PHP拾遗】系列-生成器
-		      </a>
-		    </h1>
-		    <p id="subtitletrans" class="subtitlecontainer">
-		      <a class="subtitle">2016年05月11日</a>
-		       | <a class="subtitle" href="/about/">Nutto</a>
-		       | <a class="subtitle"></a> <a class="subtitle">  <i class="fa fa-tag"></i>: <a href="/tags/php/">php</a></a>
-		    </p>
-		  </header>
-		  <div class="excerpt">
-		  
-		  
-		    <p>PHP的迭代器对于小型的迭代来说还是显得太过臃肿,辛好PHP的生成器提供了一种更容易的方法来产生可以迭代的对象.</p>
+<p><strong>关于设置</strong></p>
 
+<ul>
+  <li>在MySQL启动服务的时候加上参数 <code class="highlighter-rouge">--timezone=timezone_name</code></li>
+  <li>在启动后修改全局的时区 <code class="highlighter-rouge">mysql&gt; SET GLOBAL time_zone = timezone;</code></li>
+  <li>在启动后修改某个连接的时区 <code class="highlighter-rouge">mysql&gt; SET time_zone = timezone;</code></li>
+  <li>修改配置文件 <code class="highlighter-rouge">default-time-zone='timezone'</code></li>
+</ul>
 
-		    <p>
-		    <a class="text" href="/blog/php-generator/">
-		      Continue Reading...
-		    </a>
-		    </p>
-		  
-		  </div>
-		</div>
-		
-		
-	
+<p><strong>要注意的是</strong></p>
 
-	
-		<div class="post-teaser">
-		  <header>
-		    <h1>
-		      <a id="post-link-trans" class="post-link" href="/blog/php-namespace/">
-		        【PHP拾遗】系列-命名空间
-		      </a>
-		    </h1>
-		    <p id="subtitletrans" class="subtitlecontainer">
-		      <a class="subtitle">2016年05月10日</a>
-		       | <a class="subtitle" href="/about/">Nutto</a>
-		       | <a class="subtitle"></a> <a class="subtitle">  <i class="fa fa-tag"></i>: <a href="/tags/php/">php</a></a>
-		    </p>
-		  </header>
-		  <div class="excerpt">
-		  
-		  
-		    <p>在编写大规模程序和涉及多个文件的程序的时候很容易遇到以下的两个问题:</p>
+<p>时区修改之后MySQL中某些函数或者变量的值会出现不一样,特别要注意的是 <code class="highlighter-rouge">timestamp</code> 类型的字段存储和读取是与时区相关的</p>
 
-
-		    <p>
-		    <a class="text" href="/blog/php-namespace/">
-		      Continue Reading...
-		    </a>
-		    </p>
-		  
-		  </div>
-		</div>
-		
-		
-	
-
-	
-		<div class="post-teaser">
-		  <header>
-		    <h1>
-		      <a id="post-link-trans" class="post-link" href="/blog/php-function/">
-		        【PHP拾遗】系列-函数
-		      </a>
-		    </h1>
-		    <p id="subtitletrans" class="subtitlecontainer">
-		      <a class="subtitle">2016年05月9日</a>
-		       | <a class="subtitle" href="/about/">Nutto</a>
-		       | <a class="subtitle"></a> <a class="subtitle">  <i class="fa fa-tag"></i>: <a href="/tags/php/">php</a></a>
-		    </p>
-		  </header>
-		  <div class="excerpt">
-		  
-		  
-		    <p>函数作为一个语言基本的语法结构,很有必要做一些了解</p>
-
-
-		    <p>
-		    <a class="text" href="/blog/php-function/">
-		      Continue Reading...
-		    </a>
-		    </p>
-		  
-		  </div>
-		</div>
-		
-	</div>
-
-	<div class="wp-pagenavi">
-	    <span class='pages'>第 1 页，共 3 页</span>
-
-	    
-
-	      
-	        <span class="current">1</span>
-	      
-	   
-	    
-	        
-	          <a class="page larger" href="/blog/page2">2</a>
-	        
-	    
-	        
-	          <a class="page larger" href="/blog/page3">3</a>
-	        
-	    
-
-	    
-	    	<a class="nextpostslink" rel="next" href="/blog/page2" > » </a>
-	    
-
-	</div>
+<div class="highlighter-rouge"><pre class="highlight"><code>存储时  timestamp + current time zone -&gt; UTC
+读取时 stored UTC + current time zone -&gt; timestamp
+</code></pre>
 </div>
+
+<p><strong>举个小例子</strong></p>
+
+<pre><code class="language-mysql">create table timeset
+(
+    date date,
+    datetime datetime,
+    timestamp timestamp
+);
+ 
+insert into timeset
+values(
+    now(),
+    now(),
+    now()
+);
+ 
+select * from timeset;
+ 
+# 修改时区到UTC+12, 可以发现timestamp的值发生了改变
+set time_zone = '+12:00';
+select * from timeset;
+ 
+insert into timeset
+values(
+    now(),
+    now(),
+    now()
+);
+ 
+# 将时区改回去, timestamp总能忠实地反映插入的时间
+set time_zone = '+8:00';
+select * from timeset;
+</code></pre>
+
+<h2 id="date-datetimetimestamp">DATE, DATETIME和TIMESTAMP</h2>
+
+<blockquote>
+  <p>http://dev.mysql.com/doc/refman/5.7/en/datetime.html</p>
+</blockquote>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">\</th>
+      <th style="text-align: center">Date part</th>
+      <th style="text-align: center">Time part</th>
+      <th style="text-align: center">Range</th>
+      <th style="text-align: center">remark</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">DATE</td>
+      <td style="text-align: center">O</td>
+      <td style="text-align: center">X</td>
+      <td style="text-align: center">1000-01-01 ~ 9999-12-31</td>
+      <td style="text-align: center"> </td>
+    </tr>
+    <tr>
+      <td style="text-align: center">DATETIME</td>
+      <td style="text-align: center">O</td>
+      <td style="text-align: center">O</td>
+      <td style="text-align: center">1000-01-01 00:00:00 ~ 9999-12-31 23:59:59</td>
+      <td style="text-align: center">可带毫秒数,与时区无关</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">TIMESTAMP</td>
+      <td style="text-align: center">O</td>
+      <td style="text-align: center">O</td>
+      <td style="text-align: center">1970-01-01 00:00:01 UTC ~ 2038-01-19 03:14:07 UTC</td>
+      <td style="text-align: center">可带毫秒数,读取和存储的时候都会根据本连接的time zone来与UTC转换</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="section">时间相关的运算</h2>
+
+<blockquote>
+  <p>http://dev.mysql.com/doc/refman/5.6/en/date-and-time-functions.html</p>
+</blockquote>
+
+<p>关于时间的运算一定要使用时间的函数来进行.</p>
+
+  </section>
+  
+</article>
+
+<!-- Post navigation -->
+
+<div id="post-nav">
+    
+    <a id="prev-post" href="/blog/php-predefine-magic-constant/">
+      <span class="page-title">【PHP拾遗】系列-8个有用的预定义魔术常量</span>
+      <span class="nav-label">
+        <i class="fa fa-chevron-left"></i> 
+      </span>
+    </a>
+    
+    
+</div>
+
+
+<!-- Disqus -->
+
+<div class="comments">
+  <div id="disqus_thread"></div>
+<script>
+/**
+* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//blognuttopancn.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>
+
+
     		</div> <!-- #et-main-area -->
 		</div> <!-- #page-container -->
 		

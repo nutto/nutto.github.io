@@ -5,7 +5,137 @@
     <atom:link href="http://blog.nuttopan.cn/feed.xml" rel="self" type="application/rss+xml"/>
     <link>http://blog.nuttopan.cn/</link>
     <description>nutto的博客</description>
-    <pubDate>Mon, 16 May 2016 09:34:47 +0800</pubDate>
+    <pubDate>Tue, 17 May 2016 12:17:40 +0800</pubDate>
+    
+      <item>
+        <title>【MySQL】拾遗系列-随手记</title>
+        <link>http://blog.nuttopan.cn/blog/mysql-short-hand-note/</link>
+        <guid isPermaLink="true">http://blog.nuttopan.cn/blog/mysql-short-hand-note/</guid>
+        <description>&lt;h2 id=&quot;mysql&quot;&gt;MySQL的时区&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;http://dev.mysql.com/doc/refman/5.7/en/time-zone-support.html&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;在MySQL启动的时候就会读取系统的时区参数作为自己的时区设置&lt;/p&gt;
+
+&lt;p&gt;我们可以通过命令查看MySQL服务器的系统变量来获取当前设置的时区&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;http://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_system_time_zone&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-console&quot;&gt;mysqld --verbose --help
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;或者&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-console&quot;&gt;mysqladmin variables
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;关于设置&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;在MySQL启动服务的时候加上参数 &lt;code class=&quot;highlighter-rouge&quot;&gt;--timezone=timezone_name&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;在启动后修改全局的时区 &lt;code class=&quot;highlighter-rouge&quot;&gt;mysql&amp;gt; SET GLOBAL time_zone = timezone;&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;在启动后修改某个连接的时区 &lt;code class=&quot;highlighter-rouge&quot;&gt;mysql&amp;gt; SET time_zone = timezone;&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;修改配置文件 &lt;code class=&quot;highlighter-rouge&quot;&gt;default-time-zone=&#39;timezone&#39;&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;要注意的是&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;时区修改之后MySQL中某些函数或者变量的值会出现不一样,特别要注意的是 &lt;code class=&quot;highlighter-rouge&quot;&gt;timestamp&lt;/code&gt; 类型的字段存储和读取是与时区相关的&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;存储时  timestamp + current time zone -&amp;gt; UTC
+读取时 stored UTC + current time zone -&amp;gt; timestamp
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;举个小例子&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-mysql&quot;&gt;create table timeset
+(
+    date date,
+    datetime datetime,
+    timestamp timestamp
+);
+ 
+insert into timeset
+values(
+    now(),
+    now(),
+    now()
+);
+ 
+select * from timeset;
+ 
+# 修改时区到UTC+12, 可以发现timestamp的值发生了改变
+set time_zone = &#39;+12:00&#39;;
+select * from timeset;
+ 
+insert into timeset
+values(
+    now(),
+    now(),
+    now()
+);
+ 
+# 将时区改回去, timestamp总能忠实地反映插入的时间
+set time_zone = &#39;+8:00&#39;;
+select * from timeset;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;date-datetimetimestamp&quot;&gt;DATE, DATETIME和TIMESTAMP&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;http://dev.mysql.com/doc/refman/5.7/en/datetime.html&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;\&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Date part&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Time part&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Range&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;remark&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;DATE&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;O&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;X&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1000-01-01 ~ 9999-12-31&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;DATETIME&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;O&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;O&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1000-01-01 00:00:00 ~ 9999-12-31 23:59:59&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;可带毫秒数,与时区无关&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;TIMESTAMP&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;O&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;O&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;1970-01-01 00:00:01 UTC ~ 2038-01-19 03:14:07 UTC&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;可带毫秒数,读取和存储的时候都会根据本连接的time zone来与UTC转换&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;时间相关的运算&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;http://dev.mysql.com/doc/refman/5.6/en/date-and-time-functions.html&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;关于时间的运算一定要使用时间的函数来进行.&lt;/p&gt;
+</description>
+        <pubDate>Tue, 17 May 2016 00:00:00 +0800</pubDate>
+      </item>
     
       <item>
         <title>【PHP拾遗】系列-8个有用的预定义魔术常量</title>
@@ -432,7 +562,7 @@ EOF;
         <title>【PHP拾遗】系列-函数</title>
         <link>http://blog.nuttopan.cn/blog/php-function/</link>
         <guid isPermaLink="true">http://blog.nuttopan.cn/blog/php-function/</guid>
-        <description>&lt;p&gt;函数作为一个语言基本的语法结构,,很有必要做一些了解&lt;/p&gt;
+        <description>&lt;p&gt;函数作为一个语言基本的语法结构,很有必要做一些了解&lt;/p&gt;
 
 &lt;p&gt;本文从四个方面讲述一下PHP的函数:&lt;/p&gt;
 
