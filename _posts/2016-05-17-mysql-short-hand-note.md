@@ -15,13 +15,13 @@ tag: [mysql]
 
 > http://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_system_time_zone
 
-```console
+```
 mysqld --verbose --help
 ```
 
 或者
 
-```console
+```
 mysqladmin variables
 ```
 
@@ -44,7 +44,7 @@ mysqladmin variables
 
 **举个小例子**
 
-```mysql
+```
 create table timeset
 (
     date date,

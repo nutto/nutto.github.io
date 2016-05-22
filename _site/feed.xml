@@ -5,7 +5,7 @@
     <atom:link href="http://blog.nuttopan.cn/feed.xml" rel="self" type="application/rss+xml"/>
     <link>http://blog.nuttopan.cn/</link>
     <description>nutto的博客</description>
-    <pubDate>Tue, 17 May 2016 12:17:40 +0800</pubDate>
+    <pubDate>Sun, 22 May 2016 23:32:04 +0800</pubDate>
     
       <item>
         <title>【MySQL】拾遗系列-随手记</title>
@@ -25,13 +25,15 @@
   &lt;p&gt;http://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_system_time_zone&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;pre&gt;&lt;code class=&quot;language-console&quot;&gt;mysqld --verbose --help
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mysqld --verbose --help
 &lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;p&gt;或者&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&quot;language-console&quot;&gt;mysqladmin variables
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;mysqladmin variables
 &lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;p&gt;&lt;strong&gt;关于设置&lt;/strong&gt;&lt;/p&gt;
 
@@ -53,7 +55,7 @@
 
 &lt;p&gt;&lt;strong&gt;举个小例子&lt;/strong&gt;&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&quot;language-mysql&quot;&gt;create table timeset
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;create table timeset
 (
     date date,
     datetime datetime,
@@ -84,6 +86,7 @@ values(
 set time_zone = &#39;+8:00&#39;;
 select * from timeset;
 &lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;h2 id=&quot;date-datetimetimestamp&quot;&gt;DATE, DATETIME和TIMESTAMP&lt;/h2&gt;
 

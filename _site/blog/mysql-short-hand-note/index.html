@@ -314,13 +314,15 @@ ga('send', 'pageview');
   <p>http://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_system_time_zone</p>
 </blockquote>
 
-<pre><code class="language-console">mysqld --verbose --help
+<div class="highlighter-rouge"><pre class="highlight"><code>mysqld --verbose --help
 </code></pre>
+</div>
 
 <p>或者</p>
 
-<pre><code class="language-console">mysqladmin variables
+<div class="highlighter-rouge"><pre class="highlight"><code>mysqladmin variables
 </code></pre>
+</div>
 
 <p><strong>关于设置</strong></p>
 
@@ -342,7 +344,7 @@ ga('send', 'pageview');
 
 <p><strong>举个小例子</strong></p>
 
-<pre><code class="language-mysql">create table timeset
+<div class="highlighter-rouge"><pre class="highlight"><code>create table timeset
 (
     date date,
     datetime datetime,
@@ -373,6 +375,7 @@ values(
 set time_zone = '+8:00';
 select * from timeset;
 </code></pre>
+</div>
 
 <h2 id="date-datetimetimestamp">DATE, DATETIME和TIMESTAMP</h2>
 
